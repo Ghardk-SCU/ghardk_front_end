@@ -1,9 +1,17 @@
-import { motion } from 'framer-motion'
+import { useRef } from 'react'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import NavBar from '../../../Components/NavBar/NavBar'
 import bg2 from './assets/bg.png'
 import ScrollSVG from './ScrollSVG.svg'
 
 export default function Welcome() {
+  const ref = useRef()
+  const { scrollYProgress } = useScroll({
+    target: ref,
+    offset: ['start start', 'end start']
+  })
+
+  const ExitY = useTransform(scrollYProgress, [0, 1], [0, -100])
   return (
     <motion.main
       transition={{ duration: 1 }}
@@ -12,9 +20,12 @@ export default function Welcome() {
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         height: '100vh',
-      }} className='text-white z-1 min-h-screen'>
+      }} className='text-white z-1 min-h-screen NunitoSans'>
       <NavBar />
-      <section className='center w-full h-full mainPadding'>
+      <motion.section
+        ref={ref}
+        style={{y: ExitY}}
+        className='center w-full h-full mainPadding'>
         <div className='lg:w-[50%] sm:w-[70%] w-full'>
           <div className='text-5xl md:text-7xl lg:text-[5vw] font-extrabold py-4 space-y-5'>
             <motion.h1
@@ -47,7 +58,7 @@ export default function Welcome() {
               a world full of handmade products.</motion.p>
           </div>
         </div>
-      </section>
+      </motion.section>
       <motion.img
         animate={{
           opacity: [0, 1, 0],

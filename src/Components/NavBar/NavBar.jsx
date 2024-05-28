@@ -13,12 +13,12 @@ export default function NavBar() {
   const width = WindowSize().width;
   const OpenAnim = {
     hidden: { height: 0 },
-    visible: { height: isOpen ? 'auto' : 80 }
+    visible: { height: isOpen ? 'auto' : 60 }
   }
 
   const ListAnim = {
-    hidden: { opacity: 0, x: 100 },
-    visible: (custom) => ({ opacity: 1, x: 0, transition: { delay: custom } })
+    hidden: { opacity: 0, y: -10 },
+    visible: (custom) => ({ opacity: 1, y: 0, transition: { delay: custom } })
   }
 
   useEffect(() => {
@@ -26,19 +26,19 @@ export default function NavBar() {
   }, [isOpen])
 
   return (
-    <nav className='flex justify-between w-full fixed top-0 '>
+    <nav className='flex justify-between w-full fixed top-0 z-[100] mainPadding'>
       <div>
-        <motion.img initial={{ x: -100 }} animate={{ x: 0 }} className='w-16 ml-5 cursor-pointer' src={logo} alt='logo' />
+        <motion.img initial={{ y: -50 }} animate={{ y: 0 }} className='imgSettings w-16 cursor-pointer' src={logo} alt='logo' />
       </div>
       <motion.div
         variants={OpenAnim}
         initial='hidden'
         animate='visible'
-        className='h-0 sm:h-auto flex items-center flex-col overflow-hidden bg-Beige rounded-full sm:rounded-none sm:rounded-b-full gap-10 px-5'>
+        className='sm:h-auto flex items-center flex-col overflow-hidden bg-Beige rounded-md gap-10 px-5'>
         <motion.button onClick={() => { setIsOpen(prev => !prev) }}
           custom={0} variants={ListAnim} initial='hidden' animate="visible" title='Menu'
-          className='cursor-pointer pt-5'>
-          <IoIosMenu size={30} className='text-black' />
+          className='cursor-pointer pt-4'>
+          <IoIosMenu size={30} className='text-black'/>
         </motion.button>
         <motion.button custom={0.1} variants={ListAnim} initial='hidden' animate="visible" title='Account' className='cursor-pointer'>
           <MdOutlinePerson size={30} className='text-black' />

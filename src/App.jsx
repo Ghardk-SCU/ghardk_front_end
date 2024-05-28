@@ -1,10 +1,12 @@
-import Welcome from "./Pages/Home/Welcome/Welcome"
+import Home from './Pages/Home/index'
+import { ReactLenis } from '@studio-freight/react-lenis'
 
 
 function App() {
   return (
     <>
-      <Welcome />
+      <Home />
+      <ReactLenis root={true}/>
     </>
   )
 }

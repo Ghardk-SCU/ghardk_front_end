@@ -1,19 +1,46 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+::-webkit-scrollbar {
+  width: 10px;
+  background: #000014;
+}
+::-webkit-scrollbar-thumb {
+  border-radius: 6px;
+  background: #D4CDCD;
+}
+
 @font-face {
   font-family: NunitoSans;
   src: url('../Fonts/NunitoSans.ttf');
 }
-*{
+@font-face {
+  font-family: EBGaramond;
+  src: url('../Fonts/EBGaramond.ttf');
+}
+@font-face {
+  font-family: Lekton;
+  src: url('../Fonts/Lekton.ttf');
+}
+.NunitoSans{
   font-family: NunitoSans;
 }
+.EBGaramond{
+  font-family: EBGaramond;
+}
+.Lekton{
+  font-family: Lekton;
+}
+
 .center{
   @apply flex justify-center items-center;
 }
+.imgSettings{
+  @apply select-none pointer-events-none;
+}
 .mainMargin{
-  @apply mx-5;
+  @apply mx-10;
 }
 .mainPadding{
-  @apply px-5;
+  @apply p-10;
 }
