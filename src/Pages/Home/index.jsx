@@ -7,6 +7,8 @@ export default function Home() {
       <Welcome />
       <Categories />
       <PopularProd />
+      {/* <Categories /> */}
+
     </>
   )
 }

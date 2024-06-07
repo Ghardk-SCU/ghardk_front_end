@@ -53,7 +53,7 @@ export default function Welcome() {
               animate={{ opacity: 0.6, y: 0 }}
               transition={{ duration: 0.5, delay: 0.3 }}
               className='text-md sm:text-xl md:text-2xl xl:text-3xl 3xl:text-4xl text-center'>
-              With Ghrdk, you  will get the chance  to work <br />
+              With Ghardk, you  will get the chance  to work <br />
               using your favorite hobby and explore <br />
               a world full of handmade products.</motion.p>
           </div>

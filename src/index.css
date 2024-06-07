@@ -15,6 +15,10 @@
   src: url('../Fonts/NunitoSans.ttf');
 }
 @font-face {
+  font-family: Fredoka;
+  src: url('../Fonts/FredokaOne-Regular.ttf');
+}
+@font-face {
   font-family: EBGaramond;
   src: url('../Fonts/EBGaramond.ttf');
 }
@@ -31,6 +35,9 @@
 .Lekton{
   font-family: Lekton;
 }
+.Fredoka{
+  font-family: Fredoka;
+}
 
 .center{
   @apply flex justify-center items-center;
@@ -39,8 +46,8 @@
   @apply select-none pointer-events-none;
 }
 .mainMargin{
-  @apply mx-10;
+  @apply sm:mx-10;
 }
 .mainPadding{
-  @apply p-10;
+  @apply sm:p-10 p-5;
 }
