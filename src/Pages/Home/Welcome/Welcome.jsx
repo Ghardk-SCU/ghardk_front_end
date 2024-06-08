@@ -21,7 +21,7 @@ export default function Welcome() {
         backgroundPosition: 'center',
         height: '100vh',
       }} className='text-white z-1 min-h-screen NunitoSans'>
-      <NavBar />
+      <NavBar isDark={0} />
       <motion.section
         ref={ref}
         style={{y: ExitY}}
