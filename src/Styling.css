@@ -1,0 +1,102 @@
+/* Input Field Animation & Styling*/
+.inputLabel{
+    user-select: none;
+    pointer-events: none;
+}
+
+/* .inputHolder input:focus:not(:placeholder-shown) + label{
+    animation: goOut 0.5s forwards;
+} */
+
+
+/* .inputHolder input:not(:focus):not(:placeholder-shown) + label {
+    animation: goIn 0.5s forwards;
+} */
+
+.inputHolder input:focus + label {
+    animation: goOut 0.5s forwards;
+}
+
+.inputHolder input:not(:focus) + label, :not(:placeholder-shown) + label {
+    animation: goIn 0.5s forwards;
+}
+
+@keyframes goIn {
+    0% {
+        top: -7px;
+        font-size: 15px;
+        left: -3px;
+    }
+    100% {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+        top: 16px;
+    }
+}
+
+@keyframes goOut {
+    0% {
+        font-size: 1.125rem;
+        line-height: 1.75rem;
+        top: 16px;
+    }
+    100% {
+        top: -7px;
+        font-size: 15px;
+        left: -3px;
+    }
+}
+
+
+input[type="email"]:-webkit-autofill {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+input[type="email"]:-moz-autofill {
+    transition: background-color 5000s ease-in-out 0s;
+}
+
+
+/* Forgot Password Animation & Styling */
+
+.forgotPassword {
+    position: relative;
+    display: inline-block;
+}
+
+.forgotPassword::before {
+    content: '';
+    position: absolute;
+    left: 0;
+    bottom: -3px;
+    width: 0;
+    height: 1px;
+    background-color: rgb(16,16,16, 0.6);
+    transition: width 300ms ease-in-out;
+}
+
+.forgotPassword p:hover,
+.forgotPassword:focus-within p {
+    opacity: 1;
+    transition: opacity 300ms ease-in-out;
+}
+
+.forgotPassword:hover::before,
+.forgotPassword:focus-within::before {
+    width: 100%;
+    background-color: rgba(16, 16, 16, 0.8);
+    transition: 300ms ease-in-out;
+}
+
+.clickableButton:focus {
+    border: none;
+    outline: none;
+}
+
+/* Don't have Account Animation & Styling */
+
+.dontHaveAccount span:hover,
+.dontHaveAccount:focus-within span{
+    opacity: 100%;
+    transition: opacity 200ms ease-in-out;
+}
