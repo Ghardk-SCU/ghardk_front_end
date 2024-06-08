@@ -23,6 +23,9 @@ export default {
       boxShadow: {
         custom: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
       },
+      screens:{
+        'lg2' : '1200px'
+      },
     },
   },
   plugins: [],
