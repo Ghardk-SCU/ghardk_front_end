@@ -1,12 +1,9 @@
-import { useRef, useEffect } from 'react'
-import { motion, useInView, useAnimation } from 'framer-motion'
+import { motion } from 'framer-motion'
 import { MdKeyboardArrowRight } from "react-icons/md";
+import { reavelAnimDowntoTop } from '../../../Store/AnimationValues'
 
 export default function CategorieLayout({ img, delay, controls }) {
-  const reavelAnim = {
-    hidden: { y: 100, opacity: 0 },
-    visible: { y: 0, opacity: 1, transition: { duration: 0.3, delay } },
-  }
+  const reavelAnim = reavelAnimDowntoTop(delay)
   return (
     <motion.div variants={reavelAnim} initial='hidden' animate={controls}
       className='group min-h-[570px] min-w-[calc(100%+50px)] sm:min-h-[470px] sm:min-w-[320px] flex flex-col space-y-2 cursor-pointer'>

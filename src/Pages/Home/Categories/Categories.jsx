@@ -27,7 +27,7 @@ export default function Categories() {
     setWidth(dragRef.current.scrollWidth - dragRef.current.offsetWidth)
   }, [])
   return (
-    <motion.main ref={mainRef} className="relative h-screen z-[1] bg-DarkerBlue">
+    <motion.main ref={mainRef} className="relative center min-h-screen z-[1] bg-DarkerBlue">
       <Backgrounds scrollYProgress={scrollYProgress} />
       <section className='mainPadding w-full h-full flex justify-center items-center text-white'>
         <div className='flex flex-col lg:flex-row gap-10 w-full lg:h-[470px] overflow-hidden'>
