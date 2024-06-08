@@ -1,16 +1,16 @@
 import { useState } from 'react';
+import { motion } from 'framer-motion'
 import Prod1 from './assets/prod1.jpg'
 import Prod2 from './assets/prod2.jpg'
 import { FaStar } from "react-icons/fa";
 import { FaStarHalfAlt } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa6";
+import { reavelAnimDowntoTop } from '../../../Store/AnimationValues'
 
-
-
-
-export default function Prod({ Amount, Title, Type, Rate, totalRaters }) {
+export default function Prod({ Amount, Title, Type, Rate, totalRaters, controls, delay }) {
   const [isLiked, setIsLiked] = useState(false)
+  const reavelAnim = reavelAnimDowntoTop(delay)
   const StarCounter = () => {
     let stars = []
     for (let i = 0; i < 5; i++) {
@@ -34,7 +34,7 @@ export default function Prod({ Amount, Title, Type, Rate, totalRaters }) {
     )
   }
   return (
-    <div className='group relative w-[calc(30%-78px)] h-[100%] rounded-2xl overflow-hidden  font-medium'>
+    <motion.div variants={reavelAnim} initial='hidden' animate={controls} className='relative w-full h-full rounded-2xl overflow-hidden font-medium'>
       <Backgrounds Type={Type} />
       <div className='flex flex-col justify-between w-full h-full'>
         <div className='m-4 flex justify-between'>
@@ -52,23 +52,25 @@ export default function Prod({ Amount, Title, Type, Rate, totalRaters }) {
         </div>
         <div style={{
           background: 'linear-gradient(0deg, rgba(16, 16, 16, 0.51) 0%, rgba(16, 16, 16, 0) 100%)'
-        }} className='relative p-4 rounded-lg text-white space-y-3  top-[calc(100%-300px)] group-hover:top-0 duration-300'>
+        }} className='relative p-4 rounded-lg text-white space-y-3 group-hover:top-0 duration-300'>
           <div className=' w-full h-full absolute top-0 left-0 pointer-events-none' />
-          <h2 className="text-[3.5vh] Fredoka relative
+          <h2 className="text-[3.5vh] Fredoka absolute bottom-5 group-hover:relative    group-hover:bottom-0
             before:content-[''] before:absolute before:bg-Beige2 before:w-0 before:h-[6px] before:rounded-full before:-bottom-2 before:-left-4 group-hover:before:w-1/2 before:delay-75 before:duration-300
           ">{Title}</h2>
-          <p className='text-[1.8vh] opacity-60 relative top-10 group-hover:top-0 delay-75 duration-300'>Jorem ipsum dolor sit amet, consectetur
-            adipiscing elit. Nunc vulputate libero etr
-            interdum, ac aliquet odio mattis.</p>
-          <StarCounter />
-          <div className='w-full center relative top-10 group-hover:top-0 delay-75 duration-300'>
-            <button className='text-black bg-Beige rounded-full px-10 py-4'>
-              Add to cart
-            </button>
+          <div className='relative top-[100%] group-hover:top-0 duration-300'>
+            <p className='text-[1.8vh] opacity-60 relative top-10 group-hover:top-0 delay-75 duration-300'>Jorem ipsum dolor sit amet, consectetur
+              adipiscing elit. Nunc vulputate libero etr
+              interdum, ac aliquet odio mattis.</p>
+            <StarCounter />
+            <div className='w-full center relative top-10 group-hover:top-0 delay-75 duration-300'>
+              <button className='text-black bg-Beige rounded-full px-10 py-4'>
+                Add to cart
+              </button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
+    </motion.div>
   )
 }
 
