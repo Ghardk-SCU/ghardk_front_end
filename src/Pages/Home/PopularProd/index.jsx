@@ -92,11 +92,11 @@ export default function PopularProd() {
     }
   }
   return (
-    <main ref={mainRef} className="bg-DarkerBlue relative h-screen z-[1]">
+    <main ref={mainRef} className="bg-DarkerBlue relative h-[120vh] z-[1]">
       <Backgrounds scrollYProgress={scrollYProgress} />
-      <section className='flex flex-col w-full h-full space-y-10 md:space-y-0'>
+      <section className='flex flex-col w-full h-full space-y-10 md:space-y-0 pb-20'>
         <header className='flex justify-center'>
-          <h1 className='text-center text-5xl md:text-4xl lg:text-7xl EBGaramond text-white'>POPULAR PRODUCTS</h1>
+          <h1 className='text-center text-4xl md:text-4xl lg:text-7xl EBGaramond text-white'>POPULAR PRODUCTS</h1>
         </header>
         <section className='flex-grow p-2 md:p-10 flex flex-col gap-5 justify-between items-center overflow-hidden'>
           <div className='w-full h-full overflow-hidden'>
@@ -105,15 +105,16 @@ export default function PopularProd() {
               dragConstraints={{ left: 0, right: 0 }}
               style={{ x: dragMotion }}
               animate={{ translateX: `-${imgTurn * dragPercintage}%` }}
+              transition={{ type: 'just' }}
               onDragEnd={DragEnd}
-              className='w-full h-full grid grid-flow-col 
+              className='cursor-grabbing w-full h-full grid grid-flow-col 
               xl:auto-cols-[calc((100%/3))] lg:auto-cols-[calc((100%/2))] md:auto-cols-[calc((100%/2))] auto-cols-[calc((100%/1))] '>
               {
                 Object.keys(Products).map((key, idx) => {
                   const { Amount, Title, Type, Rate, totalRaters } = Products[key]
                   return (
                     <div key={key} className='group px-3'>
-                      <Prod Amount={Amount} controls={controls} delay={idx/10} Title={Title} Type={Type} Rate={Rate} totalRaters={totalRaters} />
+                      <Prod Amount={Amount} controls={controls} delay={idx / 10} Title={Title} Type={Type} Rate={Rate} totalRaters={totalRaters} />
                     </div>
                   )
                 })
@@ -121,11 +122,11 @@ export default function PopularProd() {
             </motion.div>
           </div>
           <div className='flex gap-5'>
-            <button onClick={() => { handleMove("-1") }} className='opacity-80 z-[10]'>
-              <FaLongArrowAltLeft color='white' size={35} />
+            <button onClick={() => { handleMove("-1") }} className='text-Beige2 hover:text-Beige z-[10] duration-300'>
+              <FaLongArrowAltLeft size={35} />
             </button>
-            <button onClick={() => { handleMove("+1") }} className='opacity-80 z-[10]'>
-              <FaLongArrowAltRight color='white' size={35} />
+            <button onClick={() => { handleMove("+1") }} className='text-Beige2 hover:text-Beige z-[10] duration-300'>
+              <FaLongArrowAltRight size={35} />
             </button>
           </div>
         </section>
