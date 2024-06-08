@@ -34,7 +34,7 @@ export default function Prod({ Amount, Title, Type, Rate, totalRaters }) {
     )
   }
   return (
-    <div className='group relative w-[calc(30%-78px)] h-[90%] rounded-2xl overflow-hidden  font-medium'>
+    <div className='group relative w-[calc(30%-78px)] h-[100%] rounded-2xl overflow-hidden  font-medium'>
       <Backgrounds Type={Type} />
       <div className='flex flex-col justify-between w-full h-full'>
         <div className='m-4 flex justify-between'>
@@ -52,7 +52,7 @@ export default function Prod({ Amount, Title, Type, Rate, totalRaters }) {
         </div>
         <div style={{
           background: 'linear-gradient(0deg, rgba(16, 16, 16, 0.51) 0%, rgba(16, 16, 16, 0) 100%)'
-        }} className='relative p-4 rounded-lg text-white space-y-3  top-[calc(100%-260px)] group-hover:top-0 duration-300'>
+        }} className='relative p-4 rounded-lg text-white space-y-3  top-[calc(100%-300px)] group-hover:top-0 duration-300'>
           <div className=' w-full h-full absolute top-0 left-0 pointer-events-none' />
           <h2 className="text-[3.5vh] Fredoka relative
             before:content-[''] before:absolute before:bg-Beige2 before:w-0 before:h-[6px] before:rounded-full before:-bottom-2 before:-left-4 group-hover:before:w-1/2 before:delay-75 before:duration-300

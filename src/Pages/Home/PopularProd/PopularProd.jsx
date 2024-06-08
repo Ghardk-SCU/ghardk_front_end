@@ -36,7 +36,7 @@ export default function PopularProd() {
   )
 }
 
-const Backgrounds = ({scrollYProgress}) => {
+const Backgrounds = ({ scrollYProgress }) => {
   const y = useTransform(scrollYProgress, [0, 0.5, 1], ['0%', '-30%', '-60%'])
   return (
     <>
