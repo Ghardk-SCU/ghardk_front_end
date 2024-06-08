@@ -26,6 +26,10 @@
   font-family: Lekton;
   src: url('../Fonts/Lekton.ttf');
 }
+@font-face {
+  font-family: LekyCalgria;
+  src: url('../Fonts/LekyCalgria.ttf');
+}
 .NunitoSans{
   font-family: NunitoSans;
 }
@@ -37,6 +41,9 @@
 }
 .Fredoka{
   font-family: Fredoka;
+}
+.LekyCalgria{
+  font-family: LekyCalgria;
 }
 
 .center{
