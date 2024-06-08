@@ -1,5 +1,5 @@
 import Home from './Pages/Home/index'
-import SignUp from './Pages/SignUp/index'
+import Login from './Pages/Login/index'
 import { ReactLenis } from '@studio-freight/react-lenis'
 
 
@@ -7,7 +7,7 @@ function App() {
   return (
     <>
       {/* <Home /> */}
-      <SignUp />
+      <Login />
       <ReactLenis root={true}/>
     </>
   )
