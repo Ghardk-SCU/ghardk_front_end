@@ -6,8 +6,8 @@ import { ReactLenis } from '@studio-freight/react-lenis'
 function App() {
   return (
     <>
-      <Home />
-      {/* <Login /> */}
+      {/* <Home /> */}
+      <Login />
       <ReactLenis root={true}/>
     </>
   )

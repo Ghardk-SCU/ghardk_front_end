@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 export default function Welcome({ FirstColor: ShapeColor, SecondColor: RightColor }) {
   return (
     <motion.div style={{ backgroundColor: RightColor }} animate={{ backgroundColor: RightColor, transition: { duration: 0.5 } }}
-      className="w-full h-screen ">
+      className="w-full h-screen">
       <Shape ShapeColor={ShapeColor} />
     </motion.div>
   )
