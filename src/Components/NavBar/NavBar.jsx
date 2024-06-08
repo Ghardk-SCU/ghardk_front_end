@@ -34,7 +34,7 @@ export default function NavBar(props) {
           variants={OpenAnim}
           initial='hidden'
           animate='visible'
-          className='absolute top-0 right-0 flex items-center flex-col overflow-hidden bg-Beige rounded-md gap-10 px-5'>
+          className='absolute shadow-xl top-0 right-0 flex items-center flex-col overflow-hidden bg-Beige rounded-md gap-10 px-5'>
           <motion.button onClick={() => { setIsOpen(prev => !prev) }}
             custom={0} variants={ListAnim} initial='hidden' animate="visible" title='Menu'
             className='cursor-pointer pt-4'>
