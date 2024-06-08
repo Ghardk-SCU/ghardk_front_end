@@ -32,7 +32,7 @@ export default function Categories() {
       <section className='mainPadding w-full h-full flex justify-center items-center text-white'>
         <div className='flex flex-col lg:flex-row gap-10 w-full lg:h-[470px] overflow-hidden'>
           <div className='flex flex-col gap-14 items-center justify-center px-10'>
-            <motion.h1 className='text-6xl EBGaramond'>CATEGORIES</motion.h1>
+            <motion.h1 className='text-4xl md:text-6xl EBGaramond'>CATEGORIES</motion.h1>
             <button className='text-2xl px-10 py-4 Lekton hover:bg-white hover:text-black duration-300' style={{ border: '1px solid white' }}>Shop Now</button>
           </div>
           <div className='flex-grow overflow-hidden'>
