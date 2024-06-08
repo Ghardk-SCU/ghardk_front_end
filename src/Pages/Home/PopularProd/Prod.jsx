@@ -41,6 +41,7 @@ export default function Prod({ Amount, Title, Type, Rate, totalRaters }) {
           <div className='px-2 flex items-center w-fit bg-white bg-opacity-20 backdrop-filter backdrop-blur-2 rounded-lg text-[2.5vh]'>
             <p>{Amount}</p>
             <span className='text-[1.5vh]'>EGP</span>
+            
           </div>
           <div className='px-2 py-2 bg-white rounded-full -top-20 relative group-hover:-top-0 duration-300'>
             {
