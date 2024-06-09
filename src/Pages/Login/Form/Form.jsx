@@ -43,8 +43,8 @@ export default function Form() {
         })
     }
 
-    function handleSubmit() {
-
+    function handleSubmit(e) {
+        e.preventDefault();
     }
 
 
@@ -87,10 +87,11 @@ export default function Form() {
                             >Password</label>
                         </div>
                         <div className={`${Styles.forgotPassword} self-end mt-[-15px]`}>
-                            <button className='clickableButton'><p className='Fredoka text-[14px] opacity-60 cursor-pointer'>Forgot Password</p></button>
+                            <button className={`${Styles.clickableButton}`}><p className='Fredoka text-[14px] opacity-60 cursor-pointer'>Forgot Password</p></button>
                         </div>
-                        <div className="dontHaveAccount flex gap-2">
-                            <p className='Fredoka text-[15px]'>Don't have an Account?</p> <button className={`${Styles.clickableButton}`}><span className='Fredoka text-[15px] opacity-70 font-medium underline'>Sign Up</span></button>
+                        <button type='submit' className={`${Styles.loginBtnAnimate} bg-Black Fredoka text-White text-[22px] w-[100%] py-[14px] rounded-[20px]`}><span>Login</span></button>
+                        <div className={`${Styles.dontHaveAccount} center gap-2`}>
+                            <p className='Fredoka text-[12px] md:text-[15px] text-center'>Don't have an Account?</p> <button className={`${Styles.clickableButton}`}><p className='Fredoka text-[12px] md:text-[15px] text-center opacity-70 font-medium underline'>Sign Up</p></button>
                         </div>
                     </form>
                 </div>
@@ -98,22 +99,3 @@ export default function Form() {
         </>
     )
 }
-
-// width: 169px;
-// height: 19px;
-
-// font-family: 'Fredoka';
-// font-style: normal;
-// font-weight: 400;
-// font-size: 16px;
-// line-height: 19px;
-// display: flex;
-// align-items: center;
-
-// color: rgba(16, 16, 16, 0.9);
-
-
-// /* Inside auto layout */
-// flex: none;
-// order: 0;
-// flex-grow: 0;
