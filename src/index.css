@@ -30,6 +30,10 @@
   font-family: LekyCalgria;
   src: url('../Fonts/LekyCalgria.ttf');
 }
+@font-face {
+  font-family: BeloveMelody;
+  src: url('../Fonts/belovemelody.otf');
+}
 .NunitoSans{
   font-family: NunitoSans;
 }
@@ -44,6 +48,9 @@
 }
 .LekyCalgria{
   font-family: LekyCalgria;
+}
+.BeloveMelody{
+  font-family: BeloveMelody;
 }
 
 .center{
