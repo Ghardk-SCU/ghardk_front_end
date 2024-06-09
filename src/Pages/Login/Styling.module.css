@@ -16,11 +16,13 @@
 .inputHolder input:focus + label {
     animation: goOut 0.5s forwards;
 }
-
-.inputHolder input:not(:focus) + label, :not(:placeholder-shown) + label {
+.inputHolder input:not(:focus) + label {
     animation: goIn 0.5s forwards;
 }
 
+.inputHolder input:not(:placeholder-shown) + label {
+    animation: goOut 0.5s forwards;
+}
 @keyframes goIn {
     0% {
         top: -7px;
