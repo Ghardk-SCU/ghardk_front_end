@@ -16,11 +16,13 @@
 .inputHolder input:focus + label {
     animation: goOut 0.5s forwards;
 }
-
-.inputHolder input:not(:focus) + label, :not(:placeholder-shown) + label {
+.inputHolder input:not(:focus) + label {
     animation: goIn 0.5s forwards;
 }
 
+.inputHolder input:not(:placeholder-shown) + label {
+    animation: goOut 0.5s forwards;
+}
 @keyframes goIn {
     0% {
         top: -7px;
@@ -95,8 +97,8 @@ input[type="email"]:-moz-autofill {
 
 /* Don't have Account Animation & Styling */
 
-.dontHaveAccount p:hover,
-.dontHaveAccount:focus-within p{
+.dontHaveAccount span:hover,
+.dontHaveAccount:focus-within span{
     opacity: 100%;
     transition: opacity 200ms ease-in-out;
 }
