@@ -1,8 +1,8 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion'
 
+import logo2 from '../../assets/Vector.svg'
 import logo from '../../assets/logo.png'
-import logo2 from '../../assets/logo2.svg'
 import { IoIosMenu } from "react-icons/io";
 import { MdOutlinePerson } from "react-icons/md";
 import { IoBagOutline } from "react-icons/io5";
@@ -28,7 +28,7 @@ export default function NavBar(props) {
     <nav className='w-full fixed top-0 z-[100] sm:p-10 p-5 sm:pb-0'>
       <div className='relative'>
         <div className='absolute top-0 left-0'>
-          <motion.img initial={{ y: -50 }} animate={{ y: 0 }} className='imgSettings w-[55px] cursor-pointer' src={props.isDark ? logo2 : logo} alt='logo' />
+          <motion.img initial={{ y: -50 }} animate={{ y: 0 }} className='imgSettings w-[55px] cursor-pointer' src={logo} alt='logo' />
         </div>
         <motion.div
           variants={OpenAnim}

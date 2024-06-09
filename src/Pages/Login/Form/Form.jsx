@@ -45,6 +45,7 @@ export default function Form() {
 
     function handleSubmit(e) {
         e.preventDefault();
+
     }
 
 
@@ -53,7 +54,7 @@ export default function Form() {
             <NavBar isDark={1} />
             <section className={`${Styles.formContainer} relative h-screen w-screen bg-Beige flex content-center items-center justify-center`}>
                 <div className={`${Styles.formContainer} relative bg-DarkBeige/60 w-[80%] h-4/6 md:w-[50%] lg2:w-[30%] mt-[100px] rounded-2xl center flex-col gap-8`}>
-                    <img src={Bear} className='absolute top-[-120px] w-[140px]' />
+                    <img src={Bear} alt='bear-img' className='absolute top-[-120px] w-[140px] select-none pointer-events-none' />
                     <h2 className='Title text-Black EBGaramond' style={titleStyle}>Login</h2>
                     <form onSubmit={handleSubmit} className='Form center flex-col gap-10 w-[70%]'>
                         <div className={`${Styles.inputHolder} relative w-full`}>
@@ -89,7 +90,17 @@ export default function Form() {
                         <div className={`${Styles.forgotPassword} self-end mt-[-15px]`}>
                             <button className={`${Styles.clickableButton}`}><p className='Fredoka text-[14px] opacity-60 cursor-pointer'>Forgot Password</p></button>
                         </div>
-                        <button type='submit' className={`${Styles.loginBtnAnimate} bg-Black Fredoka text-White text-[22px] w-[100%] py-[14px] rounded-[20px]`}><span>Login</span></button>
+                        <button type='submit' className={`${Styles.loginBtnAnimate} bg-Black Fredoka text-White text-[22px] w-[100%] py-[14px] rounded-[20px]
+                            relative overflow-hidden inline-block z-10
+                            transition-all duration-300 ease-in-out
+                            focus:outline-none
+                            hover:w-[105%] hover:py-[13px] hover:my-[1px]
+                            focus:w-[105%] focus:py-[13px] focus:my-[1px]
+                            before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:-z-10
+                            before:rounded-inherit before:bg-[#505050] before:bg-opacity-40 
+                            before:transition-all before:duration-300 before:ease-in-out
+                            hover:before:left-0 focus:before:left-0
+                        `}>Login</button>
                         <div className={`${Styles.dontHaveAccount} center gap-2`}>
                             <p className='Fredoka text-[12px] md:text-[15px] text-center'>Don't have an Account?</p> <button className={`${Styles.clickableButton}`}><p className='Fredoka text-[12px] md:text-[15px] text-center opacity-70 font-medium underline'>Sign Up</p></button>
                         </div>
