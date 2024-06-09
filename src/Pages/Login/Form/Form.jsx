@@ -87,10 +87,10 @@ export default function Form() {
                             >Password</label>
                         </div>
                         <div className={`${Styles.forgotPassword} self-end mt-[-15px]`}>
-                            <button className='clickableButton'><p className='Fredoka text-[14px] opacity-60 cursor-pointer'>Forgot Password</p></button>
+                            <button className={`${Styles.clickableButton}`}><p className='Fredoka text-[14px] opacity-60 cursor-pointer'>Forgot Password</p></button>
                         </div>
-                        <div className="dontHaveAccount flex gap-2">
-                            <p className='Fredoka text-[15px]'>Don't have an Account?</p> <button className={`${Styles.clickableButton}`}><span className='Fredoka text-[15px] opacity-70 font-medium underline'>Sign Up</span></button>
+                        <div className={`${Styles.dontHaveAccount} center gap-2`}>
+                            <p className='Fredoka text-[12px] md:text-[15px] text-center'>Don't have an Account?</p> <button className={`${Styles.clickableButton}`}><p className='Fredoka text-[12px] md:text-[15px] text-center opacity-70 font-medium underline'>Sign Up</p></button>
                         </div>
                     </form>
                 </div>
