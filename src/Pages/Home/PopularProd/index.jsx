@@ -92,8 +92,8 @@ export default function PopularProd() {
     }
   }
   return (
-    <main ref={mainRef} className="bg-DarkerBlue relative h-[120vh] z-[1]">
-      <Backgrounds scrollYProgress={scrollYProgress} />
+    <main ref={mainRef} className="relative h-[120vh] z-[1]">
+      {/* <Backgrounds scrollYProgress={scrollYProgress} /> */}
       <section className='flex flex-col w-full h-full space-y-10 md:space-y-0 pb-20'>
         <header className='flex justify-center'>
           <h1 className='text-center text-4xl md:text-4xl lg:text-7xl EBGaramond text-white'>POPULAR PRODUCTS</h1>
