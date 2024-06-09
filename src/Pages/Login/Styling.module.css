@@ -95,8 +95,8 @@ input[type="email"]:-moz-autofill {
 
 /* Don't have Account Animation & Styling */
 
-.dontHaveAccount p:hover,
-.dontHaveAccount:focus-within p{
+.dontHaveAccount span:hover,
+.dontHaveAccount:focus-within span{
     opacity: 100%;
     transition: opacity 200ms ease-in-out;
 }
