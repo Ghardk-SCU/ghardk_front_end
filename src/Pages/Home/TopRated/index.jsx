@@ -4,7 +4,7 @@ export default function TopRatedRoot({ FirstColor, SecondColor }) {
   return (
     <>
       <Welcome FirstColor={FirstColor} SecondColor={SecondColor}/>
-      <TopRated />
+      {/* <TopRated /> */}
     </>
   )
 }
