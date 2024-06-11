@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { motion } from 'framer-motion'
+import { Link } from 'react-router-dom'
 
 import logo2 from '../../assets/Vector.svg'
 import logo from '../../assets/logo.png'
@@ -27,7 +28,9 @@ export default function NavBar(props) {
   return (
     <nav>
       <div className='fixed z-[100] sm:top-10 top-5 sm:left-10 left-5 mix-blend-difference'>
-        <motion.img initial={{ y: -50 }} animate={{ y: 0 }} className='imgSettings w-[55px] cursor-pointer' src={logo} alt='logo' />
+        <Link to='/'>
+          <motion.img initial={{ y: -50 }} animate={{ y: 0 }} className='imgSettings w-[55px] cursor-pointer' src={logo} alt='logo' />
+        </Link>
       </div>
       <div className='fixed z-[100] sm:top-10 top-5 sm:right-10 right-5'>
         <motion.div
@@ -41,10 +44,14 @@ export default function NavBar(props) {
             <IoIosMenu size={30} className='text-black' />
           </motion.button>
           <motion.button onClick={() => { setIsOpen(true) }} custom={0.1} variants={ListAnim} initial='hidden' animate="visible" title='Account' className='cursor-pointer'>
-            <MdOutlinePerson size={30} className='text-black' />
+            <Link to="/login">
+              <MdOutlinePerson size={30} className='text-black' />
+            </Link>
           </motion.button>
           <motion.button onClick={() => { setIsOpen(true) }} custom={0.2} variants={ListAnim} initial='hidden' animate="visible" title='Cart' className='cursor-pointer'>
-            <IoBagOutline size={30} className='text-black' />
+            <Link to='/cart'>
+              <IoBagOutline size={30} className='text-black' />
+            </Link>
           </motion.button>
           <motion.button onClick={() => { setIsOpen(true) }} custom={0.3} variants={ListAnim} initial='hidden' animate="visible" title='Explore' className='mb-8 cursor-pointer'>
             <IoSearch size={30} className='text-black' />
