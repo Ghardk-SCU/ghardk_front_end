@@ -37,16 +37,16 @@ export default function NavBar(props) {
           className='absolute shadow-xl top-0 right-0 flex items-center flex-col overflow-hidden bg-Beige rounded-md gap-10 px-5'>
           <motion.button onClick={() => { setIsOpen(prev => !prev) }}
             custom={0} variants={ListAnim} initial='hidden' animate="visible" title='Menu'
-            className='cursor-pointer pt-4'>
+            className='cursor-pointer mt-4'>
             <IoIosMenu size={30} className='text-black' />
           </motion.button>
-          <motion.button custom={0.1} variants={ListAnim} initial='hidden' animate="visible" title='Account' className='cursor-pointer'>
+          <motion.button onClick={() => { setIsOpen(true) }} custom={0.1} variants={ListAnim} initial='hidden' animate="visible" title='Account' className='cursor-pointer'>
             <MdOutlinePerson size={30} className='text-black' />
           </motion.button>
-          <motion.button custom={0.2} variants={ListAnim} initial='hidden' animate="visible" title='Cart' className='cursor-pointer'>
+          <motion.button onClick={() => { setIsOpen(true) }} custom={0.2} variants={ListAnim} initial='hidden' animate="visible" title='Cart' className='cursor-pointer'>
             <IoBagOutline size={30} className='text-black' />
           </motion.button>
-          <motion.button custom={0.3} variants={ListAnim} initial='hidden' animate="visible" title='Explore' className='pb-8 cursor-pointer'>
+          <motion.button onClick={() => { setIsOpen(true) }} custom={0.3} variants={ListAnim} initial='hidden' animate="visible" title='Explore' className='mb-8 cursor-pointer'>
             <IoSearch size={30} className='text-black' />
           </motion.button>
         </motion.div>
