@@ -25,7 +25,7 @@ export default function NavBar(props) {
   }, [isOpen])
 
   return (
-    <nav className='w-full fixed top-0 z-[100] sm:p-10 p-5 sm:pb-0'>
+    <nav className='w-full fixed top-0 z-[100] sm:p-10 p-5 sm:pb-0 mix-blend-difference'>
       <div className='relative'>
         <div className='absolute top-0 left-0'>
           <motion.img initial={{ y: -50 }} animate={{ y: 0 }} className='imgSettings w-[55px] cursor-pointer' src={logo} alt='logo' />

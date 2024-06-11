@@ -24,7 +24,9 @@ export default {
         custom: '0 8px 32px 0 rgba(31, 38, 135, 0.37)',
       },
       screens:{
-        'lg2' : '1200px'
+        'lg2' : '1200px',
+        'sm2' : '500px',
+        'sm3' : '400px',
       },
     },
   },
