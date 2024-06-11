@@ -1,6 +1,5 @@
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
-import NavBar from '../../../Components/NavBar/NavBar'
 import bg2 from './assets/bg.png'
 import ScrollSVG from './ScrollSVG.svg'
 
@@ -21,7 +20,6 @@ export default function Welcome() {
         backgroundPosition: 'center',
         height: '100vh',
       }} className='text-white z-1 min-h-screen NunitoSans'>
-      <NavBar isDark={0} />
       <motion.section
         ref={ref}
         style={{y: ExitY}}
