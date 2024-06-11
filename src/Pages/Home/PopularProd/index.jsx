@@ -11,6 +11,7 @@ const Products = {
   1: {
     Amount: '75.00',
     Title: 'Giraffe Soft Toy',
+    Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non.',
     Type: 1,
     Rate: 1,
     totalRaters: 100
@@ -18,6 +19,7 @@ const Products = {
   2: {
     Amount: '34.50',
     Title: 'Plastic Camera Figure',
+    Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non.',
     Type: 2,
     Rate: 3,
     totalRaters: 100
@@ -25,6 +27,7 @@ const Products = {
   3: {
     Amount: '75.00',
     Title: 'Giraffe Soft Toy',
+    Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non.',
     Type: 1,
     Rate: 3.4,
     totalRaters: 100
@@ -32,6 +35,7 @@ const Products = {
   4: {
     Amount: '75.00',
     Title: 'Giraffe Soft Toy',
+    Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non.',
     Type: 1,
     Rate: 3.4,
     totalRaters: 100
@@ -39,6 +43,7 @@ const Products = {
   5: {
     Amount: '75.00',
     Title: 'Giraffe Soft Toy',
+    Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non.',
     Type: 1,
     Rate: 3.4,
     totalRaters: 100
@@ -46,6 +51,7 @@ const Products = {
   6: {
     Amount: '75.00',
     Title: 'Giraffe Soft Toy',
+    Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non.',
     Type: 1,
     Rate: 3.4,
     totalRaters: 100
@@ -53,7 +59,6 @@ const Products = {
 }
 const DragBuffer = 10
 export default function PopularProd() {
-  const mainRef = useRef()
   const dragRef = useRef()
   const inView = useInView(dragRef)
   const controls = useAnimation()
@@ -61,14 +66,9 @@ export default function PopularProd() {
   const dragMotion = useMotionValue(0)
   const moveDenominator =
     window.innerWidth > 1280 ? 3 :
-      window.innerWidth > 1024 ? 2 :
+      window.innerWidth > 768 ? 2 :
         1
   const dragPercintage = 100 / moveDenominator
-
-  const { scrollYProgress } = useScroll({
-    target: mainRef,
-    offset: ['start end', 'end start'],
-  })
   useEffect(() => {
     if (inView) {
       controls.start('visible')
@@ -92,14 +92,13 @@ export default function PopularProd() {
     }
   }
   return (
-    <main ref={mainRef} className="relative h-[120vh] z-[1]">
-      {/* <Backgrounds scrollYProgress={scrollYProgress} /> */}
+    <main className="relative h-[120vh] z-[1]">
       <section className='flex flex-col w-full h-full space-y-10 md:space-y-0 pb-20'>
         <header className='flex justify-center'>
           <h1 className='text-center text-4xl md:text-4xl lg:text-7xl EBGaramond text-white'>POPULAR PRODUCTS</h1>
         </header>
         <section className='flex-grow p-2 md:p-10 flex flex-col gap-5 justify-between items-center overflow-hidden'>
-          <div className='w-full h-full overflow-hidden'>
+          <div className='w-full h-full overflow-hidden center'>
             <motion.div ref={dragRef}
               drag='x'
               dragConstraints={{ left: 0, right: 0 }}
@@ -107,14 +106,14 @@ export default function PopularProd() {
               animate={{ translateX: `-${imgTurn * dragPercintage}%` }}
               transition={{ type: 'just' }}
               onDragEnd={DragEnd}
-              className='cursor-grabbing w-full h-full grid grid-flow-col 
-              xl:auto-cols-[calc((100%/3))] lg:auto-cols-[calc((100%/2))] md:auto-cols-[calc((100%/2))] auto-cols-[calc((100%/1))] '>
+              className='cursor-grabbing w-full h-[80%] grid grid-flow-col 
+              xl:auto-cols-[calc((100%/3))] md:auto-cols-[calc((100%/2))] auto-cols-[calc((100%/1))] '>
               {
                 Object.keys(Products).map((key, idx) => {
-                  const { Amount, Title, Type, Rate, totalRaters } = Products[key]
+                  const { Amount, Title, Description, Type, Rate, totalRaters } = Products[key]
                   return (
-                    <div key={key} className='group px-3'>
-                      <Prod Amount={Amount} controls={controls} delay={idx / 10} Title={Title} Type={Type} Rate={Rate} totalRaters={totalRaters} />
+                    <div key={key} className='group px-3 center'>
+                      <Prod Amount={Amount} controls={controls} delay={idx / 10} Title={Title} Description={Description} Type={Type} Rate={Rate} totalRaters={totalRaters} />
                     </div>
                   )
                 })
@@ -132,20 +131,5 @@ export default function PopularProd() {
         </section>
       </section>
     </main>
-  )
-}
-
-const Backgrounds = ({ scrollYProgress }) => {
-  const y = useTransform(scrollYProgress, [0, 0.5, 1], ['0%', '-30%', '-60%'])
-  return (
-    <>
-      <motion.div style={{
-        backgroundImage: `url(${smoke})`,
-        backgroundSize: 'cover',
-        backgroundPosition: 'center',
-        transform: 'rotateX(-180deg)',
-        // y
-      }} className='w-full h-full absolute left-0 z-[-1]' />
-    </>
   )
 }
