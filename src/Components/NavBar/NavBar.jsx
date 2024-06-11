@@ -25,11 +25,11 @@ export default function NavBar(props) {
   }, [isOpen])
 
   return (
-    <nav className='w-full fixed top-0 z-[100] sm:p-10 p-5 sm:pb-0 mix-blend-difference'>
-      <div className='relative'>
-        <div className='absolute top-0 left-0'>
-          <motion.img initial={{ y: -50 }} animate={{ y: 0 }} className='imgSettings w-[55px] cursor-pointer' src={logo} alt='logo' />
-        </div>
+    <nav>
+      <div className='fixed z-[100] sm:top-10 top-5 sm:left-10 left-5 mix-blend-difference'>
+        <motion.img initial={{ y: -50 }} animate={{ y: 0 }} className='imgSettings w-[55px] cursor-pointer' src={logo} alt='logo' />
+      </div>
+      <div className='fixed z-[100] sm:top-10 top-5 sm:right-10 right-5'>
         <motion.div
           variants={OpenAnim}
           initial='hidden'
@@ -51,7 +51,7 @@ export default function NavBar(props) {
           </motion.button>
         </motion.div>
       </div>
-    </nav >
+    </nav>
   )
 }
 

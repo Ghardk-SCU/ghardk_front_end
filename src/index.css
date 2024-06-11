@@ -60,7 +60,7 @@
   @apply select-none pointer-events-none;
 }
 .mainMargin{
-  @apply sm:mx-10;
+  @apply sm:mx-20;
 }
 .mainPadding{
   @apply sm:p-10 p-5;
