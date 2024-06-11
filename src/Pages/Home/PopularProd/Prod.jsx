@@ -68,7 +68,15 @@ export default function Prod({ Amount, Title, Description, Type, Rate, totalRate
             <p className='text-[1.8vh] opacity-60 relative top-10 group-hover:top-0 delay-75 duration-300'>{Description}</p>
             <StarCounter />
             <div className='w-full center relative top-10 group-hover:top-0 delay-75 duration-300'>
-              <button className='text-black bg-Beige rounded-full px-10 py-4'>
+              <button className='text-black bg-Beige rounded-full px-10 py-4
+                relative overflow-hidden inline-block z-10
+                transition-all duration-300 ease-in-out
+                focus:outline-none
+                before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:-z-10
+                before:rounded-inherit before:bg-Yellow before:bg-opacity-40 
+                before:transition-all before:duration-300 before:ease-in-out
+                hover:before:left-0 focus:before:left-0
+              '>
                 Add to cart
               </button>
             </div>
