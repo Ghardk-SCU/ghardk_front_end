@@ -17,21 +17,6 @@ export default function Form() {
         fontSize: '44px',
     };
 
-    const forgotPasswordStyle = {
-        /* Forgot Password */
-        width: '121px',
-        height: '19px',
-        fontFamily: 'Fredoka',
-        fontStyle: 'normal',
-        fontWeight: 400,
-        fontSize: '16px',
-        lineHeight: '19px',
-        display: 'flex',
-        alignItems: 'center',
-
-        color: 'rgba(16, 16, 16, 0.6)',
-        /* Inside auto layout */
-    };
 
     function handleChange(event) {
         const { name, value, type, checked } = event.target
@@ -51,9 +36,9 @@ export default function Form() {
 
     return (
         <>
-            <NavBar isDark={1} />
-            <section className={`${Styles.formContainer} relative h-screen w-screen bg-Beige flex content-center items-center justify-center`}>
-                <div className={`${Styles.formContainer} relative bg-DarkBeige/60 w-[80%] h-4/6 md:w-[50%] lg2:w-[30%] mt-[100px] rounded-2xl center flex-col gap-8`}>
+            <NavBar />
+            <section className={`${Styles.formContainer} relative min-h-screen py-16 w-screen bg-Beige flex content-center items-center justify-center`}>
+                <div className={`${Styles.formContainer} relative bg-DarkBeige/60 w-[80%] py-8 min-h-[66%] md:w-[50%] lg2:w-[30%] mt-[100px] rounded-2xl center flex-col gap-8`}>
                     <img src={Bear} alt='bear-img' className='absolute top-[-120px] w-[140px] select-none pointer-events-none' />
                     <h2 className='Title text-Black EBGaramond' style={titleStyle}>Login</h2>
                     <form onSubmit={handleSubmit} className='Form center flex-col gap-10 w-[70%]'>
