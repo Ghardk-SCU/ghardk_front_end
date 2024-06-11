@@ -1,9 +1,14 @@
 import { useState, useRef } from 'react'
+import Fetch from '../../../Components/CustomHooks/Fetch'
+import { LoginUrl } from '../../../Store/urls'
 import { Link } from 'react-router-dom'
 import Styles from '../Styling.module.css'
 import Bear from './assets/Bear.png'
 
 export default function Form() {
+	const [loading, setLoading] = useState(false)
+	const [data, setData] = useState(null)
+	const [errorMessage, setErrorMessage] = useState('')
 	const [formData, setFormData] = useState(
 		{
 			email: '',
@@ -30,7 +35,14 @@ export default function Form() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-
+		if(loading)return;
+		if(formData.email === '' || formData.password === '') {
+			setErrorMessage('Please fill all fields')
+			return
+		}
+		setLoading(true)
+		setErrorMessage('')
+		Fetch({url:LoginUrl(), setLoading, setData, setErrorMessage, method:'POST', body:formData})
 	}
 
 
@@ -84,7 +96,9 @@ export default function Form() {
                             before:rounded-inherit before:bg-[#505050] before:bg-opacity-40 
                             before:transition-all before:duration-300 before:ease-in-out
                             hover:before:left-0 focus:before:left-0
+														${loading ? 'cursor-wait before:left-0 w-[105%] my-[1px] py-[13px]' : 'cursor-pointer before:left-[-100%] w-[100%] my-0 py-[14px]'}
                         `}>Login</button>
+						<p className='text-red-700 font-bold -mb-5 -mt-5'>{errorMessage}</p>
 						<div className={`${Styles.dontHaveAccount} center gap-2`}>
 							<p className='Fredoka text-[12px] md:text-[15px] text-center'>
 								Don't have an Account?

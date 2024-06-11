@@ -3,7 +3,16 @@ import { Link } from 'react-router-dom'
 import Styles from '../Styling.module.css'
 import Bear from './assets/Bear.png'
 
+const FormDataHolder = {
+	Customer:{
+
+	},
+	Vendor:{
+
+	},
+}
 export default function Form() {
+	const [userType, setUserType] = useState(null)
 	const [formData, setFormData] = useState(
 		{
 			email: '',
@@ -34,7 +43,7 @@ export default function Form() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-
+		
 	}
 
 
