@@ -14,12 +14,12 @@ export default function InView({ children, variants, repeat=false }) {
     }
   }, [inView])
   return (
-    <motion.div className="w-full h-full" ref={ref}
+    <motion.span className="" ref={ref}
       variants={variants}
       initial="hidden"
       animate={controls}
     >
       {children}
-    </motion.div>
+    </motion.span>
   )
 }
