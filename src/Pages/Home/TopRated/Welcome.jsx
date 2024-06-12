@@ -31,10 +31,10 @@ export default function Welcome({ FirstColor: ShapeColor, SecondColor: RightColo
   }, [inView])
   return (
     <motion.main style={{ backgroundColor: RightColor }} animate={{ backgroundColor: RightColor, transition: { duration: 0.5 } }}
-      className="w-full h-screen relative">
+      className="w-full h-fit relative">
       <Shape ShapeColor={ShapeColor} />
       <section className='w-full h-full flex text-center md:text-left justify-center items-center leading-[1] text-[20vw] md:text-8xl lg:text-9xl xl:text-[8vw] EBGaramond'>
-        <div ref={mainRef} className='lg:mt-20 w-full md:w-[60%] flex flex-col gap-y-10'>
+        <div ref={mainRef} className='lg:mt-[30vh] mt-20 w-full md:w-[60%] flex flex-col gap-y-10'>
           <motion.p variants={AnimationVariants}
             custom={1}
             animate={controls}

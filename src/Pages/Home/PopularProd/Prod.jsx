@@ -75,7 +75,7 @@ export default function Prod({ Amount, Title, Description, Type, Rate, totalRate
                 before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:-z-10
                 before:rounded-inherit before:bg-Yellow before:bg-opacity-40 
                 before:transition-all before:duration-300 before:ease-in-out
-                hover:before:left-0 focus:before:left-0
+                hover:before:left-0
               '>
                 Add to cart
               </button>

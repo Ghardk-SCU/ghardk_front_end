@@ -19,11 +19,10 @@ export default function SelectType({ setUserType }) {
           transition-all duration-300 ease-in-out
           focus:outline-none
           hover:w-[105%] hover:py-[13px] hover:my-[1px]
-          focus:w-[105%] focus:py-[13px] focus:my-[1px]
           before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:-z-10
           before:rounded-inherit before:bg-[#505050] before:bg-opacity-40 
           before:transition-all before:duration-300 before:ease-in-out
-          hover:before:left-0 focus:before:left-0`}>
+          hover:before:left-0`}>
             Customer
           </button>
           <button onClick={() => { setUserType('Vendor') }} className={`${Styles.loginBtnAnimate} bg-Black Fredoka text-White text-[22px] w-[100%] py-[14px] rounded-[20px]
@@ -31,11 +30,10 @@ export default function SelectType({ setUserType }) {
           transition-all duration-300 ease-in-out
           focus:outline-none
           hover:w-[105%] hover:py-[13px] hover:my-[1px]
-          focus:w-[105%] focus:py-[13px] focus:my-[1px]
           before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:-z-10
           before:rounded-inherit before:bg-[#505050] before:bg-opacity-40 
           before:transition-all before:duration-300 before:ease-in-out
-          hover:before:left-0 focus:before:left-0`}>
+          hover:before:left-0`}>
             Vendor
           </button>
         </div>
