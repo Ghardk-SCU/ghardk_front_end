@@ -4,12 +4,12 @@ import { reavelAnimDowntoTop } from '../../../Store/AnimationValues'
 export default function CartLayout({ classes, delay }) {
   const Anim = reavelAnimDowntoTop(delay)
   return (
-    <div className={`w-[80%] h-[70%] ${classes}`}>
+    <div className={`w-[80%] h-[80%] ${classes}`}>
       <InView variants={Anim}>
         <motion.div
           variants={Anim} initial="hidden" animate="visible"
           style={{
-            clipPath: 'polygon(10% 0%, 90% 0%, 100% 10%, 100% 90%, 90% 100%, 10% 100%, 0% 90%, 0% 10%)',
+            clipPath: 'polygon(15% 0%, 85% 0%,86% 4%, 88% 7%, 92% 10.7%, 94% 11.7%, 100% 14%,100% 86%, 94% 88.3%, 92% 89.3%, 88% 93%, 86% 96%, 85% 100%,15% 100%, 14% 96%, 12% 93%, 8% 89.3%, 6% 88.3%, 0% 86%,0% 14%, 6% 11.7%, 8% 10.7%, 12% 7%,14% 4%)',
             background: 'rgba( 255, 255, 255, 0.05 )',
             boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
             backdropFilter: 'blur( 7px )',
