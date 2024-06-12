@@ -4,12 +4,15 @@ import App from './App.jsx'
 import './index.css'
 import { BrowserRouter } from 'react-router-dom'
 import { ReactLenis } from '@studio-freight/react-lenis'
+import AuthenticationProvider from './Store/Context/Authentication.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
-    <BrowserRouter>
-      <App />
-      <ReactLenis root={true} />
-    </BrowserRouter>
+    <AuthenticationProvider>
+      <BrowserRouter>
+        <App />
+        <ReactLenis root={true} />
+      </BrowserRouter>
+    </AuthenticationProvider>
   </React.StrictMode>,
 )
