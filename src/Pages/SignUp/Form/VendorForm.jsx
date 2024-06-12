@@ -99,11 +99,10 @@ export default function VendorForm({handleChange, handleSubmit, formData}) {
                             transition-all duration-300 ease-in-out
                             focus:outline-none
                             hover:w-[105%] hover:py-[13px] hover:my-[1px]
-                            focus:w-[105%] focus:py-[13px] focus:my-[1px]
                             before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:-z-10
                             before:rounded-inherit before:bg-[#505050] before:bg-opacity-40 
                             before:transition-all before:duration-300 before:ease-in-out
-                            hover:before:left-0 focus:before:left-0
+                            hover:before:left-0
                         `}>Sign Up</button>
       <div className={`${Styles.dontHaveAccount} center gap-2`}>
         <p className='Fredoka text-[12px] md:text-[15px] text-center'>Have an Account?</p> <Link to='/Login'><button className={`${Styles.clickableButton}`}><p className='Fredoka text-[12px] md:text-[15px] text-center opacity-70 font-medium underline'>Login</p></button></Link>
