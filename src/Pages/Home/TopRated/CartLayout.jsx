@@ -1,10 +1,20 @@
+import { useState } from "react";
 import { motion } from "framer-motion"
 import InView from "../../../utils/InView"
 import { reavelAnimDowntoTop } from '../../../Store/AnimationValues'
-export default function CartLayout({ classes, delay }) {
+
+import { FaStar } from "react-icons/fa";
+import { FaHeart } from "react-icons/fa";
+import { FaRegHeart } from "react-icons/fa";
+
+
+
+export default function CartLayout({ classes, delay, details }) {
+  const { rating, totalRates, img, discreption, rank, isFavorite, name } = details;
+  const [isFavClicked, setIsFavClicked] = useState(isFavorite)
   const Anim = reavelAnimDowntoTop(delay)
   return (
-    <div className={`w-[80%] h-[80%] ${classes}`}>
+    <div className={`sm:w-[80%] w-[100%] h-[80%] ${classes}`}>
       <InView variants={Anim}>
         <motion.div
           variants={Anim} initial="hidden" animate="visible"
@@ -14,17 +24,33 @@ export default function CartLayout({ classes, delay }) {
             boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
             backdropFilter: 'blur( 7px )',
             WebkitBackdropFilter: 'blur( 7px )',
-          }} className="w-full h-full center">
-          CartLayout
+          }} className="w-full h-fit pt-14 pb-4 flex flex-col justify-between gap-y-10">
+          <div className="flex justify-between px-14">
+            <div className="flex center gap-2">
+              <FaStar size={25} />
+              {rating}
+              <span className="text-xs -ml-1">({totalRates})</span>
+            </div>
+            <button className="" onClick={() => { setIsFavClicked(prev => !prev) }}>
+              {isFavClicked ? <FaHeart size={25} /> : <FaRegHeart size={25} />}
+            </button>
+          </div>
+          <div className="center px-4">
+            <img style={{ boxShadow: '0px 0px 22.4px 0px #FDBF5026' }} src={img} alt="product" className="rounded-full w-2/3 sm:w-auto xl:w-[40%] aspect-square object-cover shadow-2xl" />
+          </div>
+          <p className=" px-4 text-sm font-normal">
+            {discreption}
+          </p>
+          <div style={{ 
+            background: 'linear-gradient(117.26deg, rgba(253, 191, 80, 0.6) 45.53%, #F4F4F8 119.63%)',
+            WebkitBackgroundClip: 'text',
+            WebkitTextFillColor: 'transparent',
+           }} className="NunitoSans center mt-auto text-3xl">
+            #
+            <span className="font-bold">0{rank}</span>
+          </div>
         </motion.div>
       </InView>
     </div>
   )
-
 }
-// background: rgba( 255, 255, 255, 0.2 );
-// box-shadow: 0 8px 32px 0 rgba( 31, 38, 135, 0.37 );
-// backdrop-filter: blur( 7px );
-// -webkit-backdrop-filter: blur( 7px );
-// border-radius: 10px;
-// border: 1px solid rgba( 255, 255, 255, 0.18 );
