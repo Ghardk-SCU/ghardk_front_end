@@ -24,8 +24,8 @@ export default function CartLayout({ classes, delay, details }) {
             boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
             backdropFilter: 'blur( 7px )',
             WebkitBackdropFilter: 'blur( 7px )',
-          }} className="w-full h-fit pt-14 pb-4 flex flex-col justify-between gap-y-10">
-          <div className="flex justify-between px-14">
+          }} className="w-full h-fit xl:pt-14 pt-[12vh] pb-4 flex flex-col justify-between gap-y-10">
+          <div className="flex justify-between px-[3.5vw]">
             <div className="flex center gap-2">
               <FaStar size={25} />
               {rating}
@@ -38,14 +38,14 @@ export default function CartLayout({ classes, delay, details }) {
           <div className="center px-4">
             <img style={{ boxShadow: '0px 0px 22.4px 0px #FDBF5026' }} src={img} alt="product" className="rounded-full w-2/3 sm:w-auto xl:w-[40%] aspect-square object-cover shadow-2xl" />
           </div>
-          <p className=" px-4 text-sm font-normal">
+          <p className="xl:text-[1vw] leading-[1.4] px-4 text-sm font-normal">
             {discreption}
           </p>
           <div style={{ 
             background: 'linear-gradient(117.26deg, rgba(253, 191, 80, 0.6) 45.53%, #F4F4F8 119.63%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
-           }} className="NunitoSans center mt-auto text-3xl">
+           }} className="NunitoSans center text-3xl">
             #
             <span className="font-bold">0{rank}</span>
           </div>
