@@ -9,12 +9,12 @@ import { FaRegHeart } from "react-icons/fa";
 
 
 
-export default function CartLayout({ classes, delay, details }) {
+export default function CartLayout({ classes, delay, details, idx = 1 }) {
   const { rating, totalRates, img, discreption, rank, isFavorite, name } = details;
   const [isFavClicked, setIsFavClicked] = useState(isFavorite)
   const Anim = reavelAnimDowntoTop(delay)
   return (
-    <div className={`sm:w-[80%] w-[100%] h-[80%] ${classes}`}>
+    <div className={`relative sm:w-[80%] w-[100%] h-[100%] ${classes}`}>
       <InView variants={Anim}>
         <motion.div
           variants={Anim} initial="hidden" animate="visible"
@@ -24,7 +24,7 @@ export default function CartLayout({ classes, delay, details }) {
             boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
             backdropFilter: 'blur( 7px )',
             WebkitBackdropFilter: 'blur( 7px )',
-          }} className="w-full h-fit xl:pt-14 pt-[12vh] pb-4 flex flex-col justify-between gap-y-10">
+          }} className="w-full min-h-[50%] xl:min-h-[80%] xl:pt-14 pt-[12vh] pb-4 flex flex-col justify-between gap-y-10">
           <div className="flex justify-between px-[3.5vw]">
             <div className="flex center gap-2">
               <FaStar size={25} />
@@ -41,16 +41,19 @@ export default function CartLayout({ classes, delay, details }) {
           <p className="xl:text-[1vw] leading-[1.4] px-4 text-sm font-normal">
             {discreption}
           </p>
-          <div style={{ 
+          <div style={{
             background: 'linear-gradient(117.26deg, rgba(253, 191, 80, 0.6) 45.53%, #F4F4F8 119.63%)',
             WebkitBackgroundClip: 'text',
             WebkitTextFillColor: 'transparent',
-           }} className="NunitoSans center text-3xl">
+          }} className="NunitoSans center text-3xl">
             #
             <span className="font-bold">0{rank}</span>
           </div>
         </motion.div>
       </InView>
+      <div className={`${idx==0?"translate-y-8 xl:-translate-y-24":"-translate-y-32 xl:-translate-y-24"} text-center text-[3vh] BeloveMelody absolute -bottom-10 left-1/2 -translate-x-1/2`}>
+        {name}
+      </div>
     </div>
   )
 }
