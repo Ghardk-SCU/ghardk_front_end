@@ -5,27 +5,29 @@ export const AuthenticationContext = createContext()
 
 export default function AuthenticationProvider({ children }) {
   const [isLogedIn, setIsLogedIn] = useState(true)
-  const [userName, setUserName] = useState('ab')
-  const [userImg, setUserImg] = useState('')
+  const [userName, setUserName] = useState('')
+  const [role, setRole] = useState('')
+  const [userImg, setUserImg] = useState('https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg')
   const [Token, setToken] = useState(Cookies.get('token'));
-  useEffect(()=>{
-    if(!isLogedIn){
+  useEffect(() => {
+    if (!isLogedIn) {
       Cookies.remove('token');
       setToken('');
       setUserName('');
       setUserImg('');
-    }else{
+    } else {
       Cookies.set('token', Token, { expires: 40 });
     }
-  },[isLogedIn])
+  }, [isLogedIn])
 
   return (
-    <AuthenticationContext.Provider value={{ 
+    <AuthenticationContext.Provider value={{
       isLogedIn, setIsLogedIn,
       Token, setToken,
       userName, setUserName,
-      userImg, setUserImg
-     }}>
+      userImg, setUserImg,
+      role, setRole
+    }}>
       {children}
     </AuthenticationContext.Provider>
   )

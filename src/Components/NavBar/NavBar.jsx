@@ -12,7 +12,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { TiClipboard } from "react-icons/ti";
 import { IoIosLogOut } from "react-icons/io";
 import { FaRegHeart } from "react-icons/fa";
-
+import Spinner from '../Ui-Components/Spinner';
 
 
 export default function NavBar() {
@@ -102,9 +102,12 @@ export default function NavBar() {
 }
 
 const AccountMenu = ({ setShowAccount }) => {
-  const { setIsLogedIn } = useContext(AuthenticationContext)
-  const { userImg, setUserImg } = useContext(AuthenticationContext)
-  const { userName, setUserName } = useContext(AuthenticationContext)
+  const {
+    setIsLogedIn,
+    userImg, setUserImg,
+    userName, setUserName,
+    role
+  } = useContext(AuthenticationContext)
   return (
     <>
       <motion.div
@@ -120,24 +123,26 @@ const AccountMenu = ({ setShowAccount }) => {
             <p className='w-[90px] truncate' title={userName}>{userName}</p>
           </div>
         </div>
-        <div className='flex flex-col justify-between flex-grow px-6 py-5 w-full h-[80%] bg-black'>
-          <Link to='' className='flex items-center gap-x-3'>
-            <IoSettingsOutline className='font-bold' size={20} />
-            <p>Account Settings</p>
-          </Link>
-          <Link to='/Orders' className='flex items-center gap-x-3'>
-            <TiClipboard className='font-bold' size={20} />
-            <p>Orders</p>
-          </Link>
-          <Link to='Favorites' className='flex items-center gap-x-3'>
-            <FaRegHeart className='font-bold' size={20} />
-            <p>Favorites</p>
-          </Link>
-          <button onClick={() => { setIsLogedIn(false); setShowAccount(false) }} className='flex items-center gap-x-3'>
-            <IoIosLogOut className='font-bold' size={20} />
-            <p>Log out</p>
-          </button>
-        </div>
+        {!role && <div className='w-full h-[50%] center'><Spinner /></div>}
+        {role &&
+          <div className='flex flex-col justify-between flex-grow px-6 py-5 w-full h-[80%] bg-black'>
+            <Link to='' className='flex items-center gap-x-3'>
+              <IoSettingsOutline className='font-bold' size={20} />
+              <p>Account Settings</p>
+            </Link>
+            <Link to='/Orders' className='flex items-center gap-x-3'>
+              <TiClipboard className='font-bold' size={20} />
+              <p>Orders</p>
+            </Link>
+            <Link to='Favorites' className='flex items-center gap-x-3'>
+              <FaRegHeart className='font-bold' size={20} />
+              <p>Favorites</p>
+            </Link>
+            <button onClick={() => { setIsLogedIn(false); setShowAccount(false) }} className='flex items-center gap-x-3'>
+              <IoIosLogOut className='font-bold' size={20} />
+              <p>Log out</p>
+            </button>
+          </div>}
       </motion.div>
       <div className='absolute -top-5 right-16'>
         <div style={{ clipPath: 'polygon(100% 50%, 0 0, 0 100%)' }}

@@ -1,14 +1,18 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect, useContext } from 'react'
 import Fetch from '../../../Components/CustomHooks/Fetch'
 import { LoginUrl } from '../../../Store/urls'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import Styles from '../Styling.module.css'
 import Bear from './assets/Bear.png'
+import { AuthenticationContext } from '../../../Store/Context/Authentication'
+
 
 export default function Form() {
+	const { isLogedIn, setIsLogedIn, setToken } = useContext(AuthenticationContext)
 	const [loading, setLoading] = useState(false)
 	const [data, setData] = useState(null)
 	const [errorMessage, setErrorMessage] = useState('')
+	const Navigate = useNavigate()
 	const [formData, setFormData] = useState(
 		{
 			email: '',
@@ -35,17 +39,34 @@ export default function Form() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		if(loading)return;
-		if(formData.email === '' || formData.password === '') {
+		if (loading) return;
+		if (formData.email === '' || formData.password === '') {
 			setErrorMessage('Please fill all fields')
 			return
 		}
 		setLoading(true)
 		setErrorMessage('')
-		Fetch({url:LoginUrl(), setLoading, setData, setErrorMessage, method:'POST', body:formData})
+		Fetch({ url: LoginUrl(), setLoading, setData, setErrorMessage, method: 'POST', body: formData })
+		if (data?.status === 'success') {
+			setIsLogedIn(true)
+		} else {
+			setIsLogedIn(false)
+		}
 	}
 
+	useEffect(() => {
+		if (data?.status !== 'success') return;
+		setIsLogedIn(true)
+		setToken(data.data.token);
+		Navigate('/')
+		window.location.reload();
+	}, [data])
+	useEffect(() => {
+		if (isLogedIn) Navigate('/')
+	}, [isLogedIn])
 
+	if (isLogedIn)
+		return <div className='w-screen h-screen bg-DarkerBlue' />
 	return (
 		<>
 			<section className={`${Styles.formContainer} relative min-h-screen py-16 w-screen bg-Beige flex content-center items-center justify-center`}>
@@ -95,7 +116,7 @@ export default function Form() {
                             before:rounded-inherit before:bg-[#505050] before:bg-opacity-40 
                             before:transition-all before:duration-300 before:ease-in-out
                             hover:before:left-0
-														${loading ? 'cursor-wait before:left-1 w-[105%] my-[1px] py-[13px]' : 'cursor-pointer before:left-[-100%] w-[100%] my-0 py-[14px]'}
+														${loading ? 'cursor-wait before:left-[-0%] w-[105%] my-[1px] py-[13px]' : 'cursor-pointer before:left-[-100%] w-[100%] my-0 py-[14px]'}
                         `}>Login</button>
 						<p className='text-red-700 font-bold -mb-5 -mt-5'>{errorMessage}</p>
 						<div className={`${Styles.dontHaveAccount} center gap-2`}>

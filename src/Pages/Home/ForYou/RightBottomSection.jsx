@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 export default function RightBottomSection({ RightBottomColor }) {
   return (
-    <div className="w-full h-full flex flex-col justify-end items-center gap-y-10 mt-10 lg:mt-0 pb-10">
+    <div className="w-full h-full flex flex-col justify-center items-center mt-10 lg:mt-0 pb-10">
       <motion.div animate={{ color: RightBottomColor === '#101010' ? '#F4F4F8' : '#101010', transition: { duration: 0.5 } }} className="w-[70%] md:text-left text-center flex flex-col BeloveMelody text-[25vw] lg:text-[10vw]">
         <p className="w-full md:w-fit">JUST</p>
         <p className="w-full md:w-fit md:self-end">FOR</p>
