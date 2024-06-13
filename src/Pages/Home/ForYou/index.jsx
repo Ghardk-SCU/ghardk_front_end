@@ -27,7 +27,7 @@ export default function ForYou({ FirstColor: LeftTopColor, SecondColor: RightBot
       setLeftTopColor('#F4F4F8')
       setRightBottomColor('#101010')
     } else {
-      setLeftTopColor('#ACA08C')
+      setLeftTopColor('#A2947A')
       setRightBottomColor('#D4CDCD')
     }
   })
