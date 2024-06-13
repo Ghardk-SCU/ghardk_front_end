@@ -1,6 +1,6 @@
 import { useRef, useEffect } from "react"
 import { motion, useInView, useAnimation } from "framer-motion"
-export default function InView({ children, variants, repeat=false }) {
+export default function InView({ children, variants, repeat=false, classes="" }) {
   const ref = useRef()
   const controls = useAnimation()
   const inView = useInView(ref)
@@ -14,7 +14,7 @@ export default function InView({ children, variants, repeat=false }) {
     }
   }, [inView])
   return (
-    <motion.span className="" ref={ref}
+    <motion.span className={classes} ref={ref}
       variants={variants}
       initial="hidden"
       animate={controls}
