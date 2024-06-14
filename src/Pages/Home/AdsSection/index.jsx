@@ -61,7 +61,7 @@ export default function AdsSection() {
 }
 
 const Functionality = ({ handleMove, imgTurn, setImgTurn, AdsLength }) => {
-  const [ Active, setActive ] = useState(0)
+  console.log(imgTurn);
   return (
     <>
       <div className='absolute left-10 bottom-1/4'>
@@ -87,7 +87,7 @@ const Functionality = ({ handleMove, imgTurn, setImgTurn, AdsLength }) => {
       <div className='absolute left-1/2 bottom-[21%] -translate-x-1/2 flex bg-white/30 p-1 rounded-full'>
         {
           Array.from({ length: AdsLength }, (_, idx) => (
-            <button key={idx} onClick={() => {setActive(idx); setImgTurn(idx)}} className={`w-4 h-4 rounded-full mx-1 cursor-pointer ${Active === idx ? 'bg-Black' : 'bg-White'}`} />
+            <button key={idx} onClick={() => {setImgTurn(idx)}} className={`w-4 h-4 rounded-full mx-1 cursor-pointer ${imgTurn === idx ? 'bg-Black' : 'bg-White'}`} />
           ))
         }
       </div>
