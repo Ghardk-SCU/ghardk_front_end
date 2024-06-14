@@ -62,8 +62,11 @@ export default function Form() {
 		window.location.reload();
 	}, [data])
 	useEffect(() => {
-		if (isLogedIn) Navigate('/')
-	}, [isLogedIn])
+		if (isLogedIn) {
+			console.log({isLogedIn});
+			Navigate('/')
+		}
+	}, [])
 
 	if (isLogedIn)
 		return <div className='w-screen h-screen bg-DarkerBlue' />
@@ -115,8 +118,8 @@ export default function Form() {
                             before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:-z-10
                             before:rounded-inherit before:bg-[#505050] before:bg-opacity-40 
                             before:transition-all before:duration-300 before:ease-in-out
-                            hover:before:left-0
-														${loading ? 'cursor-wait before:left-[-0%] w-[105%] my-[1px] py-[13px]' : 'cursor-pointer before:left-[-100%] w-[100%] my-0 py-[14px]'}
+                            hover:before:left-0 
+														${loading ? 'cursor-wait before:left-[0] w-[105%] my-[1px] py-[13px]' : 'cursor-pointer before:left-[-100%] w-[100%] my-0 py-[14px]'}
                         `}>Login</button>
 						<p className='text-red-700 font-bold -mb-5 -mt-5'>{errorMessage}</p>
 						<div className={`${Styles.dontHaveAccount} center gap-2`}>

@@ -1,7 +1,6 @@
 import { useRef, useState, useEffect } from 'react'
-import { motion, useScroll, useTransform, useMotionValue, useInView, useAnimation } from 'framer-motion'
+import { motion, useMotionValue, useInView, useAnimation } from 'framer-motion'
 import Prod from './Prod'
-import smoke from './assets/smoke.png'
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { FaLongArrowAltLeft } from "react-icons/fa";
 
