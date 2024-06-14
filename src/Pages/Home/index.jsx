@@ -4,7 +4,6 @@ import Categories from './Categories/index'
 import PopularProd from './PopularProd/index'
 import ForYou from './ForYou/index'
 import TopRatedRoot from './TopRated/index'
-import AdsSection from './AdsSection/index'
 
 import Smoke from './assets/double-Background.png'
 
@@ -25,7 +24,7 @@ export default function Home() {
       </div>
       <ForYou FirstColor={FirstColor} SecondColor={SecondColor} setFirstColor={setFirstColor} setSecondColor={setSecondColor} />
       <TopRatedRoot FirstColor={FirstColor} SecondColor={SecondColor} />
-      <AdsSection />
+      {/* add Ads section in Top rated becouse of background problem when refresh page */}
     </>
   )
 }

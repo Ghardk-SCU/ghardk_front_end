@@ -1,17 +1,16 @@
-
-export default async function Fetch({ url, setLoading, setData, setErrorMessage, method, body}) {
+export default async function Fetch({ url, setData, setLoading, setErrorMessage, method, body, Token }) {
+  const headers = { 'Content-Type': 'application/json', }
+  if (Token) headers.Authorization = `Bearer ${Token}`;
   try {
     setLoading(true)
     const response = await fetch(url, {
       method: method,
-      headers: {
-        'Content-Type': 'application/json',
-      },
+      headers,
       body: JSON.stringify(body)
     })
     const data = await response.json()
     setData(data)
-    if(data.status !== 'success') {
+    if (data.status !== 'success') {
       throw new Error(data.message)
     }
   } catch (error) {

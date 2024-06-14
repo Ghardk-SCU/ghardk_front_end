@@ -23,7 +23,6 @@ export default function Welcome({ FirstColor: ShapeColor, SecondColor: RightColo
   }
   useEffect(() => {
     if (inView) {
-      console.log(1);
       controls.start('visible')
     } else {
       controls.start('hidden')

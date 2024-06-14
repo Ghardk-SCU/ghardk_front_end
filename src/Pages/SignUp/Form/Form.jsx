@@ -1,9 +1,14 @@
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
+import { useNavigate } from 'react-router-dom'
 import Styles from '../Styling.module.css'
 import Bear from './assets/Bear.png'
 import SelectType from './SelectType'
 import CustomerForm from './CustomerForm'
 import VendorForm from './VendorForm'
+import { AuthenticationContext } from '../../../Store/Context/Authentication'
+
+import { SignupUrl } from '../../../Store/urls'
+import Fetch from '../../../Components/CustomHooks/Fetch'
 
 const FormDataHolder = {
 	Customer: {
@@ -12,7 +17,7 @@ const FormDataHolder = {
 		confirmPassword: '',
 		username: '',
 		firstName: '',
-		secondName: '',
+		lastName: '',
 	},
 	Vendor: {
 		email: '',
@@ -20,12 +25,18 @@ const FormDataHolder = {
 		confirmPassword: '',
 		username: '',
 		firstName: '',
-		secondName: '',
+		lastName: '',
+		nationalId: ''
 	},
 }
 export default function Form() {
 	const [userType, setUserType] = useState(null)
 	const [formData, setFormData] = useState(null)
+	const { isLogedIn } = useContext(AuthenticationContext)
+	const [errorMessage, setErrorMessage] = useState('')
+	const [loading, setLoading] = useState(false)
+	const [data, setData] = useState(null)
+	const Navigate = useNavigate()
 
 	const titleStyle = {
 		fontStyle: 'normal',
@@ -46,7 +57,21 @@ export default function Form() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-
+		const Type = userType.toLowerCase()
+		const body = {
+			first_name: formData.firstName,
+			last_name: formData.lastName,
+			email: formData.email,
+			password: formData.password,
+			password_confirm: formData.confirmPassword,
+			username: formData.username,
+			national_id: formData.nationalId,
+			role: Type,
+			dob: '1999-01-01',
+			gender: 'male'
+		}
+		setErrorMessage('')
+		Fetch({ url: SignupUrl(), setLoading, setData, setErrorMessage, method: 'POST', body })
 	}
 
 	useEffect(() => {
@@ -54,8 +79,21 @@ export default function Form() {
 		setFormData(FormDataHolder[userType])
 	}, [userType])
 
-	if (formData === null) return <SelectType setUserType={setUserType} />
+	useEffect(() => {
+		if (!data) return
+		if (data.status === 'success') {
+			Navigate('/login');
+		}
+	}, [data])
 
+
+	useEffect(() => {
+		if (isLogedIn) Navigate('/')
+	}, [isLogedIn])
+
+	if (isLogedIn)
+		return <div className='w-screen h-screen bg-DarkerBlue' />
+	if (formData === null) return <SelectType setUserType={setUserType} />
 	return (
 		<>
 			<section className={`${Styles.formContainer} relative min-h-screen py-24 w-screen bg-Beige flex content-center items-center justify-center`}>
@@ -63,9 +101,9 @@ export default function Form() {
 					<img src={Bear} alt='bear-img' className='absolute top-[-120px] w-[140px] select-none pointer-events-none' />
 					<h2 className='Title text-Black EBGaramond' style={titleStyle}>{userType} Acount</h2>
 					{userType === 'Customer' ?
-						<CustomerForm formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
+						<CustomerForm loading={loading} errorMessage={errorMessage} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
 						:
-						<VendorForm formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
+						<VendorForm loading={loading} errorMessage={errorMessage} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
 					}
 				</div>
 			</section>
