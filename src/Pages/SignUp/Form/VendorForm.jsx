@@ -2,22 +2,10 @@
 import Styles from '../Styling.module.css'
 import { Link } from 'react-router-dom'
 
-export default function VendorForm({handleChange, handleSubmit, formData}) {
+export default function VendorForm({ handleChange, handleSubmit, formData, errorMessage, loading }) {
   return (
     <form onSubmit={handleSubmit} className='Form center flex-col gap-10 w-[70%]'>
-      <div className={`${Styles.inputHolder} relative w-full`}>
-        <input
-          id='userEmail'
-          type="email"
-          onChange={handleChange}
-          name="email"
-          placeholder='Email'
-          value={formData.email}
-          className={`Fredoka w-full py-2 px-3 border-b-[3px] ${formData.email ? 'border-Black' : 'border-[rgba(16,16,16,0.7)]'} bg-transparent text-Black placeholder-transparent focus:outline-none focus:border-black cursor-text`}
-        />
-        <label htmlFor='userEmail' className="inputLabel absolute top-[15px] left-2 text-Black/70 transform pointer-events-none -translate-y-2.5 px-1 Fredoka text-lg w-[100%]"
-        >Email</label>
-      </div>
+
       <div className={`${Styles.inputHolder} relative w-full`}>
         <input
           id='firstName'
@@ -33,16 +21,16 @@ export default function VendorForm({handleChange, handleSubmit, formData}) {
       </div>
       <div className={`${Styles.inputHolder} relative w-full flex justify-end`}>
         <input
-          id='secondName'
+          id='lastName'
           type="text"
           onChange={handleChange}
-          name="secondName"
-          placeholder='second name'
-          value={formData.secondName}
-          className={`Fredoka w-full py-2 px-3 border-b-[3px] ${formData.secondName ? 'border-Black' : 'border-[rgba(16,16,16,0.7)]'} bg-transparent text-Black placeholder-transparent focus:outline-none focus:border-black cursor-text`}
+          name="lastName"
+          placeholder='Last Name'
+          value={formData.lastName}
+          className={`Fredoka w-full py-2 px-3 border-b-[3px] ${formData.lastName ? 'border-Black' : 'border-[rgba(16,16,16,0.7)]'} bg-transparent text-Black placeholder-transparent focus:outline-none focus:border-black cursor-text`}
         />
-        <label htmlFor='secondName' className="inputLabel absolute top-[15px] left-2 text-Black/70 transform pointer-events-none -translate-y-2.5 px-1 Fredoka text-lg w-[100%]"
-        >Second Name</label>
+        <label htmlFor='lastName' className="inputLabel absolute top-[15px] left-2 text-Black/70 transform pointer-events-none -translate-y-2.5 px-1 Fredoka text-lg w-[100%]"
+        >Last Name</label>
       </div>
       <div className={`${Styles.inputHolder} relative w-full`}>
         <input
@@ -56,6 +44,32 @@ export default function VendorForm({handleChange, handleSubmit, formData}) {
         />
         <label htmlFor='username' className="inputLabel absolute top-[15px] left-2 text-Black/70 transform pointer-events-none -translate-y-2.5 px-1 Fredoka text-lg w-[100%]"
         >Username</label>
+      </div>
+      <div className={`${Styles.inputHolder} relative w-full`}>
+        <input
+          id='nationalId'
+          type="text"
+          onChange={handleChange}
+          name="nationalId"
+          placeholder='nationalId'
+          value={formData.nationalId}
+          className={`Fredoka w-full py-2 px-3 border-b-[3px] ${formData.nationalId ? 'border-Black' : 'border-[rgba(16,16,16,0.7)]'} bg-transparent text-Black placeholder-transparent focus:outline-none focus:border-black cursor-text`}
+        />
+        <label htmlFor='nationalId' className="inputLabel absolute top-[15px] left-2 text-Black/70 transform pointer-events-none -translate-y-2.5 px-1 Fredoka text-lg w-[100%]"
+        >National id</label>
+      </div>
+      <div className={`${Styles.inputHolder} relative w-full`}>
+        <input
+          id='userEmail'
+          type="email"
+          onChange={handleChange}
+          name="email"
+          placeholder='Email'
+          value={formData.email}
+          className={`Fredoka w-full py-2 px-3 border-b-[3px] ${formData.email ? 'border-Black' : 'border-[rgba(16,16,16,0.7)]'} bg-transparent text-Black placeholder-transparent focus:outline-none focus:border-black cursor-text`}
+        />
+        <label htmlFor='userEmail' className="inputLabel absolute top-[15px] left-2 text-Black/70 transform pointer-events-none -translate-y-2.5 px-1 Fredoka text-lg w-[100%]"
+        >Email</label>
       </div>
       <div className={`${Styles.inputHolder} relative w-full`}>
         <input
@@ -103,7 +117,9 @@ export default function VendorForm({handleChange, handleSubmit, formData}) {
                             before:rounded-inherit before:bg-[#505050] before:bg-opacity-40 
                             before:transition-all before:duration-300 before:ease-in-out
                             hover:before:left-0
+                            ${loading ? 'cursor-wait  before:left-[0] w-[105%] my-[1px] py-[13px]' : 'cursor-pointer before:left-[-100%] w-[100%] my-0 py-[14px]'}
                         `}>Sign Up</button>
+      <p className='text-red-700 font-bold -mb-5 -mt-5'>{errorMessage}</p>
       <div className={`${Styles.dontHaveAccount} center gap-2`}>
         <p className='Fredoka text-[12px] md:text-[15px] text-center'>Have an Account?</p> <Link to='/Login'><button className={`${Styles.clickableButton}`}><p className='Fredoka text-[12px] md:text-[15px] text-center opacity-70 font-medium underline'>Login</p></button></Link>
       </div>

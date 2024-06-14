@@ -19,7 +19,12 @@ export default function Fillters() {
       {
         AllFillters.map((item, idx) => (
           <button onClick={() => { handleSelected(item) }} key={idx} className={`flex-grow border-[1px] hover:border-white duration-300 border-white/50 rounded-full ${activeFillter.includes(item) && SelectedStyle}`}>
-            <TextRevAnim classes='py-4 px-8 center'>{item}</TextRevAnim>
+            {
+              activeFillter.includes(item) ?
+                <span className="py-4 px-8 center">{item}</span>
+                :
+                <TextRevAnim classes='py-4 px-8 center'>{item}</TextRevAnim>
+            }
           </button>
         ))
       }

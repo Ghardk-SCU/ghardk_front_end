@@ -2,6 +2,7 @@ import { motion } from "framer-motion"
 import CartLayout from "./CartLayout"
 import smoke from './assets/smoke.png'
 import Fillters from "./Fillters"
+import AdsSection from "../AdsSection/index"
 // rating, img, discreption, rank, isFavorite, name
 const details = [
   {
@@ -34,8 +35,8 @@ const details = [
 ]
 export default function TopRated({ SecondColor: RightColor }) {
   return (
-    <motion.section style={{ background: RightColor }} animate={{ backgroundColor: RightColor, transition: { duration: 0.5 } }} className="mainPadding sm:pb-0 min-h-screen bg-Black text-white">
-      <div className="flex flex-col justify-center items-center gap-y-10">
+    <motion.section style={{ background: RightColor }} animate={{ backgroundColor: RightColor, transition: { duration: 0.5 } }} className="min-h-screen bg-Black text-white">
+      <div className="mainPadding sm:pb-0 flex flex-col justify-center items-center gap-y-10">
         <div className="BeloveMelody relative w-full flex center gap-x-5 text-5xl">
           <span className="w-1/3 h-[2px] bg-Yellow/50"></span>
           IN
@@ -45,7 +46,7 @@ export default function TopRated({ SecondColor: RightColor }) {
           <Fillters />
         </div>
       </div>
-      <div className="relative z-[1] min-h-[80vh] mt-20 overflow-hidden">
+      <div className="mainPadding sm:pb-0 relative z-[1] min-h-[80vh] mt-20 overflow-hidden">
         <div style={{
           backgroundImage: `url(${smoke})`,
           backgroundSize: 'contain',
@@ -59,13 +60,14 @@ export default function TopRated({ SecondColor: RightColor }) {
           <CartLayout details={details[2]} delay={0.2} classes="xl:rotate-[10deg] xl:translate-y-10  xl:order-3" />
         </div>
       </div>
-      <div className="center xl:mt-0 mt-40">
+      <div className="mainPadding sm:pb-0 center xl:mt-0 mt-40">
         <button className="Lekton text-2xl relative
           before:absolute before:bottom-0 before:left-1/2 before:-translate-x-1/2 before:content-[''] before:w-10 before:h-[2px] before:bg-white before:rounded-full
           hover:before:bg-Yellow hover:before:w-full before:duration-300
           hover:text-Yellow hover:duration-300
         ">VIEW MORE</button>
       </div>
+      <AdsSection />
     </motion.section>
   )
 }
