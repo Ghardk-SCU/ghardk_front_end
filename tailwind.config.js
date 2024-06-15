@@ -25,9 +25,14 @@ export default {
       },
       screens:{
         'lg2' : '1200px',
+        'md2' : '700px',
+        'md3' : '560px',
         'sm2' : '500px',
         'sm3' : '400px',
       },
+      maxWidth:{
+        '10ch' : '10ch',
+      }
     },
   },
   plugins: [],
