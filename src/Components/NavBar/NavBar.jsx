@@ -12,6 +12,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { TiClipboard } from "react-icons/ti";
 import { IoIosLogOut } from "react-icons/io";
 import { FaRegHeart } from "react-icons/fa";
+import { IoIosNotifications } from "react-icons/io";
 import Spinner from '../Ui-Components/Spinner';
 
 
@@ -137,6 +138,10 @@ const AccountMenu = ({ setShowAccount }) => {
             <Link to='Favorites' className='flex items-center gap-x-3'>
               <FaRegHeart className='font-bold' size={20} />
               <p>Favorites</p>
+            </Link>
+            <Link to='Favorites' className='flex items-center gap-x-3'>
+              <IoIosNotifications className='font-bold' size={20} />
+              <p>Notifications</p>
             </Link>
             <button onClick={() => { setIsLogedIn(false); setShowAccount(false); window.location.reload() }} className='flex items-center gap-x-3'>
               <IoIosLogOut className='font-bold' size={20} />
