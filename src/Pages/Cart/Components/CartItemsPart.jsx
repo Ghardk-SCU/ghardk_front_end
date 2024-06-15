@@ -52,7 +52,7 @@ export default function CartItemsPart({itemDetials}){
                 </div>
                 <div className='w-full h-full center self-start flex-col min-h-[140px]'>
                     <div className='flex self-end flex-wrap justify-center'>
-                        <span className='text-[16px] md3:text-2xl font-medium'>{`${(3323).toFixed(2)}`}</span>
+                        <span className='text-[16px] md3:text-2xl font-medium'>{`${(+itemDetials.price).toFixed(2)}`}</span>
                         <span className='text-[13px] md3:text-[16px] font-medium self-end mb-[1px]'>EGP</span>
                     </div>
                     <div className='flex mt-auto self-end gap-2 sm3:gap-5'>
