@@ -9,8 +9,9 @@ import { FaRegHeart } from "react-icons/fa";
 
 
 
-export default function CartLayout({ classes, delay, details, idx = 1 }) {
-  const { rating, totalRates, img, discreption, rank, isFavorite, name } = details;
+export default function CartLayout({ classes, delay, details, idx }) {
+  const { rating, totalRates, img, discreption, isFavorite, name } = details;
+  const rank = idx+1;
   const [isFavClicked, setIsFavClicked] = useState(isFavorite)
   const Anim = reavelAnimDowntoTop(delay)
   return (

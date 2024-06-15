@@ -5,6 +5,7 @@ import Home from './Pages/Home/index'
 import Login from './Pages/Login/index'
 import SignUp from './Pages/SignUp/index'
 import Page404 from './Pages/Page404/index'
+import TopRated from "./Pages/TopRated/index"
 
 function App() {
   return (
@@ -13,6 +14,7 @@ function App() {
         <Route index element={<Home />} />
         <Route path="Login" element={<Login />} />
         <Route path="SignUp" element={<SignUp />} />
+        <Route path="TopRated" element={<TopRated />} />
         <Route path="*" element={<Page404 />} />
       </Route>
     </Routes>
