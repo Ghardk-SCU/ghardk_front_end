@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from 'react';
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthenticationContext } from '../../Store/Context/Authentication'
+import { BackDropContext } from '../../Store/Context/BackDrop';
 
 import logo from '../../assets/logo.png'
 import { IoIosMenu } from "react-icons/io";
@@ -12,6 +13,7 @@ import { IoSettingsOutline } from "react-icons/io5";
 import { TiClipboard } from "react-icons/ti";
 import { IoIosLogOut } from "react-icons/io";
 import { FaRegHeart } from "react-icons/fa";
+import { IoIosNotifications } from "react-icons/io";
 import Spinner from '../Ui-Components/Spinner';
 
 
@@ -108,6 +110,11 @@ const AccountMenu = ({ setShowAccount }) => {
     userName, setUserName,
     role
   } = useContext(AuthenticationContext)
+  const { setBackDropActive, BackDropActive, setBackDropType } = useContext(BackDropContext)
+
+  useEffect(() => {
+    console.log({ BackDropActive });
+  }, [BackDropActive])
   return (
     <>
       <motion.div
@@ -115,21 +122,25 @@ const AccountMenu = ({ setShowAccount }) => {
         animate={{ clipPath: 'inset(0 0 0 0)' }}
         exit={{ clipPath: 'inset(0 0 0 100%)' }}
         style={{ border: '2px solid rgba(212, 205, 205, 0.5)' }} className='rounded-3xl absolute -top-5 right-16 text-white overflow-hidden bg-black w-[220px] h-[280px] py-2'>
-        <div className='px-8 w-full h-[20%] flex justify-between'>
+        {role && <div className='px-8 w-full h-[20%] flex justify-between'>
           <div>
             <img className='rounded-full object-cover aspect-square size-[100%]' src={userImg} alt="" />
           </div>
           <div className='text-xs flex flex-col justify-center'>
             <p className='w-[90px] truncate' title={userName}>{userName}</p>
           </div>
-        </div>
-        {!role && <div className='w-full h-[50%] center'><Spinner /></div>}
+        </div>}
+        {!role && <div className='w-full h-full center'><Spinner /></div>}
         {role &&
           <div className='flex flex-col justify-between flex-grow px-6 py-5 w-full h-[80%] bg-black'>
-            <Link to='' className='flex items-center gap-x-3'>
+            <button onClick={() => {
+              setBackDropActive(true)
+              setBackDropType('settings')
+              setShowAccount(false)
+            }} className='flex items-center gap-x-3'>
               <IoSettingsOutline className='font-bold' size={20} />
               <p>Account Settings</p>
-            </Link>
+            </button>
             <Link to='/Orders' className='flex items-center gap-x-3'>
               <TiClipboard className='font-bold' size={20} />
               <p>Orders</p>
@@ -137,6 +148,10 @@ const AccountMenu = ({ setShowAccount }) => {
             <Link to='Favorites' className='flex items-center gap-x-3'>
               <FaRegHeart className='font-bold' size={20} />
               <p>Favorites</p>
+            </Link>
+            <Link to='Favorites' className='flex items-center gap-x-3'>
+              <IoIosNotifications className='font-bold' size={20} />
+              <p>Notifications</p>
             </Link>
             <button onClick={() => { setIsLogedIn(false); setShowAccount(false); window.location.reload() }} className='flex items-center gap-x-3'>
               <IoIosLogOut className='font-bold' size={20} />
@@ -168,7 +183,7 @@ const SearchMenu = () => {
       exit={{ clipPath: 'inset(0 0 0 100%)' }}
       className='absolute top-[-10px] right-[49px] text-white rounded-r-0 rounded-l-full bg-Beige w-[220px] h-[60px] center p-2'>
       <form onSubmit={handleSubmit} className='rounded-full bg-black w-full h-full ' action="">
-        <input type='text' placeholder='Search' className='w-full h-full bg-transparent outline-none border-none pl-3' />
+        <input type='text' placeholder='Search' className='w-full h-full bg-transparent outline-none border-none px-3' />
       </form>
     </motion.div>
   )

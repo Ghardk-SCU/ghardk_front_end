@@ -110,7 +110,7 @@ export default function TopRated() {
   const Variant = clipPathLeftToRight(0, 0.5, 1, 1)
 
   useEffect(() => {
-    // window.scrollTo(0, 0)
+    window.scrollTo(0, 0)
   }, [])
 
   return (
