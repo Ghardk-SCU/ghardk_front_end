@@ -1,5 +1,5 @@
 import Giraffe from '../../../assets/giraffe.png'
-import { FaPlus, FaMinus } from "react-icons/fa";
+import { FaPlus, FaMinus, FaRegTrashAlt } from "react-icons/fa";
 import { useState } from 'react'
 import DropMenu from './DronMenu'
 
@@ -14,6 +14,7 @@ export default function CartItemsPart({itemDetials}){
     return (
         <>
             <div className="Fredoka relative w-[85%] min-h-[140px] max-h-[80%] bg-[#242424] rounded-3xl p-6 center text-White justify-around gap-2 md:gap-4">
+                <button className='absolute bg-[#4A4A4A] w-12 h-12 rounded-full center hover:bg-[#585858] transition-all ease-in-out duration-200 -top-[10%] -right-[2%] focus:outline-none'><FaRegTrashAlt size={22} color='#f4f4f8'/></button>
                 <div className='relative w-[100%] max-w-[140px] h-full'>
                     <img src={Giraffe} alt="itemImage" className='w-full h-full object-fit min-w-[60px] rounded-[16px]' />
                 </div>
