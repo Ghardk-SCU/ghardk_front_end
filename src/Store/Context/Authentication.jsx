@@ -7,7 +7,7 @@ export default function AuthenticationProvider({ children }) {
   const [isLogedIn, setIsLogedIn] = useState(true)
   const [userName, setUserName] = useState('')
   const [role, setRole] = useState('')
-  const [userImg, setUserImg] = useState('https://upload.wikimedia.org/wikipedia/commons/4/49/A_black_image.jpg')
+  const [userImg, setUserImg] = useState('https://ik.imagekit.io/nyep6gibl/default.jpg?updatedAt=1718367419170')
   const [Token, setToken] = useState(Cookies.get('token'));
   useEffect(() => {
     if (!isLogedIn) {
