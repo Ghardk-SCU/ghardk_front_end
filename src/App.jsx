@@ -7,6 +7,7 @@ import Root from './Pages/Root'
 import Home from './Pages/Home/index'
 import Login from './Pages/Login/index'
 import SignUp from './Pages/SignUp/index'
+import Cart from './Pages/Cart/index'
 import Page404 from './Pages/Page404/index'
 import TopRated from "./Pages/TopRated/index"
 
@@ -20,6 +21,7 @@ function App() {
           <Route path="Login" element={<Login />} />
           <Route path="SignUp" element={<SignUp />} />
           <Route path="TopRated" element={<TopRated />} />
+          <Route path="Cart" element={<Cart />} />
           <Route path="*" element={<Page404 />} />
         </Route>
       </Routes>
