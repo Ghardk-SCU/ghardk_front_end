@@ -1,8 +1,9 @@
 import { useRef, useState, useEffect } from 'react'
 import { motion, useScroll, useTransform, useInView, useAnimation } from 'framer-motion'
-import smoke from './assets/smoke.png'
+import { Link } from 'react-router-dom'
 import CategorieLayout from './CategorieLayout'
 
+import smoke from './assets/smoke.png'
 import img1 from './assets/Categorie1.jpg'
 import img2 from './assets/Categorie2.jpg'
 
@@ -33,7 +34,7 @@ export default function Categories() {
         <div className='flex flex-col lg:flex-row gap-10 w-full lg:h-[470px] overflow-hidden'>
           <div className='flex flex-col gap-14 items-center justify-center px-10'>
             <motion.h1 className='text-4xl md:text-6xl EBGaramond'>CATEGORIES</motion.h1>
-            <button className='text-2xl px-10 py-4 Lekton hover:bg-white hover:text-black duration-300' style={{ border: '1px solid white' }}>Shop Now</button>
+            <Link to='/Explore' className='text-2xl px-10 py-4 Lekton hover:bg-white hover:text-black duration-300' style={{ border: '1px solid white' }}>Shop Now</Link>
           </div>
           <div className='flex-grow overflow-hidden'>
             <motion.div 
