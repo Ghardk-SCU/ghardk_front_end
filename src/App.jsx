@@ -10,6 +10,7 @@ import SignUp from './Pages/SignUp/index'
 import Cart from './Pages/Cart/index'
 import Page404 from './Pages/Page404/index'
 import TopRated from "./Pages/TopRated/index"
+import Explore from './Pages/Explore/index'
 
 function App() {
   const { BackDropActive } = useContext(BackDropContext)
@@ -22,6 +23,7 @@ function App() {
           <Route path="SignUp" element={<SignUp />} />
           <Route path="TopRated" element={<TopRated />} />
           <Route path="Cart" element={<Cart />} />
+          <Route path="Explore" element={<Explore />} />
           <Route path="*" element={<Page404 />} />
         </Route>
       </Routes>
