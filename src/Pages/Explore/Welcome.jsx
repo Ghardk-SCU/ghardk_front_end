@@ -1,15 +1,15 @@
 
-import LeftSVG from './assets/LeftSVG.svg';
-import RightSVG from './assets/RightSVG.svg';
+import Left from './assets/Left.png';
+import Right from './assets/Right.png';
 
 export default function Welcome() {
   return (
-    <div className=" w-full min-h-screen center">
-      <img className='imgSettings absolute -top-[30%] -left-[30%]' src={LeftSVG} alt="" />
+    <div className="relative w-full min-h-screen center">
+      <img className='imgSettings absolute -bottom-1/1 -left-1/3 scale-[1]' src={Left} alt="" />
       <h1 className='EBGaramond uppercase font-medium text-[17vw]'>
         Shop
       </h1>
-      <img className='imgSettings absolute -top-[10%] -right-[35%]' src={RightSVG} alt="" />
+      <img className='imgSettings absolute -bottom-1/1 -right-1/3' src={Right} alt="" />
     </div>
   )
 }
