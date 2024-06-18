@@ -63,7 +63,6 @@ export default function Form() {
 	}, [data])
 	useEffect(() => {
 		if (isLogedIn) {
-			console.log({isLogedIn});
 			Navigate('/')
 		}
 	}, [])
