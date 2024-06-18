@@ -27,7 +27,7 @@ const EnterEmail = ({ email, setEmail, setType, loading }) => {
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log({email});
+    console.log({ email });
     setType('enterCode')
   }
   return (
@@ -71,7 +71,7 @@ const EnterCode = ({ code, setCode, setType, loading }) => {
   const handleSubmit = (e) => {
     e.preventDefault()
     setType('enterPassword')
-    console.log({code});
+    console.log({ code });
   }
   return (
     <form onSubmit={handleSubmit} className="w-[80%] flex flex-col gap-10">
@@ -116,7 +116,7 @@ const EnterPassword = ({ password, setPassword, confirmPassword, setConfirmPassw
 
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log({password, confirmPassword});
+    console.log({ password, confirmPassword });
   }
   return (
     <form onSubmit={handleSubmit} className="w-[80%] flex flex-col gap-10">
