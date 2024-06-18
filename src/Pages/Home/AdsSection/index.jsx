@@ -60,7 +60,6 @@ export default function AdsSection() {
 }
 
 const Functionality = ({ handleMove, imgTurn, setImgTurn, AdsLength }) => {
-  console.log(imgTurn);
   return (
     <>
       <div className='absolute left-10 bottom-1/4'>

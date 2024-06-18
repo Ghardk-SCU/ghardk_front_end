@@ -26,8 +26,10 @@ export default function Root() {
       setUserName(data.data.user.name)
       setUserImg(data.data.user.img)
       setRole(data.data.user.role)
+      console.log(data.data.user.name);
     } else {
       setIsLogedIn(false)
+      console.log({data})
     }
   }, [data])
 
