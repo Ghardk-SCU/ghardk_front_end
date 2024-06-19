@@ -6,7 +6,7 @@ import ReactSlider from 'react-slider'
 export default function Shop() {
   return (
     <div className="z-[5] w-full min-h-screen flex flex-col justify-center md:justify-between gap-y-20 md:flex-row mainPadding mt-[25vh]">
-      <div className='md:minw-[400px] md:pr-10 z-10'>
+      <div className='md:min-w-[400px] md:pr-10 z-10'>
         <Fillters />
       </div>
       <div className='center gap-4 flex flex-grow flex-wrap'>
