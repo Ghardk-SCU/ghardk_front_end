@@ -1,12 +1,13 @@
 import { FaPlus, FaMinus, FaRegTrashAlt } from "react-icons/fa";
 import { useState } from 'react'
 import DropMenu from '../../../Components/DropMenu/DropMenu'
+import Giraffe from '../../../assets/giraffe.png'
 
 
 
 export default function CartItemsPart({ itemDetials }) {
-	const [selectedColor, setSelectedColor] = useState('White');
-	const [selectedSize, setSelectedSize] = useState('Medium');
+    const [selectedColor, setSelectedColor] = useState('White');
+    const [selectedSize, setSelectedSize] = useState('Medium');
 
 
     return (
@@ -36,7 +37,7 @@ export default function CartItemsPart({ itemDetials }) {
                                 options={['Medium', 'Large']}
                                 selectedOption={selectedSize}
                                 onOptionSelect={setSelectedSize}
-                                
+
                                 isDark={false}
                             />
                             <DropMenu
