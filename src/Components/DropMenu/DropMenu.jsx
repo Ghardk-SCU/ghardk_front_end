@@ -1,15 +1,11 @@
 import { IoIosArrowUp, IoIosArrowDown } from "react-icons/io";
 import { useState, useRef, useEffect } from 'react'
 
-<<<<<<< HEAD:src/Components/DropMenu/DropMenu.jsx
+
 export default function DropMenu({ label, options, selectedOption, onOptionSelect, isDark }){
     const [isOpen, setIsOpen] = useState(false);
     const dropMenuRef = useRef(null);
-=======
-export default function DropMenu({ label, options, selectedOption, onOptionSelect }) {
-	const [isOpen, setIsOpen] = useState(false);
-	const dropMenuRef = useRef(null);
->>>>>>> b539327cb3c06267e6e875453ef425998a2ecb2d:src/Pages/Cart/Components/DronMenu.jsx
+
 
 	const handleOptionClick = (option) => {
 		onOptionSelect(option);

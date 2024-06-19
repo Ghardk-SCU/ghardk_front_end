@@ -8,8 +8,6 @@ export default function CartItemsPart({ itemDetials }) {
 	const [selectedColor, setSelectedColor] = useState('White');
 	const [selectedSize, setSelectedSize] = useState('Medium');
 
-<<<<<<< HEAD
-
 
     return (
         <>
