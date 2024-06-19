@@ -1,7 +1,7 @@
 import Giraffe from '../../../assets/giraffe.png'
 import { FaPlus, FaMinus, FaRegTrashAlt } from "react-icons/fa";
 import { useState } from 'react'
-import DropMenu from './DronMenu'
+import DropMenu from '../../../Components/DropMenu/DropMenu'
 
 
 
@@ -31,24 +31,29 @@ export default function CartItemsPart({ itemDetials }) {
                                 options={['White', 'Black']}
                                 selectedOption={selectedColor}
                                 onOptionSelect={setSelectedColor}
+                                isDark={false}
                             />
                             <DropMenu
                                 label="Size"
                                 options={['Medium', 'Large']}
                                 selectedOption={selectedSize}
                                 onOptionSelect={setSelectedSize}
+                                
+                                isDark={false}
                             />
                             <DropMenu
                                 label="Size"
                                 options={['Medium', 'Large']}
                                 selectedOption={selectedSize}
                                 onOptionSelect={setSelectedSize}
+                                isDark={false}
                             />
                             <DropMenu
                                 label="Size"
                                 options={['Medium', 'Large']}
                                 selectedOption={selectedSize}
                                 onOptionSelect={setSelectedSize}
+                                isDark={false}
                             />
                         </div>
                     </div>
