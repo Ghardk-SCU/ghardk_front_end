@@ -32,6 +32,7 @@ export default {
       },
       maxWidth:{
         '10ch' : '10ch',
+        '144ch': '144ch'
       }
     },
   },
