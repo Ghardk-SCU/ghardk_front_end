@@ -16,7 +16,7 @@ export default function AuthenticationProvider({ children }) {
       setUserName('');
       setUserImg('');
     } else {
-      Cookies.set('token', Token, { expires: 40 });
+      Cookies.set('token', Token, { expires: 7 });
     }
   }, [isLogedIn])
 

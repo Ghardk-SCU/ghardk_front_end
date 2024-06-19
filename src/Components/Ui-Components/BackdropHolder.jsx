@@ -51,6 +51,8 @@ const Settings = ({ CloseBackDrop }) => {
     reader.readAsDataURL(file)
   }
 
+  console.log({ userName })
+
   return (
     <motion.div
       initial={{ opacity: 0, translateY: '0%', translateX: '-50%' }}
@@ -68,12 +70,11 @@ const Settings = ({ CloseBackDrop }) => {
             onClick={() => { imgRef.current.click() }}
             className='imgContainer cursor-pointer relative flex justify-center items-center'>
             {imgHover &&
-              <div className='absolute text-primary'>
+              <form autoComplete="off" className='absolute text-primary'>
                 <BsImageFill className='text-gray' />
-                <input
-                  onChange={handleFileChange}
+                <input onChange={handleFileChange}
                   ref={imgRef} className='hidden' type="file" accept="image/*" />
-              </div>
+              </form>
 
             }
             <div className={`w-24 h-24 ${Image === 'default.jpg' && 'imgPlaceholder'}`}>
@@ -81,15 +82,15 @@ const Settings = ({ CloseBackDrop }) => {
             </div>
           </motion.div>
         </div>
-        <div className="flex flex-wrap">
+        <form autoComplete="off" className="flex flex-wrap">
           <label className="p-2" htmlFor="First Name">First Name:</label>
           <input value={userName} className="flex-grow bg-transparent border-b-2 border-white-18 outline-none p-2" type="text" placeholder="First Name" />
-        </div>
-        <div className="flex flex-wrap">
+        </form>
+        <form autoComplete="off" className="flex flex-wrap">
           <label className="p-2" htmlFor="Last Name">Last Name:</label>
           <input value={userName} className="flex-grow bg-transparent border-b-2 border-white-18 outline-none p-2" type="text" placeholder="Last Name" />
-        </div>
-        <div className="flex flex-wrap imgSettings opacity-30">
+        </form>
+        <form autoComplete="off" className="flex flex-wrap imgSettings opacity-30">
           <label className="p-2" htmlFor="Email">Email:</label>
           <p className="flex-grow bg-transparent border-b-2 border-white-18 outline-none p-2" type="email">
             {userName}
@@ -98,11 +99,11 @@ const Settings = ({ CloseBackDrop }) => {
           <div className="center mx-3">
             <TbLock size={20} />
           </div>
-        </div>
-        <div className="flex flex-wrap">
+        </form>
+        <form autoComplete="off" className="flex flex-wrap">
           <label className="p-2" htmlFor="Password">Password:</label>
           <input value={userName} className="flex-grow bg-transparent border-b-2 border-white-18 outline-none p-2" type={PasswordType} placeholder="Password" />
-          <button onClick={() => {
+          <button type="button" onClick={() => {
             setPasswordType(prev => {
               if (prev === 'password') return 'text'
               else return 'password'
@@ -110,16 +111,16 @@ const Settings = ({ CloseBackDrop }) => {
           }} className="mx-3">
             <FaEye size={20} />
           </button>
-        </div>
+        </form>
         <form className="flex flex-wrap items-center">
-          <label className="p-2" htmlFor="Gender">Gender:</label>
+          <p className="p-2" >Gender:</p>
           <div className="flex mr-2">
-            <p className="mr-2 center gap-1">Male</p>
-            <input value={userName} className="bg-transparent outline-none p-2" type="checkbox" placeholder="Gender" />
+            <label className="mr-2 center gap-1">Male</label>
+            <input value={userName} className="bg-transparent outline-none p-2" type="radio" placeholder="Gender" name="option" />
           </div>
           <div className="flex mr-2">
-            <p className="mr-2 center gap-1">Female</p>
-            <input value={userName} className="bg-transparent outline-none p-2" type="checkbox" placeholder="Gender" />
+            <label className="mr-2 center gap-1">Female</label>
+            <input value={userName} className="bg-transparent outline-none p-2" type="radio" placeholder="Gender" name="option" />
           </div>
         </form>
       </div>

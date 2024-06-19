@@ -112,9 +112,6 @@ const AccountMenu = ({ setShowAccount }) => {
   } = useContext(AuthenticationContext)
   const { setBackDropActive, BackDropActive, setBackDropType } = useContext(BackDropContext)
 
-  useEffect(() => {
-    console.log({ BackDropActive });
-  }, [BackDropActive])
   return (
     <>
       <motion.div
