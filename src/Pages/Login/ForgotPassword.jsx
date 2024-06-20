@@ -3,7 +3,7 @@ import Styles from './Styling.module.css'
 import { useNavigate } from "react-router-dom"
 import { ResetPassword, ForgetPassword } from '../../Store/urls'
 
-export default function ForgotPassword({setLoginType}) {
+export default function ForgotPassword({ setLoginType }) {
   const [email, setEmail] = useState('')
   const [code, setCode] = useState('')
   const [password, setPassword] = useState('')
