@@ -53,17 +53,24 @@ export default function Form() {
 	}
 	useEffect(() => {
 		if (data?.status !== 'success') return;
-		setType('otp')
-		setIsLogedIn(true)
 		setToken(data.data.token);
-		// Navigate('/')
-		// window.location.reload();
+		if (!data.data.active) {
+			setType('otp')
+		} else {
+			setIsLogedIn(true)
+		}
 	}, [data])
 	useEffect(() => {
 		if (isLogedIn) {
 			Navigate('/')
 		}
 	}, [])
+	useEffect(() => {
+		if (isLogedIn) {
+			Navigate('/')
+			window.location.reload();
+		}
+	}, [isLogedIn])
 
 	if (isLogedIn && Type !== 'otp')
 		return <div className='w-screen h-screen bg-DarkerBlue' />
@@ -106,7 +113,7 @@ export default function Form() {
 								>Password</label>
 							</div>
 							<div className={`${Styles.forgotPassword} self-end mt-[-15px]`}>
-								<button onClick={()=>{setType('forgotpassword')}} type='button' className={`${Styles.clickableButton}`}><p className='Fredoka text-[14px] opacity-60 cursor-pointer'>Forgot Password</p></button>
+								<button onClick={() => { setType('forgotpassword') }} type='button' className={`${Styles.clickableButton}`}><p className='Fredoka text-[14px] opacity-60 cursor-pointer'>Forgot Password</p></button>
 							</div>
 							<button type='submit' className={`${Styles.loginBtnAnimate} bg-Black Fredoka text-White text-[22px] w-[100%] py-[14px] rounded-[20px]
 							relative overflow-hidden inline-block z-10
@@ -135,8 +142,8 @@ export default function Form() {
 							</div>
 						</form>
 					</>}
-					{Type === 'otp' && <VarifyCode />}
-					{Type === 'forgotpassword' && <ForgotPassword />}
+					{Type === 'otp' && <VarifyCode email={formData.email} />}
+					{Type === 'forgotpassword' && <ForgotPassword setLoginType={setType}/>}
 				</div>
 			</section>
 		</>

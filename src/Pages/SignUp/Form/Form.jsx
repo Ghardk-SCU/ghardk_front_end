@@ -2,7 +2,6 @@ import { useState, useEffect, useContext } from 'react'
 import { useNavigate } from 'react-router-dom'
 import Styles from '../Styling.module.css'
 import Bear from './assets/Bear.png'
-import SelectType from './SelectType'
 import CustomerForm from './CustomerForm'
 import VendorForm from './VendorForm'
 import { AuthenticationContext } from '../../../Store/Context/Authentication'
@@ -30,8 +29,7 @@ const FormDataHolder = {
 	},
 }
 export default function Form() {
-	const [userType, setUserType] = useState(null)
-	const [formData, setFormData] = useState(null)
+	const [formData, setFormData] = useState(FormDataHolder.Customer)
 	const { isLogedIn } = useContext(AuthenticationContext)
 	const [errorMessage, setErrorMessage] = useState('')
 	const [loading, setLoading] = useState(false)
@@ -57,27 +55,21 @@ export default function Form() {
 
 	function handleSubmit(e) {
 		e.preventDefault();
-		const Type = userType.toLowerCase()
 		const body = {
 			first_name: formData.firstName,
 			last_name: formData.lastName,
 			email: formData.email,
 			password: formData.password,
 			password_confirm: formData.confirmPassword,
-			username: formData.username,
+			user_name: formData.username,
 			national_id: formData.nationalId,
-			role: Type,
+			role: 'customer',
 			dob: '1999-01-01',
 			gender: 'male'
 		}
 		setErrorMessage('')
 		Fetch({ url: SignupUrl(), setLoading, setData, setErrorMessage, method: 'POST', body })
 	}
-
-	useEffect(() => {
-		if (!userType) return
-		setFormData(FormDataHolder[userType])
-	}, [userType])
 
 	useEffect(() => {
 		if (!data) return
@@ -93,18 +85,13 @@ export default function Form() {
 
 	if (isLogedIn)
 		return <div className='w-screen h-screen bg-DarkerBlue' />
-	if (formData === null) return <SelectType setUserType={setUserType} />
 	return (
 		<>
 			<section className={`${Styles.formContainer} relative min-h-screen py-24 w-screen bg-Beige flex content-center items-center justify-center`}>
 				<div className={`${Styles.formContainer} relative bg-DarkBeige/60 w-[80%] py-8 min-h-[66%] md:w-[50%] lg2:w-[30%] mt-[100px] rounded-2xl center flex-col gap-8`}>
 					<img src={Bear} alt='bear-img' className='absolute top-[-120px] w-[140px] select-none pointer-events-none' />
-					<h2 className='Title text-Black EBGaramond' style={titleStyle}>{userType} Acount</h2>
-					{userType === 'Customer' ?
-						<CustomerForm loading={loading} errorMessage={errorMessage} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
-						:
-						<VendorForm loading={loading} errorMessage={errorMessage} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
-					}
+					<h2 className='Title text-Black EBGaramond' style={titleStyle}>Signup</h2>
+					<CustomerForm loading={loading} errorMessage={errorMessage} formData={formData} handleChange={handleChange} handleSubmit={handleSubmit} />
 				</div>
 			</section>
 		</>

@@ -81,7 +81,11 @@
 .mainPadding {
   @apply sm:pt-10 sm:pr-10 sm:pl-10 sm:pb-10 pt-5 pr-5 pl-5 pb-5;
 }
-
+input[type="date"]{
+  background-color: rgba(255, 255, 255,0.9);
+  color: black;
+  border: 2px solid black;
+}
 
 /* Slider Styles */
 

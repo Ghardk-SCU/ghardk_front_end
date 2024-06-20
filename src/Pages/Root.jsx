@@ -10,26 +10,35 @@ import BackdropHolder from "../Components/Ui-Components/BackdropHolder";
 
 export default function Root() {
   const [errorMessage, setErrorMessage] = useState('')
-  const { setIsLogedIn, setUserName, setUserImg, setRole } = useContext(AuthenticationContext)
+  const {
+    setIsLogedIn, setUserName, setUserImg, setRole,
+    setFirstName, setLastName, setEmail, setGender,
+    setDob
+  } = useContext(AuthenticationContext)
   const { BackDropType, setBackDropType, BackDropActive, setBackDropActive } = useContext(BackDropContext)
   const { data } = useFetch({
     url: MyDataUrl(),
     method: 'GET',
     setErrorMessage,
-    Token: Cookies.get('token')
+    Token: Cookies.get('token'),
   })
 
   useEffect(() => {
+    console.log({ data })
     if (!data) return;
     if (data.status === 'success') {
       setIsLogedIn(true)
-      setUserName(data.data.user.name)
-      setUserImg(data.data.user.img)
+      setUserName(data.data.user.user_name)
+      setUserImg('https://ik.imagekit.io/nyep6gibl/default.jpg?updatedAt=1718367419170' || data.data.user.img)
       setRole(data.data.user.role)
-      console.log(data.data.user.name);
+      setFirstName(data.data.user.first_name)
+      setLastName(data.data.user.last_name)
+      setEmail(data.data.user.email)
+      setGender(data.data.user.gender)
+      const date = new Date(data.data.user.dob)
+      setDob(date.toISOString().slice(0, 10))
     } else {
       setIsLogedIn(false)
-      console.log({data})
     }
   }, [data])
 

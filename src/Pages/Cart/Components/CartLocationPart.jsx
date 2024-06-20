@@ -2,7 +2,6 @@
 export default function CartLocationPart() {
   const Submit = (e) => {
     e.preventDefault();
-    console.log('submitted');
   }
   return (
     <div className="Fredoka relative w-[85%] min-h-[140px] max-h-[80%] bg-[rgb(36,36,36)] rounded-3xl p-6 text-White gap-2 md:gap-4">

@@ -6,7 +6,12 @@ export const AuthenticationContext = createContext()
 export default function AuthenticationProvider({ children }) {
   const [isLogedIn, setIsLogedIn] = useState(true)
   const [userName, setUserName] = useState('')
+  const [firstName, setFirstName] = useState('')
+  const [lastName, setLastName] = useState('')
   const [role, setRole] = useState('')
+  const [email, setEmail] = useState('')
+  const [gender, setGender] = useState('')
+  const [dob, setDob] = useState('')
   const [userImg, setUserImg] = useState('https://ik.imagekit.io/nyep6gibl/default.jpg?updatedAt=1718367419170')
   const [Token, setToken] = useState(Cookies.get('token'));
   useEffect(() => {
@@ -15,6 +20,12 @@ export default function AuthenticationProvider({ children }) {
       setToken('');
       setUserName('');
       setUserImg('');
+      setRole('');
+      setFirstName('');
+      setLastName('');
+      setEmail('');
+      setGender('');
+      setDob('');
     } else {
       Cookies.set('token', Token, { expires: 7 });
     }
@@ -25,8 +36,13 @@ export default function AuthenticationProvider({ children }) {
       isLogedIn, setIsLogedIn,
       Token, setToken,
       userName, setUserName,
+      firstName, setFirstName,
+      lastName, setLastName,
       userImg, setUserImg,
-      role, setRole
+      role, setRole,
+      email, setEmail,
+      gender, setGender,
+      dob, setDob
     }}>
       {children}
     </AuthenticationContext.Provider>

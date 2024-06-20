@@ -1,21 +1,24 @@
 import { useState, useRef, useEffect, useContext } from 'react';
 // import { toast } from 'react-toastify';
 import { motion } from 'framer-motion'
-// import { UserCtx } from '../../Store/Context/UserContext';
+import { AuthenticationContext } from '../../Store/Context/Authentication';
 import Spinner from '../../Components/Ui-Components/Spinner'
-// import { VerifyOTP } from '../../Store/urls'
+import { AskForVerificationCode, VerifyOTP } from '../../Store/urls'
+import useFetch from '../../Components/CustomHooks/useFetch'
+import { useNavigate } from 'react-router-dom';
 // import Cookies from 'js-cookie';
 // const url = VerifyOTP();
 
-const OtpComponent = ({ Type, setType }) => {
+const OtpComponent = ({ Type, setType, email }) => {
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
-  // const { Email } = useContext(UserCtx);
-  // const { setToken } = useContext(UserCtx);
+  const { setIsLogedIn, isLogedIn } = useContext(AuthenticationContext);
+  const Navigate = useNavigate();
   const [color, setColor] = useState('#757575');
   const [Focused, setFocused] = useState(0);
   const [Loading, setLoading] = useState(false);
   const [submitClicked, setSubmitClicked] = useState(1);
   const inputRefs = useRef([]);
+  const { loading } = useFetch({ url: AskForVerificationCode(), method: 'POST', body: { email } })
   // #ff5959 red
   // #757575 gray
   // #00ff80 green
@@ -35,48 +38,29 @@ const OtpComponent = ({ Type, setType }) => {
       setColor('#ff5959');
       setSubmitClicked(prev => prev + 1);
     }
-    // return;
-    // fetch here and check if the otp is correct then check if the user is already in the database
-    // if the user is already in the database then setLogedIn(true)
-    // if the user is not in the database then setType(2)
-    // try {
-    //   setLoading(true);
-    //   const response = await fetch(url, {
-    //     method: 'POST',
-    //     headers: {
-    //       'Content-Type': 'application/json',
-    //     },
-    //     body: JSON.stringify({
-    //       email: Email,
-    //       secretToken: otp.join('')
-    //     }),
-    //   });
-    //   const data = await response.json();
-    //   setLoading(false);
-    //   if (data.status === 'success') {
-    //     setType(2);
-    //     setToken(data.token);
-    //     Cookies.set('token', data.token, {
-    //       expires: 40,
-    //       secure: true
-    //     });
-    //   } else {
-    //     toast(data.message, {
-    //       position: "top-right",
-    //       autoClose: 5000,
-    //       hideProgressBar: false,
-    //       closeOnClick: true,
-    //       pauseOnHover: true,
-    //       draggable: true,
-    //       progress: undefined,
-    //       theme: "dark",
-    //     });
-    //     setColor('#ff5959');
-    //     setSubmitClicked(prev => prev + 1);
-    //   }
-    // } catch (error) {
-    //   console.error('Error:', error);
-    // }
+    try {
+      setLoading(true);
+      const response = await fetch(VerifyOTP(), {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email,
+          secretToken: otp.join('')
+        }),
+      });
+      const data = await response.json();
+      setLoading(false);
+      if (data.status === 'success') {
+        setIsLogedIn(true);
+      } else {
+        setColor('#ff5959');
+        setSubmitClicked(prev => prev + 1);
+      }
+    } catch (error) {
+      console.error('Error:', error);
+    }
   }
   const handleChange = (e, num) => {
     // remove all spaces from e.target.value
@@ -127,14 +111,24 @@ const OtpComponent = ({ Type, setType }) => {
   }
 
   useEffect(() => {
-    inputRefs.current[0].focus();
+    inputRefs?.current[0]?.focus();
   }, [])
 
   useEffect(() => {
     inputRefs?.current[Focused]?.focus();
   }, [Focused])
 
-  const myClass = `flex-grow border-[1px] border-[${color}] w-[40px] text-center outline-primary rounded-md bg-transparent py-5 font-bold`
+  useEffect(() => {
+    if (isLogedIn) {
+      Navigate('/')
+      window.location.reload();
+    }
+  }, [isLogedIn])
+
+  const myClass = `flex-grow border-[2px] border-Black w-[40px] text-center outline-none rounded-md bg-transparent py-5 font-bold`
+  if (loading) {
+    return <Spinner />
+  }
   return (
     <form onSubmit={handleSubmit} className='flex flex-col space-y-10 px-10 w-full'>
       <div>
@@ -163,8 +157,8 @@ const OtpComponent = ({ Type, setType }) => {
 							before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:-z-10
 							before:rounded-inherit before:bg-[#505050] before:bg-opacity-40 
 							before:transition-all before:duration-300 before:ease-in-out
-							hover:before:left-0 
-							${Loading ? 'cursor-wait before:left-[0] w-[105%] my-[1px] py-[13px]' : 'cursor-pointer before:left-[-100%] w-[100%] my-0 py-[14px]'} `}>
+							hover:before:left-0 center
+							${Loading ? 'cursor-wait before:left-[0] my-[1px] py-[13px]' : 'cursor-pointer before:left-[-100%] w-[100%] my-0 py-[14px]'} `}>
         {Loading ? <Spinner /> : 'Confirm email'}
       </button>
     </form>
@@ -172,11 +166,11 @@ const OtpComponent = ({ Type, setType }) => {
   )
 }
 
-export default function VarifyCode() {
+export default function VarifyCode({ email }) {
   return (
     <>
       <p className='mt-5 EBGaramond text-3xl'>Check your email</p>
-      <OtpComponent />
+      <OtpComponent email={email} />
     </>
   )
 }

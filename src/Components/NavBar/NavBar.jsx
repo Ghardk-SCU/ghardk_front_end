@@ -1,8 +1,9 @@
-import { useState, useEffect, useContext } from 'react';
+import { useState, useEffect, useContext, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthenticationContext } from '../../Store/Context/Authentication'
 import { BackDropContext } from '../../Store/Context/BackDrop';
+import Spinner from '../Ui-Components/Spinner';
 
 import logo from '../../assets/logo.png'
 import { IoIosMenu } from "react-icons/io";
@@ -14,7 +15,8 @@ import { TiClipboard } from "react-icons/ti";
 import { IoIosLogOut } from "react-icons/io";
 import { FaRegHeart } from "react-icons/fa";
 import { IoIosNotifications } from "react-icons/io";
-import Spinner from '../Ui-Components/Spinner';
+import { FaCamera } from "react-icons/fa";
+
 
 
 export default function NavBar() {
@@ -55,6 +57,12 @@ export default function NavBar() {
   useEffect(() => {
     localStorage.setItem('isOpen', isOpen)
   }, [isOpen])
+
+  useEffect(() => {
+    if(!isLogedIn){
+      setShowAccount(false)
+    }
+  }, [isLogedIn])
 
   return (
     <nav>
@@ -169,9 +177,20 @@ const AccountMenu = ({ setShowAccount }) => {
 }
 
 const SearchMenu = () => {
+  const [imgSearch, setImgSearch] = useState('')
+  const imgRef = useRef(null)
   const handleSubmit = (e) => {
     e.preventDefault()
     console.log(e.target[0].value)
+  }
+  const handleFileChange = (e) => {
+    const file = e.target.files[0];
+    const reader = new FileReader();
+    reader.onloadend = () => {
+      setImgSearch(reader.result)
+    }
+    reader.readAsDataURL(file)
+    console.log('Search for img looks like this ' , { img: reader })
   }
   return (
     <motion.div
@@ -179,9 +198,15 @@ const SearchMenu = () => {
       animate={{ clipPath: 'inset(0 0 0 0)' }}
       exit={{ clipPath: 'inset(0 0 0 100%)' }}
       className='absolute top-[-10px] right-[49px] text-white rounded-r-0 rounded-l-full bg-Beige w-[220px] h-[60px] center p-2'>
-      <form onSubmit={handleSubmit} className='rounded-full bg-black w-full h-full ' action="">
+      <form onSubmit={handleSubmit} className='mr-2 rounded-full bg-black w-full h-full ' action="">
         <input type='text' placeholder='Search' className='w-full h-full bg-transparent outline-none border-none px-3' />
       </form>
+      <div onClick={() => { imgRef.current.click() }}
+        className='imgContainer cursor-pointer relative flex justify-center items-center'>
+        <FaCamera size={20} color='black' />
+        <input onChange={handleFileChange}
+          ref={imgRef} className='hidden' type="file" accept="image/*" />
+      </div>
     </motion.div>
   )
 }
