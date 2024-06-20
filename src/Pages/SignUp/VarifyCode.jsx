@@ -18,7 +18,6 @@ const OtpComponent = ({ Type, setType, email }) => {
   const [Loading, setLoading] = useState(false);
   const [submitClicked, setSubmitClicked] = useState(1);
   const inputRefs = useRef([]);
-  const { loading } = useFetch({ url: AskForVerificationCode(), method: 'POST', body: { email } })
   // #ff5959 red
   // #757575 gray
   // #00ff80 green
@@ -126,9 +125,6 @@ const OtpComponent = ({ Type, setType, email }) => {
   }, [isLogedIn])
 
   const myClass = `flex-grow border-[2px] border-Black w-[40px] text-center outline-none rounded-md bg-transparent py-5 font-bold`
-  if (loading) {
-    return <Spinner />
-  }
   return (
     <form onSubmit={handleSubmit} className='flex flex-col space-y-10 px-10 w-full'>
       <div>

@@ -77,7 +77,6 @@ export default function Form() {
 		if (!data) return
 		if (data.status === 'success') {
 			// Navigate('/login');
-			// console.log(data.data.user.token)
 			setToken(data.data.user.token);
 			setType('otp')
 		}
