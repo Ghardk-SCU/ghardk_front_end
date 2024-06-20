@@ -7,15 +7,15 @@ import img3 from '../../../assets/Image3.png'
 import img4 from '../../../assets/Image4.png'
 import ListItem from './ListItem'
 
-export default function Details({ itemDetials, vendorDetails}){
+export default function Details({ itemDetials, vendorDetails }) {
     const [selectedColor, setSelectedColor] = useState('White');
     const [selectedSize, setSelectedSize] = useState('Medium');
     const [currQuantity, setCurrQuantity] = useState(1);
     const [selectedImg, setSelectedImg] = useState(0);
     const [isFavorite, setIsFavorite] = useState(false);
     const [selectedTab, setSelectedTab] = useState('vendor');
-    
-    function handleFavorite(){
+
+    function handleFavorite() {
         setIsFavorite(prevIsFavorite => !prevIsFavorite);
     }
     const images = [img1, img2, img3, img4];
@@ -25,21 +25,21 @@ export default function Details({ itemDetials, vendorDetails}){
             <div className='Fredoka min-h-screen h-full w-[95%] bg-Beige flex flex-col md:flex-row gap-8 py-[150px] px-4 overflow-hidden'>
                 <div className="relative flex flex-col-reverse lg:flex-row w-full md:w-2/3 h-full gap-4 rounded-xl">
                     <div className="flex items-center lg:flex-col justify-center w-full lg:w-1/3 gap-4">
-                    {
-                        images.map((img, idx) => {
-                        return (
-                            <button 
-                            key={idx} 
-                            onClick={() => setSelectedImg(idx)} 
-                            className={`relative rounded-2xl max-h-[115px] max-w-[115px] min-h-[60px] min-w-[60px] focus:outline-none overflow-hidden border ${selectedImg === idx ? 'border-Black/80 shadow-lg' : 'border-Black/10'}`}>
-                                <img src={img} className='w-full h-full object-cover rounded-2xl' loading='lazy' alt='Thumbnail'/>
-                            </button>
-                        )
-                        })
-                    }
+                        {
+                            images.map((img, idx) => {
+                                return (
+                                    <button
+                                        key={idx}
+                                        onClick={() => setSelectedImg(idx)}
+                                        className={`relative rounded-2xl max-h-[115px] max-w-[115px] min-h-[60px] min-w-[60px] focus:outline-none overflow-hidden border ${selectedImg === idx ? 'border-Black/80 shadow-lg' : 'border-Black/10'}`}>
+                                        <img src={img} className='w-full h-full object-cover rounded-2xl' loading='lazy' alt='Thumbnail' />
+                                    </button>
+                                )
+                            })
+                        }
                     </div>
                     <div className="w-full h-full rounded-2xl overflow-hidden border shadow-md self-center border-Black/10">
-                        <img src={images[selectedImg]} alt="SelectedImage" className='w-full h-full object-cover rounded-2xl'/>
+                        <img src={images[selectedImg]} alt="SelectedImage" className='w-full h-full object-cover rounded-2xl' />
                     </div>
                 </div>
                 <div className="flex flex-col justify-center items-center w-full md:w-2/4 h-full gap-10">
@@ -66,36 +66,13 @@ export default function Details({ itemDetials, vendorDetails}){
                                 <span className='text-[16px] font-medium mb-[1px] self-end'>EGP</span>
                             </div>
                             <button onClick={handleFavorite} className='center w-10 h-10 rounded-full overflow-hidden ml-auto focus:outline-none cursor-pointer'>
-                            {
-                                isFavorite
-                                ? <FaHeart size={24} className='w-[100%] text-[#F20E0E]' />
-                                : <FaRegHeart size={24} className='w-[100%] text-black/80' />
-                            }
+                                {
+                                    isFavorite
+                                        ? <FaHeart size={24} className='w-[100%] text-[#F20E0E]' />
+                                        : <FaRegHeart size={24} className='w-[100%] text-black/80' />
+                                }
                             </button>
                         </div>
-                    </div>
-                    <div className='w-full h-full flex gap-x-4 flex-wrap gap-y-1 z-20 self-start'>
-                        <DropMenu
-                            label="Color"
-                            options={['White', 'Black']}
-                            selectedOption={selectedColor}
-                            onOptionSelect={setSelectedColor}
-                            isDark={true}
-                        />
-                        <DropMenu
-                            label="Size"
-                            options={['Medium', 'Large']}
-                            selectedOption={selectedSize}
-                            onOptionSelect={setSelectedSize}
-                            isDark={true}
-                        />
-                        <DropMenu
-                            label="Size"
-                            options={['Medium', 'Large']}
-                            selectedOption={selectedSize}
-                            onOptionSelect={setSelectedSize}
-                            isDark={true}
-                        />
                     </div>
                     <div className="min-w-full h-full flex items-center justify-between gap-x-4 gap-y-1">
                         <div className='flex gap-5 w-full h-min'>
@@ -128,7 +105,7 @@ export default function Details({ itemDetials, vendorDetails}){
 
                                 <div className="w-full h-full  center pt-8 gap-4">
                                     <div className='w-min h-full center flex-col gap-1 min-w-min'>
-                                        <img src={vendorDetails.img} alt="vendorImg" className='size-16 rounded-full'/>
+                                        <img src={vendorDetails.img} alt="vendorImg" className='size-16 rounded-full' />
                                         <span className='text-Black text-sm text-nowrap'>{vendorDetails.name}</span>
                                     </div>
                                     {/* <span className='w-[5px] rounded-full min-h-[100px] center flex-col bg-Black'>
@@ -136,7 +113,7 @@ export default function Details({ itemDetials, vendorDetails}){
                                     <div className='w-full h-full center flex-col gap-3 border-Black border-l-4 pl-4'>
                                         <p className='text-[13px] sm2:text-sm break-words hyphens-auto'>{vendorDetails.description}</p>
                                         <div className='flex items-center gap-1 w-full h-min'>
-                                            <FaStar className='size-5'/>
+                                            <FaStar className='size-5' />
                                             <span className='text-base text-Black'>{vendorDetails.rate}</span>
                                             <span className='text-[12px] text-Black font-normal self-end'>{`(${Math.round((+vendorDetails.totalReviews) / (Math.pow(10, Math.floor(Math.log10((+vendorDetails.totalReviews)) + 1) - 1)))}k)`}</span>
                                         </div>
