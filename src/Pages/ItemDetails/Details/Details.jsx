@@ -108,8 +108,6 @@ export default function Details({ itemDetials, vendorDetails }) {
                                         <img src={vendorDetails.img} alt="vendorImg" className='size-16 rounded-full' />
                                         <span className='text-Black text-sm text-nowrap'>{vendorDetails.name}</span>
                                     </div>
-                                    {/* <span className='w-[5px] rounded-full min-h-[100px] center flex-col bg-Black'>
-                                    </span> */}
                                     <div className='w-full h-full center flex-col gap-3 border-Black border-l-4 pl-4'>
                                         <p className='text-[13px] sm2:text-sm break-words hyphens-auto'>{vendorDetails.description}</p>
                                         <div className='flex items-center gap-1 w-full h-min'>
