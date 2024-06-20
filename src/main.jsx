@@ -7,13 +7,11 @@ import AuthenticationProvider from './Store/Context/Authentication.jsx'
 import BackDropProvider from './Store/Context/BackDrop.jsx'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
-  <React.StrictMode>
-    <AuthenticationProvider>
-      <BackDropProvider>
-        <BrowserRouter>
-          <App />
-        </BrowserRouter>
-      </BackDropProvider>
-    </AuthenticationProvider>
-  </React.StrictMode>,
+  <AuthenticationProvider>
+    <BackDropProvider>
+      <BrowserRouter>
+        <App />
+      </BrowserRouter>
+    </BackDropProvider>
+  </AuthenticationProvider>,
 )
