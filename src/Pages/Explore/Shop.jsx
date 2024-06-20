@@ -61,8 +61,9 @@ const Fillters = () => {
             <p className='text-xl'>{el}</p>
             <button style={{
               border: '1px solid rgba(16, 16, 16, 0.1)',
-              boxShadow: '0px 0px 12.3px 0px rgba(0, 0, 0, 0.2) , 0px 0px 7.5px 0px rgba(0, 0, 0, 0.2) inset',
-            }} onClick={() => { handleSelect(idx) }} className='bg-White/50 size-[34px] p-2'>
+              boxShadow: '0px 0px 12.3px 0px rgba(0, 0, 0, 0.2) , 0px 0px 4.5px 0px rgba(0, 0, 0, 0.15) inset',
+              borderRadius : '4px'
+            }} onClick={() => { handleSelect(idx) }} className='bg-White/50 size-[34px] p-2 select-none'>
               {selected.includes(idx) && <img src={Selected} alt="" />}
             </button>
           </div>
