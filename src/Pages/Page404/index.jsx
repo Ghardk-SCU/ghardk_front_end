@@ -1,6 +1,8 @@
 
 export default function Page404() {
   return (
-    <div>Page404</div>
+    <div className="text-3xl w-full h-screen text-white center">
+      Page not found
+    </div>
   )
 }

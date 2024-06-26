@@ -1,10 +1,10 @@
 import placeholder from '../assets/placeholder.jpg'
 import { FaStar, FaRegHeart, FaHeart, FaStarHalfAlt } from 'react-icons/fa'
 import { useState } from 'react'
+import { Link } from 'react-router-dom'
 
-export default function DetialsCard({ name, description, price, rating, rating_count, img }) {
+export default function DetialsCard({ id, name, description, price, rating, rating_count, img }) {
     const [isFavorite, setIsFavorite] = useState(false);
-
     function handleFavorite() {
         setIsFavorite(prevIsFavorite => !prevIsFavorite);
     }
@@ -29,20 +29,9 @@ export default function DetialsCard({ name, description, price, rating, rating_c
 
     return (
         <>
-            <div className="relative flex-grow xl:flex-grow-0 center w-full md:w-80 h-96 bg-Beige2 shadow-lg rounded-lg flex-col overflow-hidden group Fredoka border border-Black/15">
+            <Link to={`/ItemDetails/${id}`} className="relative flex-grow xl:flex-grow-0 center w-full md:w-80 h-96 bg-Beige2 shadow-lg rounded-lg flex-col overflow-hidden group Fredoka border border-Black/15">
                 <div className='absolute w-full h-[80px] z-10 -top-[30%] center px-4
                 group-hover:top-0 transition-all duration-300 ease-in-out'>
-                    <button className='relative px-4 py-2 center bg-White rounded-full z-10 text-Black overflow-hidden text-md Fredoka focus:outline-none cursor-pointer active:scale-95 transition-all duration-300 
-                    ease-in-out before:bg-Black before:rounded-full before:absolute before:-z-10 before:left-[calc(50%-4px)] before:top-1/2 before:w-1 before:h-1 before:opacity-0
-                    before:hover:w-full before:hover:h-full before:hover:opacity-100 before:hover:top-0 before:hover:left-0 before:transition-all before:duration-300 hover:text-White'>Add to cart</button>
-                    <button onClick={handleFavorite} className='center w-10 h-10 rounded-full overflow-hidden shadow-md border border-Black/10 bg-White ml-auto focus:outline-none cursor-pointer'>
-                        {
-                            isFavorite
-                                ? <FaHeart size={24} className='w-[100%] text-[#F20E0E]' />
-                                : <FaRegHeart size={24} className='w-[100%] text-black/80' />
-                        }
-
-                    </button>
                 </div>
                 <div className="relative w-full h-full overflow-hidden">
                     <span className='w-full h-full bg-Black/10 absolute
@@ -72,7 +61,7 @@ export default function DetialsCard({ name, description, price, rating, rating_c
                         </div>
                     </div>
                 </div>
-            </div>
+            </Link>
         </>
     );
 }

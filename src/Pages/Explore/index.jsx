@@ -28,7 +28,7 @@ export default function Explore() {
 
   useEffect(() => {
     // console.log({ categories });
-    console.log({ productsUrl });
+    // console.log({ products });
   }, [categories, products])
 
   useEffect(() => {
