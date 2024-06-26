@@ -78,10 +78,10 @@ export default function PopularProd() {
 
               {
                 !loading && data.data.products.map((data, idx) => {
-                  const { price, name, description, rating, rating_count } = data
+                  const { price, name, description, rating, rating_count, images } = data
                   return (
                     <div key={data.id} className='group center'>
-                      <Prod img={placeholder} Amount={price} controls={controls} delay={idx / 10} Title={name} Description={description} Rate={rating} totalRaters={rating_count} />
+                      <Prod img={images[0]?.image_url || placeholder} Amount={price} controls={controls} delay={idx / 10} Title={name} Description={description} Rate={rating} totalRaters={rating_count} />
                     </div>
                   )
                 })

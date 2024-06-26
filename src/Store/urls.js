@@ -18,6 +18,8 @@ const addNewAddress = () => (`${APIURL}api/v1/addresses/`);
 const updateAddress = (id) => (`${APIURL}api/v1/addresses/${id}`);
 const Checkout = () => (`${APIURL}api/v1/sales/checkout`);
 const popularProdcuts = () => (`${APIURL}api/v1/products/popular`);
+const getCategories = () => (`${APIURL}api/v1/categories`);
+const getAllProducts = () => (`${APIURL}api/v1/products/explore?`);
 
 export {
   SignupUrl,
@@ -37,5 +39,7 @@ export {
   Checkout,
   popularProdcuts,
   updateMyData,
-  changeMyPassword
+  changeMyPassword,
+  getCategories,
+  getAllProducts
 }
