@@ -109,11 +109,16 @@ const Fillters = ({ setProductsUrl, Categories, loadingProducts, setLoadingProdu
       updateQueryParams({ sortType: 'ASC' });
     }
   }
-  const handlePriceRange = (value) => {
+  const handlePriceRange = () => {
     if (loadingProducts) return;
-    setPriceRange(value)
-    console.log({ priceRange });
-    // setProducts((prev) => prev.filter((el) => el.price >= value[0] && el.price <= value[1]))
+    setLoadingProducts(true)
+    deleteSpecificParam('minPrice')
+    deleteSpecificParam('maxPrice')
+    deleteQueryParams('minPrice')
+    deleteQueryParams('maxPrice')
+    setProductsUrl((prev) => `${prev}&minPrice=${priceRange[0]}&maxPrice=${priceRange[1]}`)
+    updateQueryParams({ minPrice: priceRange[0] });
+    updateQueryParams({ maxPrice: priceRange[1] });
   }
 
   return (
@@ -150,7 +155,12 @@ const Fillters = ({ setProductsUrl, Categories, loadingProducts, setLoadingProdu
         ))}
       </div>
       <h1 className='text-3xl font-medium'>Filter By</h1>
-      <p className='text-xl my-5 font-medium'>Price</p>
+      <div className='flex items-center justify-between'>
+        <p className='text-xl my-5 font-medium '> Price</p>
+        <button onClick={handlePriceRange} className='bg-black text-white text-center center py-2 px-5 rounded-full'>
+          Go
+        </button>
+      </div>
       <ReactSlider
         className="horizontal-slider"
         thumbClassName="example-thumb"
@@ -161,7 +171,7 @@ const Fillters = ({ setProductsUrl, Categories, loadingProducts, setLoadingProdu
         ariaLabel={['Lower thumb', 'Upper thumb']}
         ariaValuetext={state => `Thumb value ${state.valueNow}`}
         pearling
-        onChange={(value) => handlePriceRange(value)}
+        onChange={(value) => setPriceRange(value)}
         minDistance={2000}
       />
       <div className='w-full flex justify-between mt-5 Fredoka font-medium'>
