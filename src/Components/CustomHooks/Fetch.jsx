@@ -1,12 +1,12 @@
-export default async function Fetch({ url, setData, setLoading, setErrorMessage, method, body, Token }) {
-  const headers = { 'Content-Type': 'application/json', }
+export default async function Fetch({ url, setData, setLoading, setErrorMessage, method, body, Token, Type = 'json' }) {
+  const headers = Type === 'json' ? { 'Content-Type': 'application/json' } : {};
   if (Token) headers.Authorization = `Bearer ${Token}`;
+  const modifiedBodyy = Type === 'json' ? JSON.stringify(body) : body;
   try {
-    setLoading(true)
     const response = await fetch(url, {
-      method: method,
+      method,
       headers,
-      body: JSON.stringify(body)
+      body: modifiedBodyy
     })
     const string = await response.text();
     const data = string === "" ? {} : JSON.parse(string);

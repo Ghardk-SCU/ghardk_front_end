@@ -3,6 +3,8 @@ const APIURL = import.meta.env.VITE_API_URL;
 const SignupUrl = () => (`${APIURL}api/v1/users/signup`);
 const LoginUrl = () => (`${APIURL}api/v1/users/login`);
 const MyDataUrl = () => (`${APIURL}api/v1/users/getMe`);
+const updateMyData = () => (`${APIURL}api/v1/users/updateMe`);
+const changeMyPassword = () => (`${APIURL}api/v1/users/change-password`);
 const VerifyOTP = () => (`${APIURL}api/v1/users/verify`);
 const ForgetPassword = () => (`${APIURL}api/v1/users/forget-password`);
 const ResetPassword = () => (`${APIURL}api/v1/users/reset-password`);
@@ -16,6 +18,7 @@ const addNewAddress = () => (`${APIURL}api/v1/addresses/`);
 const updateAddress = (id) => (`${APIURL}api/v1/addresses/${id}`);
 const Checkout = () => (`${APIURL}api/v1/sales/checkout`);
 const popularProdcuts = () => (`${APIURL}api/v1/products/popular`);
+
 export {
   SignupUrl,
   LoginUrl,
@@ -32,5 +35,7 @@ export {
   addNewAddress,
   updateAddress,
   Checkout,
-  popularProdcuts
+  popularProdcuts,
+  updateMyData,
+  changeMyPassword
 }

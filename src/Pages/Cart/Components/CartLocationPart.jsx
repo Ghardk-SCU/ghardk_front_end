@@ -50,7 +50,6 @@ export default function CartLocationPart() {
       })
     }
     if (Type.type === 'updateAddress') {
-      console.log(Type.id)
       Fetch({
         url: updateAddress(Type.id),
         method: 'PATCH',
