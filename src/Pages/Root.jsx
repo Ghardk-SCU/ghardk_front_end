@@ -24,19 +24,19 @@ export default function Root() {
   })
 
   useEffect(() => {
-    console.log({ data })
     if (!data) return;
     if (data.status === 'success') {
       setIsLogedIn(true)
       setUserName(data.data.user.user_name)
-      setUserImg('https://ik.imagekit.io/nyep6gibl/default.jpg?updatedAt=1718367419170' || data.data.user.img)
+      setUserImg(data.data.user.image_url)
       setRole(data.data.user.role)
       setFirstName(data.data.user.first_name)
       setLastName(data.data.user.last_name)
       setEmail(data.data.user.email)
       setGender(data.data.user.gender)
-      const date = new Date(data.data.user.dob)
-      setDob(date.toISOString().slice(0, 10))
+      const dob = data.data.user.dob
+      const date = dob ? new Date(dob).toISOString().slice(0, 10) : ''
+      setDob(date)
     } else {
       setIsLogedIn(false)
     }

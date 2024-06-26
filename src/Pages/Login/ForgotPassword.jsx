@@ -115,7 +115,6 @@ const EnterPassword = ({ setLoginType, email, code, setCode, password, setPasswo
         })
       })
       const data = await response.json()
-      console.log({ data });
       if (data.status !== 'success') {
         throw new Error(data.message)
       } else {

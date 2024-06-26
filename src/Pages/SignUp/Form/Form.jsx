@@ -64,10 +64,7 @@ export default function Form() {
 			password: formData.password,
 			password_confirm: formData.confirmPassword,
 			user_name: formData.username,
-			national_id: formData.nationalId,
-			role: 'customer',
-			dob: '1999-01-01',
-			gender: 'male'
+			role: 'customer'
 		}
 		setErrorMessage('')
 		Fetch({ url: SignupUrl(), setLoading, setData, setErrorMessage, method: 'POST', body })
