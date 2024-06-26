@@ -1,14 +1,12 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion'
-import Prod1 from './assets/prod1.jpg'
-import Prod2 from './assets/prod2.jpg'
 import { FaStar } from "react-icons/fa";
 import { FaStarHalfAlt } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa6";
 import { reavelAnimDowntoTop } from '../../../Store/AnimationValues'
 
-export default function Prod({ Amount, Title, Description, Type, Rate, totalRaters, controls, delay }) {
+export default function Prod({ img, Amount, Title, Description, Type, Rate, totalRaters, controls, delay }) {
   const [isLiked, setIsLiked] = useState(false)
   const reavelAnim = reavelAnimDowntoTop(delay)
   const StarCounter = () => {
@@ -34,10 +32,12 @@ export default function Prod({ Amount, Title, Description, Type, Rate, totalRate
     )
   }
   return (
-    <motion.div variants={reavelAnim} initial='hidden' animate={controls} className='relative 
+    <motion.div
+      // variants={reavelAnim} initial='hidden' animate={controls}
+      className='relative 
     w-full sm:w-[350px] xl:w-[90%] xl:h-full h-full sm:h-[400px] 
     rounded-2xl overflow-hidden font-medium'>
-      <Backgrounds Type={Type} />
+      <Backgrounds img={img} />
       <div className='flex flex-col justify-between w-full h-full'>
         <div className='m-4 flex justify-between'>
           <div className='px-2 flex items-center w-fit bg-white bg-opacity-20 backdrop-filter backdrop-blur-2 rounded-lg text-[2.5vh]'>
@@ -88,11 +88,11 @@ export default function Prod({ Amount, Title, Description, Type, Rate, totalRate
 }
 
 
-const Backgrounds = ({ Type }) => {
+const Backgrounds = ({ img }) => {
   return (
     <>
       <div style={{
-        backgroundImage: `url(${Type === 1 ? Prod1 : Prod2})`,
+        backgroundImage: `url(${img})`,
         backgroundSize: 'cover',
         backgroundPosition: 'center',
         backgroundRepeat: 'no-repeat',

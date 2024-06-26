@@ -3,6 +3,9 @@ import { motion, useMotionValue, useInView, useAnimation } from 'framer-motion'
 import Prod from './Prod'
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { FaLongArrowAltLeft } from "react-icons/fa";
+import { popularProdcuts } from '../../../Store/urls'
+import useFetch from '../../../Components/CustomHooks/useFetch'
+import placeholder from './assets/placeholder.jpg'
 
 
 
@@ -15,46 +18,6 @@ const Products = {
     Rate: 1,
     totalRaters: 100
   },
-  2: {
-    Amount: '34.50',
-    Title: 'Plastic Camera Figure',
-    Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non.',
-    Type: 2,
-    Rate: 3,
-    totalRaters: 100
-  },
-  3: {
-    Amount: '75.00',
-    Title: 'Giraffe Soft Toy',
-    Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non.',
-    Type: 1,
-    Rate: 3.4,
-    totalRaters: 100
-  },
-  4: {
-    Amount: '75.00',
-    Title: 'Giraffe Soft Toy',
-    Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non.',
-    Type: 1,
-    Rate: 3.4,
-    totalRaters: 100
-  },
-  5: {
-    Amount: '75.00',
-    Title: 'Giraffe Soft Toy',
-    Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non.',
-    Type: 1,
-    Rate: 3.4,
-    totalRaters: 100
-  },
-  6: {
-    Amount: '75.00',
-    Title: 'Giraffe Soft Toy',
-    Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non.',
-    Type: 1,
-    Rate: 3.4,
-    totalRaters: 100
-  },
 }
 const DragBuffer = 10
 export default function PopularProd() {
@@ -63,16 +26,15 @@ export default function PopularProd() {
   const controls = useAnimation()
   const [imgTurn, setImgTurn] = useState(0)
   const dragMotion = useMotionValue(0)
+  const { data, loading } = useFetch({
+    url: popularProdcuts(),
+    method: 'GET'
+  })
   const moveDenominator =
     window.innerWidth > 1280 ? 3 :
       window.innerWidth > 768 ? 2 :
         1
   const dragPercintage = 100 / moveDenominator
-  useEffect(() => {
-    if (inView) {
-      controls.start('visible')
-    }
-  }, [inView])
   const DragEnd = () => {
     handleMove()
   }
@@ -90,6 +52,12 @@ export default function PopularProd() {
       setImgTurn(prev => prev - 1)
     }
   }
+
+  useEffect(() => {
+    if (inView && loading === false) {
+      controls.start('visible')
+    }
+  }, [inView])
   return (
     <main className="relative h-[120vh] z-[1]">
       <section className='flex flex-col w-full h-full space-y-10 md:space-y-0 pb-20'>
@@ -107,16 +75,27 @@ export default function PopularProd() {
               onDragEnd={DragEnd}
               className='cursor-grabbing w-full h-[80%] grid grid-flow-col 
               xl:auto-cols-[calc((100%/3))] md:auto-cols-[calc((100%/2))] auto-cols-[calc((100%/1))] '>
+
               {
-                Object.keys(Products).map((key, idx) => {
-                  const { Amount, Title, Description, Type, Rate, totalRaters } = Products[key]
+                !loading && data.data.products.map((data, idx) => {
+                  const { price, name, description, rating, rating_count } = data
                   return (
-                    <div key={key} className='group px-3 center'>
-                      <Prod Amount={Amount} controls={controls} delay={idx / 10} Title={Title} Description={Description} Type={Type} Rate={Rate} totalRaters={totalRaters} />
+                    <div key={data.id} className='group px-3 center'>
+                      <Prod img={placeholder} Amount={price} controls={controls} delay={idx / 10} Title={name} Description={description} Rate={rating} totalRaters={rating_count} />
                     </div>
                   )
                 })
               }
+              {/* {
+                Object.keys(Products).map((key, idx) => {
+                  const { Amount, Title, Description, Rate, totalRaters } = Products[key]
+                  return (
+                    <div key={key} className='group px-3 center'>
+                      <Prod img={placeholder} Amount={Amount} controls={controls} delay={idx / 10} Title={Title} Description={Description} Rate={Rate} totalRaters={totalRaters} />
+                    </div>
+                  )
+                })
+              } */}
             </motion.div>
           </div>
           <div className='flex gap-5'>

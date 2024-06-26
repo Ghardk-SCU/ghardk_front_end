@@ -30,9 +30,9 @@ export default function Cart() {
     })
   }, [dataChanged])
 
-  useEffect(()=>{
+  useEffect(() => {
     setErrorMessage('')
-  },[Type])
+  }, [Type])
 
   if (!isLogedIn) {
     Navigate('/login')
