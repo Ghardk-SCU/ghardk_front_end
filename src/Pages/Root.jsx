@@ -24,7 +24,6 @@ export default function Root() {
   })
 
   useEffect(() => {
-    console.log({ data })
     if (!data) return;
     if (data.status === 'success') {
       setIsLogedIn(true)

@@ -7,6 +7,14 @@ const VerifyOTP = () => (`${APIURL}api/v1/users/verify`);
 const ForgetPassword = () => (`${APIURL}api/v1/users/forget-password`);
 const ResetPassword = () => (`${APIURL}api/v1/users/reset-password`);
 const AskForVerificationCode = () => (`${APIURL}api/v1/users/verify-token`);
+const getCart = () => (`${APIURL}api/v1/carts`);
+const deleteFromCart = (id) => (`${APIURL}api/v1/carts/${id}`);
+const updateFromCart = (id) => (`${APIURL}api/v1/carts/${id}`);
+const getCountries = () => (`${APIURL}api/v1/countries/`);
+const getMyDefaultAddress = () => (`${APIURL}api/v1/addresses/defaultAddress`);
+const addNewAddress = () => (`${APIURL}api/v1/addresses/`);
+const updateAddress = (id) => (`${APIURL}api/v1/addresses/${id}`);
+const Checkout = () => (`${APIURL}api/v1/sales/checkout`);
 
 export {
   SignupUrl,
@@ -15,5 +23,13 @@ export {
   VerifyOTP,
   ForgetPassword,
   ResetPassword,
-  AskForVerificationCode
+  AskForVerificationCode,
+  getCart,
+  deleteFromCart,
+  updateFromCart,
+  getCountries,
+  getMyDefaultAddress,
+  addNewAddress,
+  updateAddress,
+  Checkout
 }
