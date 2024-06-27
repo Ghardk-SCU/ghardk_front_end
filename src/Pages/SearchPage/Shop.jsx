@@ -4,10 +4,9 @@ import ReactSlider from 'react-slider'
 import Spinner from '../../Components/Ui-Components/Spinner'
 import { useNavigate } from 'react-router-dom'
 
-const searchWord = 'Laptop'
 
-export default function Shop({ setProductsUrl, ProductsUrl, loadingCategories, loadingProducts, setLoadingProducts, Categories, setLoadingCategories, Products, setProducts }) {
-  
+export default function Shop({ setProductsUrl, ProductsUrl, loadingCategories, loadingProducts, setLoadingProducts, Categories, setLoadingCategories, Products, setProducts, searchWord }) {
+
   return (
     <div className="z-[5] w-full min-h-screen flex items-center flex-col justify-center md:justify-between gap-y-20 mainPadding mt-[25vh]">
       <div className='w-full h-full text-center'>

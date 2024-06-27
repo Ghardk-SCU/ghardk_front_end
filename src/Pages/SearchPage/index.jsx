@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import Shop from "./Shop"
 import useFetch from "../../Components/CustomHooks/useFetch"
 import { getCategories, getAllProducts } from "../../Store/urls"
+import { useParams } from "react-router-dom"
 
 export default function SearchPage() {
   const queryParams = new URLSearchParams(location.search);
@@ -14,6 +15,8 @@ export default function SearchPage() {
   const [products, setProducts] = useState([])
   const [loadingCategories, setLoadingCategories] = useState(CatLoading)
   const [loadingProducts, setLoadingProducts] = useState(ProdLoading)
+  const { name } = useParams()
+  console.log({ name });
   useEffect(() => {
     if (Cat) {
       setCategories(Cat)
@@ -37,7 +40,7 @@ export default function SearchPage() {
     <div style={{
       background: 'rgba(212, 205, 205, 1)'
     }} className="relative w-full min-h-screen text-Black flex flex-col gap-40">
-      <Shop
+      <Shop searchWord={name}
         setProductsUrl={setProductsUrl} ProductsUrl={productsUrl}
         loadingCategories={loadingCategories} setLoadingCategories={setLoadingCategories}
         loadingProducts={loadingProducts} setLoadingProducts={setLoadingProducts}
