@@ -8,7 +8,6 @@ import useFetch from '../../../Components/CustomHooks/useFetch'
 import placeholder from './assets/placeholder.jpg'
 
 
-
 const DragBuffer = 10
 export default function PopularProd() {
   const dragRef = useRef()
