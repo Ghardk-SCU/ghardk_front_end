@@ -9,16 +9,7 @@ import placeholder from './assets/placeholder.jpg'
 
 
 
-const Products = {
-  1: {
-    Amount: '75.00',
-    Title: 'Giraffe Soft Toy',
-    Description: 'Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla nec purus feugiat, molestie ipsum et, consequat nibh. Etiam non.',
-    Type: 1,
-    Rate: 1,
-    totalRaters: 100
-  },
-}
+
 const DragBuffer = 10
 export default function PopularProd() {
   const dragRef = useRef()
@@ -40,13 +31,13 @@ export default function PopularProd() {
   }
   const handleMove = (type = "drag") => {
     const x = dragMotion.get()
-    if (type === "+1" && imgTurn + moveDenominator - 1 < Object.keys(Products).length - 1) {
+    if (type === "+1" && imgTurn + moveDenominator - 1 < data.length - 1) {
       setImgTurn(prev => prev + 1)
     }
     if (type === "-1" && imgTurn > 0) {
       setImgTurn(prev => prev - 1)
     }
-    if (x <= -DragBuffer && imgTurn + moveDenominator - 1 < Object.keys(Products).length - 1) {
+    if (x <= -DragBuffer && imgTurn + moveDenominator - 1 < data.length - 1) {
       setImgTurn(prev => prev + 1)
     } else if (x >= DragBuffer && imgTurn > 0) {
       setImgTurn(prev => prev - 1)
@@ -77,7 +68,7 @@ export default function PopularProd() {
               xl:auto-cols-[calc((100%/3))] md:auto-cols-[calc((100%/2))] auto-cols-[calc((100%/1))] '>
 
               {
-                !loading && data.data.products.map((data, idx) => {
+                !loading && data && data.data.products.map((data, idx) => {
                   const { price, name, description, rating, rating_count, images } = data
                   return (
                     <div key={data.id} className='group center'>
