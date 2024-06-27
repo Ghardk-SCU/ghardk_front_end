@@ -1,6 +1,6 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaStar } from "react-icons/fa";
 import { FaStarHalfAlt } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
@@ -9,7 +9,9 @@ import { reavelAnimDowntoTop } from '../../../Store/AnimationValues'
 
 export default function Prod({ id, img, Amount, Title, Description, Type, Rate, totalRaters, controls, delay }) {
   const [isLiked, setIsLiked] = useState(false)
+  const [canNavigate, setCanNavigate] = useState(true)
   const reavelAnim = reavelAnimDowntoTop(delay)
+  const Navigate = useNavigate()
   const StarCounter = () => {
     let stars = []
     for (let i = 0; i < 5; i++) {
@@ -32,6 +34,9 @@ export default function Prod({ id, img, Amount, Title, Description, Type, Rate, 
       </div>
     )
   }
+  const navigateTo = () => {
+    if (canNavigate) Navigate(`/itemDetails/${id}`)
+  }
   return (
     <motion.div
       // variants={reavelAnim} initial='hidden' animate={controls}
@@ -39,7 +44,9 @@ export default function Prod({ id, img, Amount, Title, Description, Type, Rate, 
     w-full sm:w-[350px] xl:w-[90%] xl:h-full h-full sm:h-[400px] 
     rounded-2xl overflow-hidden font-medium'>
       <Backgrounds img={img} />
-      <Link to={`/itemDetails/${id}`} className='flex flex-col justify-between w-full h-full'>
+      <div
+        onClick={navigateTo}
+        className='flex flex-col justify-between w-full h-full'>
         <div className='m-4 flex justify-between'>
           <div className='px-2 flex items-center w-fit bg-white bg-opacity-20 backdrop-filter backdrop-blur-2 rounded-lg text-[2.5vh]'>
             <p>{Amount}</p>
@@ -63,7 +70,7 @@ export default function Prod({ id, img, Amount, Title, Description, Type, Rate, 
             <StarCounter />
           </div>
         </div>
-      </Link>
+      </div>
     </motion.div>
   )
 }
