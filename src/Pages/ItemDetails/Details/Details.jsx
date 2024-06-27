@@ -3,7 +3,7 @@ import { FaPlus, FaMinus, FaRegStar, FaStar, FaStarHalfAlt, FaRegHeart, FaHeart 
 import placeholder from './placeholder.jpg'
 import { addItemToCart } from '../../../Store/urls';
 import Fetch from '../../../Components/CustomHooks/Fetch';
-import { addFav, delFav } from '../../../Store/urls';
+import { addFav, delFav, delFavByProId } from '../../../Store/urls';
 import { AuthenticationContext } from '../../../Store/Context/Authentication';
 export default function Details({ itemDetials }) {
     const [currQuantity, setCurrQuantity] = useState(1);
@@ -21,7 +21,7 @@ export default function Details({ itemDetials }) {
         setErrorMessage('')
         if (isFavorite) {
             await Fetch({
-                url: delFav(itemDetials.id),
+                url: delFavByProId(itemDetials.id),
                 setLoading,
                 setData,
                 setErrorMessage,

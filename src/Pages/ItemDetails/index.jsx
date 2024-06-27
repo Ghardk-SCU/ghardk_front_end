@@ -9,16 +9,6 @@ import ExtraDetails from './Details/ExtraDetails'
 import Spinner from '../../Components/Ui-Components/Spinner'
 import { AuthenticationContext } from '../../Store/Context/Authentication'
 
-const singleItem = {
-    "id": 1,
-    "product_item_id": 2,
-    "cart_id": 1,
-    "quantity": 3,
-    "price": "29.50",
-    "createdAt": "2024-04-24T00:56:41.668Z",
-    "updatedAt": "2024-04-24T00:56:41.668Z"
-}
-
 export default function ItemDetails() {
     const { id } = useParams()
     const { Token } = useContext(AuthenticationContext)

@@ -25,7 +25,7 @@ const addItemToCart = (id) => (`${APIURL}api/v1/products/${id}/carts/item`);
 const getFav = () => (`${APIURL}api/v1/favourites`);
 const addFav = () => (`${APIURL}api/v1/favourites`);
 const delFav = (id) => (`${APIURL}api/v1/favourites/${id}`);
-
+const delFavByProId = (id) => (`${APIURL}api/v1/products/${id}/favourites`);
 export {
   SignupUrl,
   LoginUrl,
@@ -51,5 +51,6 @@ export {
   addItemToCart,
   getFav,
   addFav,
-  delFav
+  delFav,
+  delFavByProId
 }
