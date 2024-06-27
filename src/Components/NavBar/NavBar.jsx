@@ -179,7 +179,8 @@ const SearchMenu = () => {
   const handleSubmit = (e) => {
     e.preventDefault()
     // console.log(e.target[0].value)
-    Navigate(`/Search/${e.target[0].value}`)
+    if (e.target[0].value)
+      Navigate(`/Search/${e.target[0].value}`)
   }
   const handleFileChange = (e) => {
     const file = e.target.files[0];
