@@ -13,8 +13,8 @@ export default function Shop({ setProductsUrl, ProductsUrl, loadingCategories, l
       </div>
       <div className='gap-4 flex flex-grow justify-center flex-wrap'>
         {
-          !loadingProducts && Products && Products.data?.productItems.length > 0 && Products.data.productItems.map((el, idx) => (
-            <DetailsCard key={idx} img={el.images[0]?.image_url} name={el.name} description={el.description} price={el.price} rating={el.rating} rating_count={el.rating_count} />
+          !loadingProducts && Products && Products.data?.productItems.length > 0 && Products.data.productItems.map((el) => (
+            <DetailsCard key={el.id} id={el.id} img={el.images[0]?.image_url} name={el.name} description={el.description} price={el.price} rating={el.rating} rating_count={el.rating_count} />
           ))
         }
         {
@@ -34,8 +34,7 @@ export default function Shop({ setProductsUrl, ProductsUrl, loadingCategories, l
   )
 }
 
-const PriceMin = 1;
-const PriceMax = 10000;
+
 const Fillters = ({ setProductsUrl, Categories, loadingProducts, setLoadingProducts, loadingCategories, setLoadingCategories, setProducts, ProductsUrl }) => {
   const queryParams = new URLSearchParams(location.search);
   const navigate = useNavigate();
@@ -51,6 +50,12 @@ const Fillters = ({ setProductsUrl, Categories, loadingProducts, setLoadingProdu
   const [selected, setSelected] = useState(
     queryParams.get('category_id') ? [parseInt(queryParams.get('category_id'))] : []
   )
+  let PriceMin = queryParams.get('minPrice');
+  let PriceMax = queryParams.get('maxPrice');
+  PriceMin = Math.max(PriceMin || 1, 1);
+  PriceMax = Math.min(PriceMax || 10000, 10000);
+  if (PriceMax < PriceMin) [PriceMax, PriceMin] = [PriceMin, PriceMax]
+
   const [priceRange, setPriceRange] = useState([PriceMin, PriceMax])
 
   const updateQueryParams = (newParams) => {

@@ -20,7 +20,12 @@ const Checkout = () => (`${APIURL}api/v1/sales/checkout`);
 const popularProdcuts = () => (`${APIURL}api/v1/products/popular`);
 const getCategories = () => (`${APIURL}api/v1/categories`);
 const getAllProducts = () => (`${APIURL}api/v1/products/explore?`);
-
+const getSingleItem = (id) => (`${APIURL}api/v1/products/items/${id}`);
+const addItemToCart = (id) => (`${APIURL}api/v1/products/${id}/carts/item`);
+const getFav = () => (`${APIURL}api/v1/favourites`);
+const addFav = () => (`${APIURL}api/v1/favourites`);
+const delFav = (id) => (`${APIURL}api/v1/favourites/${id}`);
+const delFavByProId = (id) => (`${APIURL}api/v1/products/${id}/favourites`);
 export {
   SignupUrl,
   LoginUrl,
@@ -41,5 +46,11 @@ export {
   updateMyData,
   changeMyPassword,
   getCategories,
-  getAllProducts
+  getAllProducts,
+  getSingleItem,
+  addItemToCart,
+  getFav,
+  addFav,
+  delFav,
+  delFavByProId
 }

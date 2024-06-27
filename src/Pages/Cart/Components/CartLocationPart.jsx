@@ -72,10 +72,13 @@ export default function CartLocationPart() {
     setLoading(firstLoading)
   }, [firstLoading])
   useEffect(() => {
+    console.log(Loading);
+  }, [Loading])
+  useEffect(() => {
     setLoading(secondLoading)
   }, [secondLoading])
   useEffect(() => {
-    if (myDefaultAddress?.status === 'success') {
+    if (myDefaultAddress && myDefaultAddress?.status === 'success') {
       setMyCountry(myDefaultAddress?.data.address.country_id)
       setMyCity(myDefaultAddress?.data.address.city)
       setMyAddress(myDefaultAddress?.data.address.description)

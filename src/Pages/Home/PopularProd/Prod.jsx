@@ -1,14 +1,17 @@
 import { useState } from 'react';
 import { motion } from 'framer-motion'
+import { Link, useNavigate } from 'react-router-dom'
 import { FaStar } from "react-icons/fa";
 import { FaStarHalfAlt } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa6";
 import { reavelAnimDowntoTop } from '../../../Store/AnimationValues'
 
-export default function Prod({ img, Amount, Title, Description, Type, Rate, totalRaters, controls, delay }) {
+export default function Prod({ id, img, Amount, Title, Description, Type, Rate, totalRaters, controls, delay }) {
   const [isLiked, setIsLiked] = useState(false)
+  const [canNavigate, setCanNavigate] = useState(true)
   const reavelAnim = reavelAnimDowntoTop(delay)
+  const Navigate = useNavigate()
   const StarCounter = () => {
     let stars = []
     for (let i = 0; i < 5; i++) {
@@ -31,6 +34,9 @@ export default function Prod({ img, Amount, Title, Description, Type, Rate, tota
       </div>
     )
   }
+  const navigateTo = () => {
+    if (canNavigate) Navigate(`/itemDetails/${id}`)
+  }
   return (
     <motion.div
       // variants={reavelAnim} initial='hidden' animate={controls}
@@ -38,18 +44,13 @@ export default function Prod({ img, Amount, Title, Description, Type, Rate, tota
     w-full sm:w-[350px] xl:w-[90%] xl:h-full h-full sm:h-[400px] 
     rounded-2xl overflow-hidden font-medium'>
       <Backgrounds img={img} />
-      <div className='flex flex-col justify-between w-full h-full'>
+      <div
+        onClick={navigateTo}
+        className='flex flex-col justify-between w-full h-full'>
         <div className='m-4 flex justify-between'>
           <div className='px-2 flex items-center w-fit bg-white bg-opacity-20 backdrop-filter backdrop-blur-2 rounded-lg text-[2.5vh]'>
             <p>{Amount}</p>
             <span className='text-[1.5vh]'>EGP</span>
-          </div>
-          <div className='px-2 py-2 bg-white rounded-full -top-20 relative group-hover:-top-0 duration-300'>
-            {
-              isLiked ?
-                <FaHeart size={25} className='text-red-500 group-hover:text-Red duration-300' onClick={() => setIsLiked(false)} /> :
-                <FaRegHeart size={25} className='text-black group-hover:text-Red duration-300' onClick={() => setIsLiked(true)} />
-            }
           </div>
         </div>
         <div style={{
@@ -65,21 +66,8 @@ export default function Prod({ img, Amount, Title, Description, Type, Rate, tota
             before:content-[''] before:absolute before:bg-Beige2 before:w-0 before:h-[6px] before:rounded-full before:-bottom-2 before:-left-4 group-hover:before:w-1/2 before:delay-75 before:duration-300
           ">{Title}</h2>
           <div className='relative top-[100%] group-hover:top-0 duration-300 space-y-3'>
-            <p className='text-[1.8vh] opacity-60 relative top-10 group-hover:top-0 delay-75 duration-300'>{Description}</p>
+            <p className='text-[1.8vh] relative top-10 group-hover:top-0 delay-75 duration-300'>{Description}</p>
             <StarCounter />
-            <div className='w-full center relative top-10 group-hover:top-0 delay-75 duration-300'>
-              <button className='text-black bg-Beige rounded-full px-10 py-4
-                relative overflow-hidden inline-block z-10
-                transition-all duration-300 ease-in-out
-                focus:outline-none
-                before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:-z-10
-                before:rounded-inherit before:bg-Yellow before:bg-opacity-40 
-                before:transition-all before:duration-300 before:ease-in-out
-                hover:before:left-0
-              '>
-                Add to cart
-              </button>
-            </div>
           </div>
         </div>
       </div>

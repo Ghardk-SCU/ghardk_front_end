@@ -119,12 +119,11 @@ export default function Form() {
 							relative overflow-hidden inline-block z-10
 							transition-all duration-300 ease-in-out
 							focus:outline-none
-							hover:w-[105%] hover:py-[13px] hover:my-[1px]
 							before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:-z-10
 							before:rounded-inherit before:bg-[#505050] before:bg-opacity-40 
 							before:transition-all before:duration-300 before:ease-in-out
-							hover:before:left-0 
-							${loading ? 'cursor-wait before:left-[0] w-[105%] my-[1px] py-[13px]' : 'cursor-pointer before:left-[-100%] w-[100%] my-0 py-[14px]'} `}>
+							 
+							${loading ? 'cursor-wait bg-[#505050]' : 'hover:w-[105%] hover:py-[13px] hover:my-[1px] hover:before:left-0'} `}>
 								Login
 							</button>
 							<p className='text-red-700 font-bold -mb-5 -mt-5'>{errorMessage}</p>
@@ -143,7 +142,7 @@ export default function Form() {
 						</form>
 					</>}
 					{Type === 'otp' && <VarifyCode email={formData.email} />}
-					{Type === 'forgotpassword' && <ForgotPassword setLoginType={setType}/>}
+					{Type === 'forgotpassword' && <ForgotPassword setLoginType={setType} />}
 				</div>
 			</section>
 		</>
