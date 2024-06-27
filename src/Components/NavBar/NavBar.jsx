@@ -22,7 +22,7 @@ import { FaCamera } from "react-icons/fa";
 export default function NavBar() {
   const { isLogedIn } = useContext(AuthenticationContext)
 
-  const [isOpen, setIsOpen] = useState(localStorage.getItem('isOpen') === 'true' ? true : false)
+  const [isOpen, setIsOpen] = useState(false)
   const [showAccount, setShowAccount] = useState(false)
   const [showSearch, setShowSearch] = useState(false)
   const Navigate = useNavigate()
@@ -55,11 +55,7 @@ export default function NavBar() {
   }
 
   useEffect(() => {
-    localStorage.setItem('isOpen', isOpen)
-  }, [isOpen])
-
-  useEffect(() => {
-    if(!isLogedIn){
+    if (!isLogedIn) {
       setShowAccount(false)
     }
   }, [isLogedIn])
@@ -190,7 +186,7 @@ const SearchMenu = () => {
       setImgSearch(reader.result)
     }
     reader.readAsDataURL(file)
-    console.log('Search for img looks like this ' , { img: reader })
+    console.log('Search for img looks like this ', { img: reader })
   }
   return (
     <motion.div

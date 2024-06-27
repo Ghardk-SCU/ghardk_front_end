@@ -25,7 +25,7 @@ function App() {
           <Route path="TopRated" element={<TopRated />} />
           <Route path="Cart" element={<Cart />} />
           <Route path="Explore" element={<Explore />} />
-          <Route path="ItemDetails" element={<ItemDetails />} />
+          <Route path="ItemDetails/:id" element={<ItemDetails />} />
           <Route path="*" element={<Page404 />} />
         </Route>
       </Routes>

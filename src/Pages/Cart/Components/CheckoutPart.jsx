@@ -1,10 +1,16 @@
 import { CiCircleQuestion } from "react-icons/ci";
 import { FaPlus, FaMinus, FaRegTrashAlt } from "react-icons/fa";
-import { useState, useEffect } from 'react'
+import { useState, useEffect, useContext } from 'react'
 import Spinner from '../../../Components/Ui-Components/Spinner';
+import placeholder from '../assets/placeholder.jpg'
+import Fetch from '../../../Components/CustomHooks/Fetch'
+import { deleteFromCart } from '../../../Store/urls'
+import { updateFromCart } from '../../../Store/urls'
+import { AuthenticationContext } from '../../../Store/Context/Authentication'
 
 
-export default function CheckoutPart({ dataArray, setType, Type, Loading }) {
+export default function CheckoutPart({ setLoading, setErrorMessage, errorMessage, Total, dataArray, setType, Type, Loading, setDataChanged }) {
+
 	const [prices, setPrices] = useState({
 		subtotal: 0,
 		shipping: 0,
@@ -22,10 +28,12 @@ export default function CheckoutPart({ dataArray, setType, Type, Loading }) {
 				});
 				return;
 			}
-			const subtotal = dataArray.reduce((acc, item) => acc + (+item.price) * (+item.quantity), 0);
-			const shipping = (subtotal > 100 ? 0 : 50); // no shipping if items has cost more than 100 otherwise fixed shpping (edit later)
+			const subtotal = dataArray.reduce((acc, item) => acc + (+item.product_price) * (+item.quantity), 0);
+			// const shipping = (subtotal > 100 ? 0 : 50); // no shipping if items has cost more than 100 otherwise fixed shpping (edit later)
+			const shipping = 0
 			const taxRate = 0.05; // tax rate (5%)
-			const tax = subtotal * taxRate;
+			// const tax = subtotal * taxRate;
+			const tax = 0
 			const total = subtotal + shipping + tax;
 			setPrices({
 				subtotal,
@@ -50,7 +58,7 @@ export default function CheckoutPart({ dataArray, setType, Type, Loading }) {
 						<p>SUBTOTAL</p>
 					</div>
 					<div className="flex justify-between py-5 border-b-2 border-white/50 mb-2">
-						<DataList dataArray={dataArray} />
+						<DataList setDataChanged={setDataChanged} Loading={Loading} setLoading={setLoading} dataArray={dataArray} setErrorMessage={setErrorMessage} />
 					</div>
 				</div>}
 				<div className="w-full h-full center flex-col gap-1">
@@ -58,8 +66,9 @@ export default function CheckoutPart({ dataArray, setType, Type, Loading }) {
 					<Cost costTitle="Shipping" costPrice={prices.shipping} />
 					<Cost costTitle="Tax" costPrice={prices.tax} />
 					<span className="w-full h-[2px] bg-White/50 my-2" />
-					<Cost costTitle="Total" costPrice={prices.total} isTotal={true} />
+					<Cost costTitle="Total" costPrice={Total} isTotal={true} />
 					<span className="w-full h-full text-lg mt-2">{`${dataArray.length} Items`}</span>
+					<span className="w-full text-red-500 py-5">{errorMessage}</span>
 				</div>
 				<div className="w-full h-full flex-grow flex flex-col justify-end align-middle items-center pt-10">
 					<button onClick={() => {
@@ -92,28 +101,69 @@ export default function CheckoutPart({ dataArray, setType, Type, Loading }) {
 
 
 // import { FaPlus, FaMinus, FaRegTrashAlt } from "react-icons/fa";
-const DataList = ({ dataArray }) => {
+const DataList = ({ setDataChanged, Loading, dataArray, setLoading, setErrorMessage }) => {
+	const [deleteItm, setDeleteItm] = useState(null)
+	const [changeQ, setChangeQ] = useState(null)
+	const { Token } = useContext(AuthenticationContext)
+	const handleDelete = (idx) => {
+		if (Loading) return;
+		Fetch({
+			url: deleteFromCart(dataArray[idx].id),
+			method: 'DELETE',
+			Token,
+			setLoading,
+			setData: setDeleteItm,
+			setErrorMessage,
+			body: {}
+		})
+
+	}
+	const handleChangeQuantatiy = (value, idx) => {
+		if (Loading) return;
+		if (dataArray[idx].quantity + value <= 0) return handleDelete(idx)
+		Fetch({
+			url: updateFromCart(dataArray[idx].id),
+			method: 'PATCH',
+			Token,
+			setLoading,
+			setData: setChangeQ,
+			setErrorMessage,
+			body: { quantity: dataArray[idx].quantity + value }
+		})
+	}
+	useEffect(() => {
+		if (!deleteItm) return
+		if (deleteItm.status === 'success') {
+			setDataChanged((prev) => prev + 1)
+		}
+	}, [deleteItm])
+	useEffect(() => {
+		if (!changeQ) return
+		if (changeQ.status === 'success') {
+			setDataChanged((prev) => prev + 1)
+		}
+	}, [changeQ])
 	return (
 		<div className="space-y-5 w-full">
-			{dataArray.map(el => (
+			{dataArray.map((el, idx) => (
 				<div className="flex gap-5" key={el.id}>
-					<button>
+					<button onClick={() => { handleDelete(idx) }}>
 						<FaRegTrashAlt />
 					</button>
 					<div className="">
-						<img className="size-[65px]" src={el.img} alt="" />
+						<img className="size-[65px]" src={el.images[0] || placeholder} alt="" />
 					</div>
 					<div className="flex-grow justify-between flex items-center">
 						<div className="flex flex-col justify-between">
-							<div className="flex-grow">{el.title}</div>
+							<div className="flex-grow">{el.name}</div>
 							<div className='flex mt-auto gap-3'>
-								<button className='outline-none focus:outline-none active:scale-90'><FaMinus color='#8D8D8D' /></button>
+								<button onClick={() => { handleChangeQuantatiy(-1, idx) }} className='outline-none focus:outline-none active:scale-90'><FaMinus color='#8D8D8D' /></button>
 								<span className='text-base sm3:text-xl font-base'>{`${el.quantity}`}</span>
-								<button className='outline-none focus:outline-none active:scale-90'><FaPlus color='#8D8D8D' /></button>
+								<button onClick={() => { handleChangeQuantatiy(1, idx) }} className='outline-none focus:outline-none active:scale-90'><FaPlus color='#8D8D8D' /></button>
 							</div>
 						</div>
 						<div className="text-center">
-							{el.price} EGP
+							{el.total_price} EGP
 						</div>
 					</div>
 				</div>
