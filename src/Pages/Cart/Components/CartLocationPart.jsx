@@ -192,7 +192,7 @@ const Countries = ({ AllCountries, Loading }) => {
   if (Loading) return;
   return (
     <>
-      {AllCountries.data.docs.map((country, index) => (
+      {AllCountries && AllCountries.data.docs.map((country, index) => (
         <option key={index} value={country.id}>{country.name}</option>
       ))}
     </>

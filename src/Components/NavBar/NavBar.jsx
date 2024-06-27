@@ -175,9 +175,11 @@ const AccountMenu = ({ setShowAccount }) => {
 const SearchMenu = () => {
   const [imgSearch, setImgSearch] = useState('')
   const imgRef = useRef(null)
+  const Navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault()
-    console.log(e.target[0].value)
+    // console.log(e.target[0].value)
+    Navigate(`/Search/${e.target[0].value}`)
   }
   const handleFileChange = (e) => {
     const file = e.target.files[0];
