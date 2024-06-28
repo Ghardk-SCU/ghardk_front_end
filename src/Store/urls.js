@@ -26,6 +26,9 @@ const getFav = () => (`${APIURL}api/v1/favourites`);
 const addFav = () => (`${APIURL}api/v1/favourites`);
 const delFav = (id) => (`${APIURL}api/v1/favourites/${id}`);
 const delFavByProId = (id) => (`${APIURL}api/v1/products/${id}/favourites`);
+const getUserData = (id) => (`${APIURL}api/v1/users/${id}`);
+const getVendorProducts = (id, catID) => (`${APIURL}api/v1/products/vendors/${id}${catID ? `?category_id=${catID}` : ''}`);
+
 export {
   SignupUrl,
   LoginUrl,
@@ -52,5 +55,7 @@ export {
   getFav,
   addFav,
   delFav,
-  delFavByProId
+  delFavByProId,
+  getUserData,
+  getVendorProducts
 }
