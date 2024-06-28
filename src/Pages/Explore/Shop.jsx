@@ -171,13 +171,13 @@ const Fillters = ({ setProductsUrl, Categories, loadingProducts, setLoadingProdu
         thumbClassName="example-thumb"
         trackClassName="example-track"
         defaultValue={[priceRange[0], priceRange[1]]}
-        min={PriceMin}
-        max={PriceMax}
+        min={1}
+        max={10000}
         ariaLabel={['Lower thumb', 'Upper thumb']}
         ariaValuetext={state => `Thumb value ${state.valueNow}`}
         pearling
         onChange={(value) => setPriceRange(value)}
-        minDistance={2000}
+        minDistance={500}
       />
       <div className='w-full flex justify-between mt-5 Fredoka font-medium'>
         <span>{priceRange[0]}<span className='text-xs'>EGP</span></span>
