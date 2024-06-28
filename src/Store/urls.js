@@ -26,6 +26,9 @@ const getFav = () => (`${APIURL}api/v1/favourites`);
 const addFav = () => (`${APIURL}api/v1/favourites`);
 const delFav = (id) => (`${APIURL}api/v1/favourites/${id}`);
 const delFavByProId = (id) => (`${APIURL}api/v1/products/${id}/favourites`);
+const searchByText = (search) => (`${APIURL}api/v1/products/recommendation-text/${search}?`);
+const topRatedSellers = () => (`${APIURL}api/v1/users/top-rated-sellers?`)
+
 export {
   SignupUrl,
   LoginUrl,
@@ -52,5 +55,7 @@ export {
   getFav,
   addFav,
   delFav,
-  delFavByProId
+  delFavByProId,
+  searchByText,
+  topRatedSellers
 }
