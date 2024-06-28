@@ -8,6 +8,8 @@ import Giraffe from '../../assets/giraffe.png'
 import ExtraDetails from './Details/ExtraDetails'
 import Spinner from '../../Components/Ui-Components/Spinner'
 import { AuthenticationContext } from '../../Store/Context/Authentication'
+import SimilarProducts from './Components/SimiliarProducts/SimiliarProducts'
+import ReviewCards from './Components/SimiliarProducts/ReviewCards'
 
 export default function ItemDetails() {
     const { id } = useParams()
@@ -33,10 +35,12 @@ export default function ItemDetails() {
     }
     return (
         <>
-            <div className='w-full bg-Beige center flex-col'>
+            <div className='w-full bg-Beige center flex-col gap-4'>
                 {!loading && <>
                     <Details itemDetials={data.data.productItem} />
+                    <ReviewCards />
                     <ExtraDetails itemDetials={data.data.productItem} />
+                    <SimilarProducts /> 
                 </>}
                 {loading && <div className='center h-screen'>
                     <Spinner />
