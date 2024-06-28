@@ -50,21 +50,20 @@ const reviewDetails = [
 export default function ReviewCards() {
     const dragRef = useRef()
     const [Width, setWidth] = useState(0)
-    
-    
+
+
     useEffect(() => {
         setWidth(dragRef.current.scrollWidth - dragRef.current.offsetWidth)
-     }, [])
+    }, [])
 
     return (
         <>
-            <div className='relative w-[100%] h-full overflow-hidden center mb-56'>
+            <div className='relative w-fit h-full overflow-hidden mb-56'>
                 <motion.div
                     ref={dragRef}
                     drag="x"
-                    dragConstraints={{ left: -Width/2, right: Width/2 }}
-                    dragElastic={0.1}
-                    className='w-min h-full center gap-8 px-12'
+                    dragConstraints={{ left: -Width - 50, right: 0 }}
+                    className='w-screen h-full flex gap-8 px-12'
                 >
                     {
                         reviewDetails.map((review, idx) => {

@@ -25,10 +25,6 @@ export default function SearchPage() {
   }, [name])
 
   useEffect(() => {
-    console.log({ products });
-  }, [products])
-
-  useEffect(() => {
     window.scrollTo(0, 0)
   }, [])
   return (

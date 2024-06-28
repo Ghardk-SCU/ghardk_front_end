@@ -72,9 +72,6 @@ export default function CartLocationPart() {
     setLoading(firstLoading)
   }, [firstLoading])
   useEffect(() => {
-    console.log(Loading);
-  }, [Loading])
-  useEffect(() => {
     setLoading(secondLoading)
   }, [secondLoading])
   useEffect(() => {

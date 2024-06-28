@@ -6,13 +6,6 @@ import Spinner from "../../../Components/Ui-Components/Spinner"
 
 export default function Fillters({ setUpdatedUrl, data, from }) {
   const [activeFillter, setActiveFillter] = useState([])
-  // const { Data } = useFetch({
-  //   url: getCategories(),
-  //   method: 'GET'
-  // })
-  // const myValues = data
-  console.log(data)
-
   const SelectedStyle = 'bg-white text-Black'
   const handleSelected = (elem) => {
     setActiveFillter(prev => {

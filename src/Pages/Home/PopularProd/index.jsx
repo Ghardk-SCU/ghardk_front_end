@@ -70,7 +70,7 @@ export default function PopularProd() {
                   const { price, name, description, rating, rating_count, images } = data
                   return (
                     <div key={data.id} className='group center'>
-                      <Prod id={data.id} img={images[0]?.image_url || placeholder} Amount={price} controls={controls} delay={idx / 10} Title={name} Description={description} Rate={rating} totalRaters={rating_count} />
+                      <Prod id={data.id} img={images[0]?.image_url || placeholder} Amount={price} controls={controls} delay={idx / 10} Title={name} Description={description} Rate={rating ? (rating/rating_count).toFixed(2) : 0} totalRaters={rating_count} />
                     </div>
                   )
                 })

@@ -27,7 +27,7 @@ export default function Cardlayout({ details, top }) {
       </div>
       <div className='col-span-2 center text-white flex gap-x-[2px] md:pr-4'>
         <FaStar className="mr-2" size={20} />
-        <p>{rating}</p>
+        <p>{rating ? (rating /  totalRates).toFixed(2) : 0}</p>
         <p className="text-xs">({totalRates})</p>
       </div>
       <div className='col-span-2 sm2:col-span-1 center text-white px-2'>
