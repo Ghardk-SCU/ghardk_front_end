@@ -48,10 +48,12 @@ export default function SimiliarProducts() {
     }
   }, [inView])
   return (
-    <main className="relative h-[120vh] z-[1] mt-56 w-full">
+    <main className="relative h-[120vh] z-[1] w-full">
       <section className='flex flex-col w-full h-full space-y-10 md:space-y-0 pb-20'>
         <header className='flex justify-center'>
-          <h1 className='text-center text-4xl md:text-4xl lg:text-7xl EBGaramond text-Black'>POPULAR PRODUCTS</h1>
+          <h1 className='text-center text-4xl md:text-4xl lg:text-7xl EBGaramond text-Black'>
+            Similiar Products
+          </h1>
         </header>
         <section className='flex-grow p-2 md:p-10 flex flex-col gap-5 justify-between items-center overflow-hidden'>
           <div className='w-full h-full overflow-hidden center'>
@@ -70,7 +72,7 @@ export default function SimiliarProducts() {
                   const { price, name, description, rating, rating_count, images } = data
                   return (
                     <div key={data.id} className='group center'>
-                      <Prod id={data.id} img={images[0]?.image_url || placeholder} Amount={price} controls={controls} delay={idx / 10} Title={name} Description={description} Rate={rating} totalRaters={rating_count} />
+                      <Prod id={data.id} img={images[0]?.image_url || placeholder} Amount={price} controls={controls} delay={idx / 10} Title={name} Description={description} Rate={rating ? (rating / rating_count).toFixed(2) : 0} totalRaters={rating_count} />
                     </div>
                   )
                 })

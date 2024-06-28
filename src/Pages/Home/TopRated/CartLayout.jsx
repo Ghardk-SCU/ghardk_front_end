@@ -31,7 +31,7 @@ export default function CartLayout({ loading, classes, delay, details, idx }) {
               <div className="flex justify-between px-[3.5vw]">
                 <div className="flex center gap-2">
                   <FaStar size={25} />
-                  {details.rating}
+                  {details.rating ? (details.rating/details.rating_count).toFixed(2) : 0}
                   <span className="text-xs -ml-1">({details.rating_count})</span>
                 </div>
                 <button className="" onClick={() => { setIsFavClicked(prev => !prev) }}>

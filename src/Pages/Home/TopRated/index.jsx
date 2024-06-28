@@ -98,7 +98,6 @@ export default function TopRatedRoot({ FirstColor, SecondColor }) {
   })
 
   const ArrayData = !loading && data && data.status === 'success' ? [data.data.vendors[0], data.data.vendors[1], data.data.vendors[2]] : [Top10[0], Top10[1], Top10[2]]
-  console.log(getCategories());
   return (
     <>
       <Welcome FirstColor={FirstColor} SecondColor={SecondColor} />
