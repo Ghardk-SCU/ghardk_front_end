@@ -53,7 +53,7 @@ export default function SimiliarProducts({ name }) {
       <section className='flex flex-col w-full h-full space-y-10 md:space-y-0 pb-20'>
         <header className='flex justify-center'>
           <h1 className='text-center text-4xl md:text-4xl lg:text-7xl EBGaramond text-Black'>
-            Similiar Products
+            Similar Products
           </h1>
         </header>
         <section className='flex-grow p-2 md:p-10 flex flex-col gap-5 justify-between items-center overflow-hidden'>
