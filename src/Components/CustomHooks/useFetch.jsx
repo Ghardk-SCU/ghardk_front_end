@@ -12,7 +12,7 @@ export default function useFetch({ url, setErrorMessage, method, body, Token, re
       setLoading(true)
       try {
         const response = await fetch(url, {
-          method: method,
+          method,
           headers,
           body: JSON.stringify(body)
         })

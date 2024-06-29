@@ -61,7 +61,7 @@ export {
   delFavByProId,
   searchByText,
   topRatedSellers,
-  getAllSales
+  getAllSales,
   getUserData,
   getVendorProducts
 }

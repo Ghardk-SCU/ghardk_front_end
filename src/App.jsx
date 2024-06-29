@@ -1,5 +1,5 @@
 import { useContext } from "react"
-import { Routes, Route } from "react-router-dom"
+import { Routes, Route, useLocation } from "react-router-dom"
 import { ReactLenis } from '@studio-freight/react-lenis'
 import { BackDropContext } from "./Store/Context/BackDrop"
 
@@ -17,6 +17,8 @@ import Vendor from './Pages/Vendor/index';
 
 function App() {
   const { BackDropActive } = useContext(BackDropContext)
+  const Location = useLocation()
+  const myLoc = Location.pathname.split('/')[1] === 'vendors' ? true : false;
   return (
     <>
       <Routes>
@@ -33,7 +35,7 @@ function App() {
           <Route path="*" element={<Page404 />} />
         </Route>
       </Routes>
-      <ReactLenis root={!BackDropActive} />
+      <ReactLenis root={!BackDropActive && !myLoc} />
     </>
   )
 }

@@ -295,7 +295,6 @@ const Orders = ({ CloseBackDrop }) => {
     method: 'GET',
     Token
   })
-  console.log({ data });
   return (
     <motion.div
       initial={{ opacity: 0, translateY: '0%', translateX: '-50%' }}
