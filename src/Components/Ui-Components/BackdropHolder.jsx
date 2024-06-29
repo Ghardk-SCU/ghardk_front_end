@@ -89,8 +89,10 @@ const Settings = ({ CloseBackDrop }) => {
     formData.append('user_name', updateUserName);
     formData.append('first_name', updateFirstName);
     formData.append('last_name', updateLastName);
-    formData.append('dob', updateDob);
-    formData.append('gender', updateGender);
+    if(updateDob)
+      formData.append('dob', updateDob);
+    if(updateGender)
+      formData.append('gender', updateGender);
     if (updateUserImg !== userImg)
       formData.append('image', updateUserImg);
     Fetch({
