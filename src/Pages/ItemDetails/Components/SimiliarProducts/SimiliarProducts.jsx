@@ -3,20 +3,20 @@ import { motion, useMotionValue, useInView, useAnimation } from 'framer-motion'
 import Prod from './Prod'
 import { FaLongArrowAltRight } from "react-icons/fa";
 import { FaLongArrowAltLeft } from "react-icons/fa";
-import { popularProdcuts } from '../../../../Store/urls'
+import { searchByText } from '../../../../Store/urls'
 import useFetch from '../../../../Components/CustomHooks/useFetch'
 import placeholder from './assets/placeholder.jpg'
 
 
 const DragBuffer = 10
-export default function SimiliarProducts() {
+export default function SimiliarProducts({ name }) {
   const dragRef = useRef()
   const inView = useInView(dragRef)
   const controls = useAnimation()
   const [imgTurn, setImgTurn] = useState(0)
   const dragMotion = useMotionValue(0)
   const { data, loading } = useFetch({
-    url: popularProdcuts(),
+    url: searchByText(name),
     method: 'GET'
   })
   const moveDenominator =
@@ -47,12 +47,13 @@ export default function SimiliarProducts() {
       controls.start('visible')
     }
   }, [inView])
+  if (!data || (data && data.data.length <= 0)) return null;
   return (
     <main className="relative h-[120vh] z-[1] w-full">
       <section className='flex flex-col w-full h-full space-y-10 md:space-y-0 pb-20'>
         <header className='flex justify-center'>
           <h1 className='text-center text-4xl md:text-4xl lg:text-7xl EBGaramond text-Black'>
-            Similiar Products
+            Similar Products
           </h1>
         </header>
         <section className='flex-grow p-2 md:p-10 flex flex-col gap-5 justify-between items-center overflow-hidden'>
@@ -68,7 +69,7 @@ export default function SimiliarProducts() {
               xl:auto-cols-[calc((100%/3))] md:auto-cols-[calc((100%/2))] auto-cols-[calc((100%/1))] '>
 
               {
-                !loading && data && data.data.products.map((data, idx) => {
+                !loading && data && data.data.map((data, idx) => {
                   const { price, name, description, rating, rating_count, images } = data
                   return (
                     <div key={data.id} className='group center'>
