@@ -29,6 +29,9 @@ const delFavByProId = (id) => (`${APIURL}api/v1/products/${id}/favourites`);
 const searchByText = (search) => (`${APIURL}api/v1/products/recommendation-text/${search}?`);
 const topRatedSellers = () => (`${APIURL}api/v1/users/top-rated-sellers?`)
 const getAllSales = () => (`${APIURL}api/v1/sales`);
+const getUserData = (id) => (`${APIURL}api/v1/users/${id}`);
+const getVendorProducts = (id, catID) => (`${APIURL}api/v1/products/vendors/${id}${catID ? `?category_id=${catID}` : ''}`);
+
 export {
   SignupUrl,
   LoginUrl,
@@ -59,4 +62,6 @@ export {
   searchByText,
   topRatedSellers,
   getAllSales
+  getUserData,
+  getVendorProducts
 }

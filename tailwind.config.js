@@ -13,6 +13,7 @@ export default {
         Yellow: '#FDBF50',
         Beige: '#D4CDCD',
         Beige2: '#BEB6A8',
+        Beige3: '#A2947A',
         DarkBeige: '#ACA08C',
         White: '#F4F4F8',
         'white-18': 'rgba(255, 255, 255, 0.18)',
@@ -25,7 +26,9 @@ export default {
       },
       screens: {
         'lg1': '1523px',
+        'lg' : '1280px',
         'lg2': '1200px',
+        'md1': '900px',
         'md2': '700px',
         'md3': '560px',
         'sm2': '500px',
