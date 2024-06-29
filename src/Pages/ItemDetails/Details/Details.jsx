@@ -112,7 +112,7 @@ export default function Details({ itemDetials }) {
                             </div>
                             <div className='flex items-center gap-1 w-full h-full'>
                                 <StarCounter />
-                                <span className='text-md text-Black font-base'>{itemDetials.rating}</span>
+                                <span className='text-md text-Black font-base'>{itemDetials.rating ? (itemDetials.rating / itemDetials.rating_count).toFixed(2) : 0}</span>
                                 <span className='text-sm text-Black font-normal self-end'>({itemDetials.rating_count})</span>
                             </div>
                         </div>
@@ -165,7 +165,7 @@ export default function Details({ itemDetials }) {
                                         <p className='text-[13px] sm2:text-sm break-words hyphens-auto'>{itemDetials.vendor_description}</p>
                                         <div className='flex items-center gap-1 w-full h-min'>
                                             <FaStar className='size-5' />
-                                            <span className='text-base text-Black'>{itemDetials.vendor_rating}</span>
+                                            <span className='text-base text-Black'>{itemDetials.vendor_rating ? (itemDetials.vendor_rating / itemDetials.vendor_rating_count).toFixed(2) : 0}</span>
                                             <span className='text-[12px] text-Black font-normal self-end'>({itemDetials.vendor_rating_count})</span>
                                         </div>
                                     </div>

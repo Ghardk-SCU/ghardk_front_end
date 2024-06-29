@@ -121,7 +121,6 @@ const AccountMenu = ({ setShowAccount }) => {
       <motion.div
         initial={{ clipPath: 'inset(0 0 0 100%)' }}
         animate={{ clipPath: 'inset(0 0 0 0)' }}
-        exit={{ clipPath: 'inset(0 0 0 100%)' }}
         style={{ border: '2px solid rgba(212, 205, 205, 0.5)' }} className='rounded-3xl absolute -top-5 right-16 text-white overflow-hidden bg-black w-[220px] h-[280px] py-2'>
         {role && <div className='px-8 w-full h-[20%] flex justify-between'>
           <div>
@@ -142,10 +141,14 @@ const AccountMenu = ({ setShowAccount }) => {
               <IoSettingsOutline className='font-bold' size={20} />
               <p>Account Settings</p>
             </button>
-            <Link to='/Orders' className='flex items-center gap-x-3'>
+            <button onClick={() => {
+              setBackDropActive(true)
+              setBackDropType('orders')
+              setShowAccount(false)
+            }} className='flex items-center gap-x-3'>
               <TiClipboard className='font-bold' size={20} />
               <p>Orders</p>
-            </Link>
+            </button>
             <Link to='Favorites' className='flex items-center gap-x-3'>
               <FaRegHeart className='font-bold' size={20} />
               <p>Favorites</p>
@@ -178,8 +181,8 @@ const SearchMenu = () => {
   const Navigate = useNavigate()
   const handleSubmit = (e) => {
     e.preventDefault()
-    // console.log(e.target[0].value)
-    Navigate(`/Search/${e.target[0].value}`)
+    if (e.target[0].value)
+      Navigate(`/Search/${e.target[0].value}`)
   }
   const handleFileChange = (e) => {
     const file = e.target.files[0];
@@ -194,7 +197,6 @@ const SearchMenu = () => {
     <motion.div
       initial={{ clipPath: 'inset(0 0 0 100%)' }}
       animate={{ clipPath: 'inset(0 0 0 0)' }}
-      exit={{ clipPath: 'inset(0 0 0 100%)' }}
       className='absolute top-[-10px] right-[49px] text-white rounded-r-0 rounded-l-full bg-Beige w-[220px] h-[60px] center p-2'>
       <form onSubmit={handleSubmit} className='mr-2 rounded-full bg-black w-full h-full ' action="">
         <input type='text' placeholder='Search' className='w-full h-full bg-transparent outline-none border-none px-3' />

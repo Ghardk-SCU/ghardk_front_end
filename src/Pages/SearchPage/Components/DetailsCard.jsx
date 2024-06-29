@@ -53,7 +53,7 @@ export default function DetialsCard({ id, name, description, price, rating, rati
                                     <span className='Fredoka text-[16px] text-Black font-medium inline'>{`${price} EGP`}</span>
                                 </div>
                                 <div className='center'>
-                                    <span className='Fredoka text-sm text-Black font-base'>{rating}</span>
+                                    <span className='Fredoka text-sm text-Black font-base'>{rating ? (rating/rating_count).toFixed(2):0}</span>
                                     <span className='Fredoka text-[12px] text-Black font-normal self-end mr-1'>({rating_count})</span>
                                     <StarCounter />
                                 </div>

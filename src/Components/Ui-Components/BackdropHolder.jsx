@@ -7,8 +7,9 @@ import { FaEye } from "react-icons/fa";
 import { TbLock } from "react-icons/tb";
 import { BsImageFill } from "react-icons/bs";
 import Spinner from "./Spinner";
-import { updateMyData, changeMyPassword } from "../../Store/urls";
+import { updateMyData, changeMyPassword, getAllSales } from "../../Store/urls";
 import Fetch from '../CustomHooks/Fetch'
+import useFetch from '../CustomHooks/useFetch'
 
 export default function BackdropHolder() {
   const { BackDropType, setBackDropType, BackDropActive, setBackDropActive } = useContext(BackDropContext)
@@ -21,7 +22,9 @@ export default function BackdropHolder() {
     BackDropActive &&
       BackDropType === 'settings' ?
       <Settings CloseBackDrop={CloseBackDrop} /> :
-      null
+      BackDropType === 'orders' ?
+        <Orders CloseBackDrop={CloseBackDrop} /> :
+        null
   return (
     <AnimatePresence>
       {Holder}
@@ -281,6 +284,47 @@ const Settings = ({ CloseBackDrop }) => {
           <Spinner />
         </div>
       }
+    </motion.div>
+  )
+}
+
+const Orders = ({ CloseBackDrop }) => {
+  const { Token } = useContext(AuthenticationContext)
+  const { data, loading } = useFetch({
+    url: getAllSales(),
+    method: 'GET',
+    Token
+  })
+  console.log({ data });
+  return (
+    <motion.div
+      initial={{ opacity: 0, translateY: '0%', translateX: '-50%' }}
+      animate={{ opacity: 1, translateY: '-50%', translateX: '-50%' }}
+      exit={{ opacity: 0, translateY: '0%', translateX: '-50%' }}
+      style={{ border: '2px solid rgba(212, 205, 205, 0.5)' }} className="bg-Black h-[500px] w-[calc(100%-40px)] sm:size-[630px] max-h-[100vh] max-w-[100vw] z-[10000] fixed top-1/2 left-1/2 rounded-3xl text-white p-4 overflow-x-hidden overflow-y-auto">
+      <div className="w-full h-hit">
+        <button onClick={CloseBackDrop} className="absolute top-3 right-3 ml-auto">
+          <IoMdClose size={30} />
+        </button>
+
+        <div className="grid grid-cols-6 text-center mt-10 border-b-2 border-white/50 pb-6">
+          <div className="col-span-1">Order</div>
+          <div className="col-span-2">Date</div>
+          <div className="col-span-2">Status</div>
+          <div className="col-span-1">Total</div>
+        </div>
+        {data && data.data.sales.map(item => (
+          <div key={item.id} className="grid grid-cols-6 text-center pt-5 border-b-2 border-white/50 pb-6">
+            <div className="col-span-1">#{item.id}</div>
+            <div className="col-span-2">{item.sale_created_at.slice(0, 10)}</div>
+            <div className="col-span-2">{item.status}</div>
+            <div className="col-span-1">{item.total_price} EGP</div>
+          </div>
+        ))}
+        {loading && <div className="w-full center mt-20">
+          <Spinner />
+        </div>}
+      </div>
     </motion.div>
   )
 }

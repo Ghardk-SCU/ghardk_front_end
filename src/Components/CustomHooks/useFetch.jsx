@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 
-export default function useFetch({ url, setErrorMessage, method, body, Token }) {
+export default function useFetch({ url, setErrorMessage, method, body, Token, reRender = 1 }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
   const headers = {
@@ -9,8 +9,8 @@ export default function useFetch({ url, setErrorMessage, method, body, Token }) 
   if (Token) headers.Authorization = `Bearer ${Token}`;
   useEffect(() => {
     const fetchData = async () => {
+      setLoading(true)
       try {
-        setLoading(true)
         const response = await fetch(url, {
           method: method,
           headers,
@@ -28,14 +28,14 @@ export default function useFetch({ url, setErrorMessage, method, body, Token }) 
           throw new Error(data.message)
         }
       } catch (error) {
-        if(setErrorMessage)
+        if (setErrorMessage)
           setErrorMessage(error.message)
       } finally {
         setLoading(false)
       }
     }
     fetchData()
-  }, [url])
+  }, [url, reRender])
 
   return { data, loading }
 }

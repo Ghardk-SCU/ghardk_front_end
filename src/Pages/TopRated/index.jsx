@@ -1,4 +1,4 @@
-import { useRef, useEffect } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
 import Lantern from './assets/lantern.png'
 import Lanternleft from './assets/lanternleft.png'
@@ -6,95 +6,14 @@ import Top3Rated from '../Home/TopRated/Top3Rated'
 import Cardlayout from './Cardlayout'
 import { clipPathLeftToRight } from '../../Store/AnimationValues'
 import InView from '../../utils/InView'
+import useFetch from '../../Components/CustomHooks/useFetch'
+import { topRatedSellers, getCategories } from '../../Store/urls'
+import Spinner from '../../Components/Ui-Components/Spinner'
 
 import Shape1 from './assets/Shape1.svg'
 import Shape2 from './assets/Shape2.svg'
 import Shape3 from './assets/Shape3.svg'
 import Shape4 from './assets/Shape4.svg'
-
-const Top10 = [
-  {
-    name: 'Mohammed Nasr',
-    img: 'https://picsum.photos/200/300',
-    discreption: 'Korem ipsum dolor sit amet, conjjctetur ng elit. Nunc vulputate libero et velitxc iedum bc aliquet odio mattis.',
-    isFavorite: true,
-    rating: 3.5,
-    totalRates: 84
-  },
-  {
-    name: 'Mohammed Nasr',
-    img: 'https://picsum.photos/200/300',
-    discreption: 'Korem ipsum dolor sit amet, conjjctetur ng elit. Nunc vulputate libero et velitxc iedum bc aliquet odio mattis.',
-    isFavorite: false,
-    rating: 3.5,
-    totalRates: 84
-  },
-  {
-    name: 'Mohammed Nasr',
-    img: 'https://picsum.photos/200/300',
-    discreption: 'Korem ipsum dolor sit amet, conjjctetur ng elit. Nunc vulputate libero et velitxc iedum bc aliquet odio mattis.',
-    isFavorite: true,
-    rating: 3.5,
-    totalRates: 84
-  },
-  {
-    name: 'Moemen Adam',
-    img: 'https://picsum.photos/200/300',
-    discreption: 'Korem ipsum dolor sit amet, conjjctetur ng elit. Nunc vulputate libero et velitxc iedum bc aliquet odio mattis.',
-    isFavorite: false,
-    rating: 3.5,
-    totalRates: 84
-  },
-  {
-    name: 'Mohammed Nasr',
-    img: 'https://picsum.photos/200/300',
-    discreption: 'Korem ipsum dolor sit amet, conjjctetur ng elit. Nunc vulputate libero et velitxc iedum bc aliquet odio mattis.',
-    isFavorite: true,
-    rating: 3.5,
-    totalRates: 84
-  },
-  {
-    name: 'Mohammed Nasr',
-    img: 'https://picsum.photos/200/300',
-    discreption: 'Korem ipsum dolor sit amet, conjjctetur ng elit. Nunc vulputate libero et velitxc iedum bc aliquet odio mattis.',
-    isFavorite: false,
-    rating: 3.5,
-    totalRates: 84
-  },
-  {
-    name: 'Mohammed Nasr',
-    img: 'https://picsum.photos/200/300',
-    discreption: 'Korem ipsum dolor sit amet, conjjctetur ng elit. Nunc vulputate libero et velitxc iedum bc aliquet odio mattis.',
-    isFavorite: true,
-    rating: 3.5,
-    totalRates: 84
-  },
-  {
-    name: 'Mohammed Nasr',
-    img: 'https://picsum.photos/200/300',
-    discreption: 'Korem ipsum dolor sit amet, conjjctetur ng elit. Nunc vulputate libero et velitxc iedum bc aliquet odio mattis.',
-    isFavorite: true,
-    rating: 3.5,
-    totalRates: 84
-  },
-  {
-    name: 'Mohammed Nasr',
-    img: 'https://picsum.photos/200/300',
-    discreption: 'Korem ipsum dolor sit amet, conjjctetur ng elit. Nunc vulputate libero et velitxc iedum bc aliquet odio mattis.',
-    isFavorite: false,
-    rating: 3.5,
-    totalRates: 84
-  },
-  {
-    name: 'Mohammed Nasr',
-    img: 'https://picsum.photos/200/300',
-    discreption: 'Korem ipsum dolor sit amet, conjjctetur ng elit. Nunc vulputate libero et velitxc iedum bc aliquet odio mattis.',
-    isFavorite: true,
-    rating: 3.5,
-    totalRates: 84
-  },
-
-]
 
 export default function TopRated() {
   const LanternRef = useRef(null)
@@ -102,12 +21,23 @@ export default function TopRated() {
     target: LanternRef,
     offset: ['start end', 'end start']
   })
+  const [updatedUrl, setUpdatedUrl] = useState(topRatedSellers())
+  const { data, loading } = useFetch({
+    url: updatedUrl,
+    method: 'GET'
+  })
+  const { data: Allfillters } = useFetch({
+    url: getCategories(),
+    method: 'GET'
+  })
   const rotateA = useTransform(scrollYProgress, [0, 1], [65, 40])
   const moveA = useTransform(scrollYProgress, [0, 1], ['30%', '-30%'])
   const rotateB = useTransform(scrollYProgress, [0, 1], [-40, -15])
   const moveB = useTransform(scrollYProgress, [0, 1], ['-50%', '30%'])
 
   const Variant = clipPathLeftToRight(0, 0.5, 1, 1)
+
+  const ArrayData = data && data.status === 'success' ? data.data.vendors : []
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -134,7 +64,7 @@ export default function TopRated() {
             <p className='text-white w-full'>TOP RATED</p>
           </InView>
         </div>
-        <Top3Rated details={[Top10[0], Top10[1], Top10[2]]} from="topRatedPage" />
+        <Top3Rated Allfillters={Allfillters} loading={loading} setUpdatedUrl={setUpdatedUrl} details={[ArrayData[0], ArrayData[1], ArrayData[2]]} from="topRatedPage" />
         <div className='grid grid-cols-12 mainPadding sm:pt-20 pt-20 sm:pb-5 pb-5'>
           <div className='col-span-1 center text-Yellow/50'> Rank</div>
           <div className='col-span-8 md:col-span-2 center text-Yellow/50'>Seller</div>
@@ -143,11 +73,11 @@ export default function TopRated() {
         </div>
         <div className='mainPadding sm:pt-0 pt-0 space-y-5'>
           {
-            Top10.slice(3).map((item, index) => <Cardlayout key={index} details={item} top={index + 4} />)
+            ArrayData.slice(3).map((item, index) => <Cardlayout key={index} details={item} top={index + 4} />)
           }
         </div>
-      </section>
-    </div>
+      </section >
+    </div >
   )
 }
 

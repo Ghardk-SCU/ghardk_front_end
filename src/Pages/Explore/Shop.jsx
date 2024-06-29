@@ -14,7 +14,7 @@ export default function Shop({ setProductsUrl, ProductsUrl, loadingCategories, l
       <div className='gap-4 flex flex-grow justify-center flex-wrap'>
         {
           !loadingProducts && Products && Products.data?.productItems.length > 0 && Products.data.productItems.map((el) => (
-            <DetailsCard key={el.id} id={el.id} img={el.images[0]?.image_url} name={el.name} description={el.description} price={el.price} rating={el.rating} rating_count={el.rating_count} />
+            <DetailsCard key={el.id} id={el.id} img={el.images[0]?.image_url} name={el.name} description={el.description} price={el.price} rating={el.rating ? (el.rating/el.rating_count).toFixed(2) : 0} rating_count={el.rating_count} />
           ))
         }
         {
@@ -171,13 +171,13 @@ const Fillters = ({ setProductsUrl, Categories, loadingProducts, setLoadingProdu
         thumbClassName="example-thumb"
         trackClassName="example-track"
         defaultValue={[priceRange[0], priceRange[1]]}
-        min={PriceMin}
-        max={PriceMax}
+        min={1}
+        max={10000}
         ariaLabel={['Lower thumb', 'Upper thumb']}
         ariaValuetext={state => `Thumb value ${state.valueNow}`}
         pearling
         onChange={(value) => setPriceRange(value)}
-        minDistance={2000}
+        minDistance={500}
       />
       <div className='w-full flex justify-between mt-5 Fredoka font-medium'>
         <span>{priceRange[0]}<span className='text-xs'>EGP</span></span>

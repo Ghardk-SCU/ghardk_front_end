@@ -1,12 +1,12 @@
 export default async function Fetch({ url, setData, setLoading, setErrorMessage, method, body, Token, Type = 'json' }) {
   const headers = Type === 'json' ? { 'Content-Type': 'application/json' } : {};
   if (Token) headers.Authorization = `Bearer ${Token}`;
-  const modifiedBodyy = Type === 'json' ? JSON.stringify(body) : body;
+  const modifiedBody = Type === 'json' ? JSON.stringify(body) : body;
   try {
     const response = await fetch(url, {
       method,
       headers,
-      body: modifiedBodyy
+      body: modifiedBody
     })
     const string = await response.text();
     const data = string === "" ? {} : JSON.parse(string);
@@ -14,14 +14,14 @@ export default async function Fetch({ url, setData, setLoading, setErrorMessage,
     if (Status >= 200 && Status < 300) {
       data.status = 'success'
     }
-    setData(data)
+    if (setData) setData(data)
     if (data.status !== 'success') {
       throw new Error(data.message)
     }
   } catch (error) {
-    setErrorMessage(error.message)
+    if (setErrorMessage) setErrorMessage(error.message)
     console.error(error)
   } finally {
-    setLoading(false)
+    if (setLoading) setLoading(false)
   }
 }
