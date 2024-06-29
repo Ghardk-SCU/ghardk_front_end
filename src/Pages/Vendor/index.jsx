@@ -116,11 +116,11 @@ export default function Index() {
                 </div>
             </div>
 
-            <div className="col-span-5 w-full max-lg:h-fit h-screen grid grid-rows-10 items-center lg:pt-10 gap-8 ">
-                <div className="max-lg:hidden text-5xl row-span-1 justify-self-center  font-serif font-bold">
+            <div className="col-span-5 w-full max-lg:h-fit h-screen lg:grid lg:grid-rows-10   items-start lg:pt-10 lg:gap-10      ">
+                <div className="max-lg:hidden text-5xl  lg:row-span-1 justify-self-center  font-serif font-bold">
                     Vendors Products
                 </div>
-                <div className="flex w-full items-center row-span-1 mt-12 lg:shadow-2xl shadow-Beige3  justify-center flex-wrap gap-4 lg:mb-8 justify-self-center">
+                <div className="flex w-full items-center   lg:row-span-1 mt-12 lg:mt-4  shadow-Beige3  justify-center flex-wrap gap-4  justify-self-center">
                     {
                         !loading && vendorData?.categories && vendorData.categories.map((cat, index) => {
                             return (
@@ -129,7 +129,7 @@ export default function Index() {
                         })
                     }
                 </div>
-                <div className="lg:overflow-y-auto max-lg:h-full flex flex-wrap lg:px-4 py-4 gap-4 px-24 w-full h-full row-span-8" >
+                <div className="lg:overflow-y-auto max-lg:h-full flex flex-wrap lg:justify-center lg:px-4 py-4 gap-4 px-8 md2:px-24 w-full h-full lg:row-span-8" >
                     {
                         !productsLoading && productsData && productsData.map((product, index) => {
                             return (
