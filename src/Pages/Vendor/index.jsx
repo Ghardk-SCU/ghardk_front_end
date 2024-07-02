@@ -26,8 +26,6 @@ export default function Index() {
 
     const [categoryId, setCategoryId] = useState(0);
     const [vendorData, setVendorData] = useState({});
-    console.log({ productsLoading })
-
     useEffect(() => {
         if (data && categoryId) {
             url = getVendorProducts(id, categoryId);

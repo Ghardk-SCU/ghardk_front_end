@@ -2,8 +2,10 @@ import { useState, useEffect, useContext, useRef } from 'react';
 import { motion, AnimatePresence } from 'framer-motion'
 import { Link, useNavigate } from 'react-router-dom'
 import { AuthenticationContext } from '../../Store/Context/Authentication'
+import { searchByImage } from '../../Store/urls'
 import { BackDropContext } from '../../Store/Context/BackDrop';
 import Spinner from '../Ui-Components/Spinner';
+import Fetch from '../CustomHooks/Fetch'
 
 import logo from '../../assets/logo.png'
 import { IoIosMenu } from "react-icons/io";
@@ -191,7 +193,8 @@ const SearchMenu = () => {
       setImgSearch(reader.result)
     }
     reader.readAsDataURL(file)
-    console.log('Search for img looks like this ', { img: reader })
+    console.log('Search for img looks like this ', { img: e.target.files[0] })
+    // searchByImage()
   }
   return (
     <motion.div

@@ -10,12 +10,8 @@ export default async function Fetch({ url, setData, setLoading, setErrorMessage,
     })
     const string = await response.text();
     const data = string === "" ? {} : JSON.parse(string);
-    const Status = response.status;
-    if (Status >= 200 && Status < 300) {
-      data.status = 'success'
-    }
     if (setData) setData(data)
-    if (data.status !== 'success') {
+    if (!response.ok) {
       throw new Error(data.message)
     }
   } catch (error) {

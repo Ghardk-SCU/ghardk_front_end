@@ -29,13 +29,13 @@ export default function SimiliarProducts({ name, itemId }) {
   }
   const handleMove = (type = "drag") => {
     const x = dragMotion.get()
-    if (type === "+1" && imgTurn + moveDenominator - 1 < data.data.length - 2) {
+    if (type === "+1" && imgTurn + moveDenominator - 1 < data.data.length - 1) {
       setImgTurn(prev => prev + 1)
     }
     if (type === "-1" && imgTurn > 0) {
       setImgTurn(prev => prev - 1)
     }
-    if (x <= -DragBuffer && imgTurn + moveDenominator - 1 < data.data.length - 2) {
+    if (x <= -DragBuffer && imgTurn + moveDenominator - 1 < data.data.length - 1) {
       setImgTurn(prev => prev + 1)
     } else if (x >= DragBuffer && imgTurn > 0) {
       setImgTurn(prev => prev - 1)

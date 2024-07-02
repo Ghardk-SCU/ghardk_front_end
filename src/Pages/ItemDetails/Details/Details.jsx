@@ -77,7 +77,6 @@ export default function Details({ itemDetials }) {
 
     useEffect(() => {
         if (!data) return;
-        console.log({ addToCart: data })
     }, [data])
 
     return (
@@ -148,8 +147,9 @@ export default function Details({ itemDetials }) {
                                 before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:-z-10
                                 before:rounded-inherit before:bg-[#505050] before:bg-opacity-40 
                                 before:transition-all before:duration-300 before:ease-in-out
-                                ${loading || itemDetials.quantity === 0 ? 'bg-[#505050] cursor-wait' : ' hover:py-[13px] hover:my-[1px] hover:text-[21.6px] hover:before:left-0'}
+                                ${loading || itemDetials.quantity === 0 ? 'bg-[#505050]' : ' hover:py-[13px] hover:my-[1px] hover:text-[21.6px] hover:before:left-0'}
                                 ${itemDetials.quantity === 0 ? 'cursor-not-allowed' : ''}
+                                ${loading ? 'cursor-wait' : ''} 
                             `}>Add to cart</button>
                     </div>
                     {errorMessage && <p className='w-full text-red-500'>{errorMessage}</p>}
