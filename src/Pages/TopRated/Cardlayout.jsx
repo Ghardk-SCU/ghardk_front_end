@@ -18,22 +18,19 @@ export default function Cardlayout({ details, top }) {
         WebkitTextFillColor: 'transparent',
       }} className='col-span-2 sm2:col-span-1 center text-white NunitoSans text-2xl font-bold md:pr-4'>#{top < 10 && '0'}{top}
       </div>
-      <div className='col-span-6 sm2:col-span-8 md:col-span-2 items-center justify-center md:justify-normal text-white flex gap-x-4 md:pr-4'>
+      <div className='col-span-8 sm2:col-span-9 md:col-span-2 items-center justify-center  text-white flex gap-x-4 md:pr-4'>
         <img style={{ boxShadow: '0px 0px 22.4px 0px rgba(253, 191, 80, 0.15)' }} src={img} className="hidden xl:block rounded-full size-14" alt="" />
-        <p className="">{name}</p>
+        <p className="pl-5">{name}</p>
       </div>
-      <div className='hidden md:flex col-span-6 justify-center items-center  text-white md:pr-4'>
-        {discreption}
+      <div title={discreption} className='hidden md:flex col-span-8 w-full items-center text-white md:pr-4'>
+        <p className="truncate px-5">
+          {discreption}
+        </p>
       </div>
-      <div className='col-span-2 center text-white flex gap-x-[2px] md:pr-4'>
+      <div className='col-span-1 center text-white flex gap-x-[2px] md:pr-4'>
         <FaStar className="mr-2" size={20} />
-        <p>{rating ? (rating /  totalRates).toFixed(2) : 0}</p>
+        <p>{rating ? (rating / totalRates).toFixed(2) : 0}</p>
         <p className="text-xs">({totalRates})</p>
-      </div>
-      <div className='col-span-2 sm2:col-span-1 center text-white px-2'>
-        <button onClick={() => { setIsFavorite(prev => !prev) }}>
-          {isFavorite ? <FaHeart className="" size={20} /> : <FaRegHeart size={20} />}
-        </button>
       </div>
     </div >
   )

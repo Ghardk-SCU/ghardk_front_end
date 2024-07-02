@@ -31,17 +31,14 @@ export default function CartLayout({ loading, classes, delay, details, idx }) {
               <div className="flex justify-between px-[3.5vw]">
                 <div className="flex center gap-2">
                   <FaStar size={25} />
-                  {details.rating ? (details.rating/details.rating_count).toFixed(2) : 0}
+                  {details.rating ? (details.rating / details.rating_count).toFixed(2) : 0}
                   <span className="text-xs -ml-1">({details.rating_count})</span>
                 </div>
-                <button className="" onClick={() => { setIsFavClicked(prev => !prev) }}>
-                  {isFavClicked ? <FaHeart size={25} /> : <FaRegHeart size={25} />}
-                </button>
               </div>
               <div className="center px-4">
                 <img style={{ boxShadow: '0px 0px 22.4px 0px #FDBF5026', visibility: `${details.image_url ? 'visible' : 'hidden'}` }} src={details.image_url} className="rounded-full w-2/3 sm:w-auto xl:w-[40%] aspect-square object-cover shadow-2xl" />
               </div>
-              <p className="xl:text-[1vw] leading-[1.4] px-4 text-sm font-normal">
+              <p title={details.description} className="truncate xl:text-[1vw] leading-[1.4] px-4 text-sm font-normal">
                 {details.description}
               </p>
               <div style={{

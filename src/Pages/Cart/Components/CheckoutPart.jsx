@@ -151,7 +151,7 @@ const DataList = ({ setDataChanged, Loading, dataArray, setLoading, setErrorMess
 						<FaRegTrashAlt />
 					</button>
 					<div className="">
-						<img className="size-[65px]" src={el.images[0] || placeholder} alt="" />
+						<img className="size-[65px]" src={el?.images[0]?.image_url || placeholder} alt="" />
 					</div>
 					<div className="flex-grow justify-between flex items-center">
 						<div className="flex flex-col justify-between">

@@ -19,7 +19,8 @@ export default function Form() {
 	const [formData, setFormData] = useState(
 		{
 			email: '',
-			password: ''
+			password: '',
+			role: "customer"
 		}
 	)
 

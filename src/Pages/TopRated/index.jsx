@@ -65,11 +65,11 @@ export default function TopRated() {
           </InView>
         </div>
         <Top3Rated Allfillters={Allfillters} loading={loading} setUpdatedUrl={setUpdatedUrl} details={[ArrayData[0], ArrayData[1], ArrayData[2]]} from="topRatedPage" />
-        <div className='grid grid-cols-12 mainPadding sm:pt-20 pt-20 sm:pb-5 pb-5'>
-          <div className='col-span-1 center text-Yellow/50'> Rank</div>
-          <div className='col-span-8 md:col-span-2 center text-Yellow/50'>Seller</div>
-          <div className='hidden md:flex col-span-6 justify-center items-center text-Yellow/50'>Description</div>
-          <div className='col-span-2 center text-Yellow/50'>Rate</div>
+        <div className='grid grid-cols-12 mainPadding sm:pt-20 pt-20 md:pb-5 pb-5'>
+          <div className='col-span-1 center text-Yellow/50 sm:pl-0 pl-5'> Rank</div>
+          <div className='col-span-9 md:col-span-2 center text-Yellow/50'>Seller</div>
+          <div className='hidden md:flex col-span-8 justify-center items-center text-Yellow/50'>Description</div>
+          <div className='col-span-1 center text-Yellow/50'>Rate</div>
         </div>
         <div className='mainPadding sm:pt-0 pt-0 space-y-5'>
           {

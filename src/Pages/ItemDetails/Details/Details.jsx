@@ -46,22 +46,22 @@ export default function Details({ itemDetials }) {
         let stars = []
         for (let i = 0; i < 5; i++) {
             if (itemDetials.rating >= i + 1) {
-                stars.push(<FaStar key={i} />)
+                stars.push(<FaRegStar key={i} />)
             } else if (itemDetials.rating > i && itemDetials.rating < i + 1) {
                 // if there is a half star
                 stars.push(<FaStarHalfAlt key={i} />)
             } else {
-                stars.push(<FaStar key={i} style={{ color: 'rgba(255,255,255,0.5)' }} />)
+                stars.push(<FaRegStar key={i} style={{ color: 'black' }} />)
             }
         }
         return (
-            <div className='flex items-center font-thin'>
+            <div className='flex items-center font-thin gap-1'>
                 {stars}
             </div>
         )
     }
     const addToCart = () => {
-        if (loading) return;
+        if (loading || itemDetials.quantity === 0) return;
         setLoading(true)
         setErrorMessage('')
         Fetch({
@@ -82,8 +82,8 @@ export default function Details({ itemDetials }) {
 
     return (
         <>
-            <div className='Fredoka min-h-screen h-full w-[95%] bg-Beige flex flex-col md:flex-row gap-8 py-[150px] px-4 overflow-hidden'>
-                <div className="relative flex flex-col-reverse lg:flex-row w-full md:w-2/3 h-full gap-4 rounded-xl">
+            <div className='Fredoka min-h-screen h-full w-[95%] bg-Beige flex flex-col md:flex-row gap-8 py-[150px] pb-20 px-4 overflow-hidden'>
+                <div className="relative flex flex-col-reverse lg:flex-row w-full md:w-2/3 min-h-full gap-4 rounded-xl">
                     <div className="flex items-center lg:flex-col w-full lg:w-1/3 gap-4">
                         {
                             images.map((img, idx) => {
@@ -91,15 +91,15 @@ export default function Details({ itemDetials }) {
                                     <button
                                         key={idx}
                                         onClick={() => setSelectedImg(idx)}
-                                        className={`relative rounded-2xl max-h-[115px] max-w-[115px] min-h-[60px] min-w-[60px] focus:outline-none overflow-hidden border ${selectedImg === idx ? 'border-Black/80 shadow-lg' : 'border-Black/10'}`}>
-                                        <img src={img.image_url} className='w-full h-full object-cover rounded-2xl' loading='lazy' alt='Thumbnail' />
+                                        className={`relative rounded-2xl h-[115px] max-w-[115px] min-h-[60px] min-w-[60px] focus:outline-none overflow-hidden border ${selectedImg === idx ? 'border-Black/80 shadow-lg' : 'border-Black/10'}`}>
+                                        <img src={img.image_url} className='w-full h-full rounded-2xl' loading='lazy' alt='Thumbnail' />
                                     </button>
                                 )
                             })
                         }
                     </div>
                     <div className="w-full h-full rounded-2xl overflow-hidden border shadow-md self-center border-Black/10">
-                        <img src={images[selectedImg].image_url} alt="SelectedImage" className='w-full h-full object-cover rounded-2xl' />
+                        <img src={images[selectedImg].image_url} alt="SelectedImage" className='w-full h-full rounded-2xl aspect-square' />
                     </div>
                 </div>
                 <div className="flex flex-col justify-center items-center w-full md:w-2/4 h-full gap-10">
@@ -131,18 +131,25 @@ export default function Details({ itemDetials }) {
                         </div>
                     </div>
                     <div className="min-w-full h-full flex items-center justify-between gap-x-4 gap-y-1">
-                        <div className='flex gap-5 w-full h-min'>
-                            <button className='outline-none focus:outline-none active:scale-90 w-full basis-1/12' onClick={() => setCurrQuantity(prevQuan => Math.max(1, prevQuan - 1))}><FaMinus color='#8D8D8D' /></button>
-                            <span className='text-xl w-full font-base basis-1/12'>{`${currQuantity}`}</span>
-                            <button className='outline-none focus:outline-none active:scale-90 w-full basis-1/12' onClick={() => setCurrQuantity(prevQuan => Math.min(itemDetials.quantity, prevQuan + 1))}><FaPlus color='#8D8D8D' /></button>
-                        </div>
+                        {itemDetials.quantity > 0 &&
+                            <div className='flex gap-5 w-full h-min'>
+                                <button className='outline-none focus:outline-none active:scale-90 w-full basis-1/12' onClick={() => setCurrQuantity(prevQuan => Math.max(1, prevQuan - 1))}><FaMinus color='#8D8D8D' /></button>
+                                <span className='text-xl w-full font-base basis-1/12'>{`${currQuantity}`}</span>
+                                <button className='outline-none focus:outline-none active:scale-90 w-full basis-1/12' onClick={() => setCurrQuantity(prevQuan => Math.min(itemDetials.quantity, prevQuan + 1))}><FaPlus color='#8D8D8D' /></button>
+                            </div>
+                        }
+                        {itemDetials.quantity === 0 && <p className='text-red-500'>
+                            Out of stock*
+                        </p>
+                        }
                         <button onClick={addToCart} className={`bg-Black Fredoka text-White text-[22px] w-7/12 py-[14px] rounded-full min-w-[150px]
                                 relative overflow-hidden inline-block z-10
                                 transition-all duration-300 ease-in-out focus:outline-none
                                 before:absolute before:top-0 before:left-[-100%] before:w-full before:h-full before:-z-10
                                 before:rounded-inherit before:bg-[#505050] before:bg-opacity-40 
                                 before:transition-all before:duration-300 before:ease-in-out
-                                ${loading ? 'bg-[#505050] cursor-wait' : 'hover:w-[60%] hover:py-[13px] hover:my-[1px] hover:text-[21.6px] hover:before:left-0'}
+                                ${loading || itemDetials.quantity === 0 ? 'bg-[#505050] cursor-wait' : ' hover:py-[13px] hover:my-[1px] hover:text-[21.6px] hover:before:left-0'}
+                                ${itemDetials.quantity === 0 ? 'cursor-not-allowed' : ''}
                             `}>Add to cart</button>
                     </div>
                     {errorMessage && <p className='w-full text-red-500'>{errorMessage}</p>}

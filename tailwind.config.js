@@ -26,13 +26,16 @@ export default {
       },
       screens: {
         'lg1': '1523px',
-        'lg' : '1280px',
+        'lg': '1280px',
         'lg2': '1200px',
         'md1': '900px',
         'md2': '700px',
         'md3': '560px',
         'sm2': '500px',
         'sm3': '400px',
+        'xs': '450px',
+        'xl': '1200px',
+        'xl2': '1600px',
       },
       maxWidth: {
         '10ch': '10ch',

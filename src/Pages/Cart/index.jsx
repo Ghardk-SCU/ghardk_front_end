@@ -47,6 +47,7 @@ export default function Cart() {
     </div>
   }
 
+  console.log({ dataArray })
   return (
     <>
       {Type === 'cart' && <CartReview errorMessage={errorMessage} setErrorMessage={setErrorMessage} dataArray={dataArray} setType={setType} Type={Type} Loading={Loading} setLoading={setLoading} setDataArray={setDataArray} setDataChanged={setDataChanged} />}
