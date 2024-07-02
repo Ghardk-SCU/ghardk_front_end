@@ -58,12 +58,12 @@ export default function ReviewCards() {
 
     return (
         <>
-            <div className='relative w-fit h-full overflow-hidden mb-56'>
+            <div className='relative w-fit overflow-hidden mb-20'>
                 <motion.div
                     ref={dragRef}
                     drag="x"
                     dragConstraints={{ left: -Width - 50, right: 0 }}
-                    className='w-screen h-full flex gap-8 px-12'
+                    className='w-screen flex gap-8 px-12'
                 >
                     {
                         reviewDetails.map((review, idx) => {

@@ -33,7 +33,7 @@ export default function DetialsCard({ id, name, description, price, rating, rati
                 <div className='absolute w-full h-[80px] z-10 -top-[30%] center px-4
                 group-hover:top-0 transition-all duration-300 ease-in-out'>
                 </div>
-                <div className="relative w-full h-full overflow-hidden">
+                <div className="relative w-full overflow-hidden min-h-[240px] max-h-[240px]">
                     <span className='w-full h-full bg-Black/10 absolute
                     group-hover:bg-Black/0 transition-all duration-300 ease-in-out'></span>
                     <img src={img || placeholder} className='imgSettings w-full h-full group-hover:scale-105 object-cover transition-all duration-300 ease-in-out' alt='LoadingImg' />
@@ -42,7 +42,7 @@ export default function DetialsCard({ id, name, description, price, rating, rati
                     <div className="itemData w-full h-full center flex-col p-3 px-4">
                         <div className='w-full h-full flex flex-col'>
                             <h3 className='Fredoka text-lg text-Black font-medium w-[calc(100%-20px)]'>{name}</h3>
-                            <p className='Fredoka text-sm text-Black/60 font-normal w-[100%]'>
+                            <p className='truncate Fredoka text-sm text-Black/60 font-normal w-[100%]'>
                                 {description}
                             </p>
                         </div>

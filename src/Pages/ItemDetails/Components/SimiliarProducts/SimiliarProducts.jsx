@@ -9,7 +9,7 @@ import placeholder from './assets/placeholder.jpg'
 
 
 const DragBuffer = 10
-export default function SimiliarProducts({ name }) {
+export default function SimiliarProducts({ name, itemId }) {
   const dragRef = useRef()
   const inView = useInView(dragRef)
   const controls = useAnimation()
@@ -29,13 +29,13 @@ export default function SimiliarProducts({ name }) {
   }
   const handleMove = (type = "drag") => {
     const x = dragMotion.get()
-    if (type === "+1" && imgTurn + moveDenominator - 1 < data.length - 1) {
+    if (type === "+1" && imgTurn + moveDenominator - 1 < data.data.length - 1) {
       setImgTurn(prev => prev + 1)
     }
     if (type === "-1" && imgTurn > 0) {
       setImgTurn(prev => prev - 1)
     }
-    if (x <= -DragBuffer && imgTurn + moveDenominator - 1 < data.length - 1) {
+    if (x <= -DragBuffer && imgTurn + moveDenominator - 1 < data.data.length - 1) {
       setImgTurn(prev => prev + 1)
     } else if (x >= DragBuffer && imgTurn > 0) {
       setImgTurn(prev => prev - 1)
@@ -47,7 +47,6 @@ export default function SimiliarProducts({ name }) {
       controls.start('visible')
     }
   }, [inView])
-  if (!data || (data && data.data.length <= 0)) return null;
   return (
     <main className="relative h-[120vh] z-[1] w-full">
       <section className='flex flex-col w-full h-full space-y-10 md:space-y-0 pb-20'>
@@ -71,8 +70,9 @@ export default function SimiliarProducts({ name }) {
               {
                 !loading && data && data.data.map((data, idx) => {
                   const { price, name, description, rating, rating_count, images } = data
+                  if (data.id === (itemId - '0')) return null
                   return (
-                    <div key={data.id} className='group center'>
+                    <div key={data.id} className='group px-2 center' >
                       <Prod id={data.id} img={images[0]?.image_url || placeholder} Amount={price} controls={controls} delay={idx / 10} Title={name} Description={description} Rate={rating ? (rating / rating_count).toFixed(2) : 0} totalRaters={rating_count} />
                     </div>
                   )
@@ -102,8 +102,8 @@ export default function SimiliarProducts({ name }) {
             </button>
           </div>
         </section>
-      </section>
-    </main>
+      </section >
+    </main >
   )
 }
 

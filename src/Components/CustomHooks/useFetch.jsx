@@ -12,24 +12,20 @@ export default function useFetch({ url, setErrorMessage, method, body, Token, re
       setLoading(true)
       try {
         const response = await fetch(url, {
-          method: method,
+          method,
           headers,
           body: JSON.stringify(body)
         })
         const string = await response.text();
         const data = string === "" ? {} : JSON.parse(string);
-        const Status = response.status;
-        if (Status >= 200 && Status < 300) {
-          data.status = 'success'
-        }
-
-        setData(data)
-        if (data.status !== 'success') {
+        if (setData) setData(data)
+        if (!response.ok) {
           throw new Error(data.message)
         }
       } catch (error) {
         if (setErrorMessage)
           setErrorMessage(error.message)
+        console.error(error)
       } finally {
         setLoading(false)
       }

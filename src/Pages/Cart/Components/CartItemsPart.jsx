@@ -63,7 +63,7 @@ export default function CartItemsPart({ setDataChanged, setErrorMessage, itemDet
             <div className="Fredoka relative w-[85%] min-h-[140px] max-h-[80%] bg-[#242424] rounded-3xl p-6 flex items-center flex-col sm:flex-row md:center  text-White gap-2 md:gap-4">
                 <button onClick={handleDelete} className='absolute bg-[#4A4A4A] w-12 h-12 rounded-full center hover:bg-[#585858] transition-all ease-in-out duration-200 -top-[10%] -right-[2%] focus:outline-none'><FaRegTrashAlt size={22} color='#f4f4f8' /></button>
                 <div className='relative w-[100%] max-w-[140px] h-full'>
-                    <img src={itemDetials.images[0] || placeholder} alt="itemImage" className='w-fit h-[150px] object-fit min-w-[60px] rounded-[16px]' />
+                    <img src={itemDetials?.images[0]?.image_url || placeholder} alt="itemImage" className='w-fit h-[150px] object-fit min-w-[60px] rounded-[16px]' />
                 </div>
                 <div className='flex justify-between w-full'>
                     <div className='w-full h-full min-h-[140px] center flex-col'>

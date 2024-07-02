@@ -46,7 +46,6 @@ export default function Cart() {
         with handmade beauties.</p>
     </div>
   }
-
   return (
     <>
       {Type === 'cart' && <CartReview errorMessage={errorMessage} setErrorMessage={setErrorMessage} dataArray={dataArray} setType={setType} Type={Type} Loading={Loading} setLoading={setLoading} setDataArray={setDataArray} setDataChanged={setDataChanged} />}

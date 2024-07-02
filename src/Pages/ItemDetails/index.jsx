@@ -35,7 +35,7 @@ export default function ItemDetails() {
                     <Details itemDetials={data.data.productItem} />
                     <ReviewCards />
                     <ExtraDetails itemDetials={data.data.productItem} />
-                    <SimilarProducts name={data.data.productItem.name}/> 
+                    <SimilarProducts itemId={id} name={data.data.productItem.name} />
                 </>}
                 {loading && <div className='center h-screen'>
                     <Spinner />
