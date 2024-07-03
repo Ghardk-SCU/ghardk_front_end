@@ -1,5 +1,5 @@
 import { useState, useEffect, useContext } from "react"
-import { Outlet } from "react-router-dom"
+import { Outlet, useLocation } from "react-router-dom"
 import NavBar from "../Components/NavBar/NavBar"
 import Footer from "../Components/Footer/Footer"
 import useFetch from '../Components/CustomHooks/useFetch'
@@ -11,6 +11,7 @@ import BackdropHolder from "../Components/Ui-Components/BackdropHolder";
 
 export default function Root() {
   const [errorMessage, setErrorMessage] = useState('')
+  const Location = useLocation()
   const {
     setIsLogedIn, setUserName, setUserImg, setRole,
     setFirstName, setLastName, setEmail, setGender,
