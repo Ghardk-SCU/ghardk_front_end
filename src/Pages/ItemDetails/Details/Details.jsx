@@ -5,15 +5,18 @@ import { addItemToCart } from '../../../Store/urls';
 import Fetch from '../../../Components/CustomHooks/Fetch';
 import { addFav, delFav, delFavByProId } from '../../../Store/urls';
 import { AuthenticationContext } from '../../../Store/Context/Authentication';
+import ListItem from './ListItem';
 export default function Details({ itemDetials }) {
     const [currQuantity, setCurrQuantity] = useState(1);
     const [selectedImg, setSelectedImg] = useState(0);
     const { Token } = useContext(AuthenticationContext);
-    const [isFavorite, setIsFavorite] = useState(itemDetials.isFavourite);
+    const [isFavorite, setIsFavorite] = useState(itemDetials.isFavourite || false);
     const images = itemDetials?.images?.length > 0 ? itemDetials.images : [{ image_url: placeholder }];
     const [data, setData] = useState(null);
+    const [fav, setFav] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
+    console.log({ itemDetials })
 
     async function handleFavorite() {
         if (loading) return;
@@ -23,25 +26,29 @@ export default function Details({ itemDetials }) {
             await Fetch({
                 url: delFavByProId(itemDetials.id),
                 setLoading,
-                setData,
+                setData: setFav,
                 setErrorMessage,
                 method: 'DELETE',
                 Token
             })
             setIsFavorite(prev => !prev);
         } else {
-            await Fetch({
+            Fetch({
                 url: addFav(),
                 setLoading,
-                setData,
+                setData: setFav,
                 setErrorMessage,
                 method: 'POST',
                 body: { product_item_id: itemDetials.id },
                 Token
             })
-            setIsFavorite(prev => !prev);
         }
     }
+    useEffect(() => {
+        if (fav && fav.status === 'success') {
+            setIsFavorite(prev => !prev);
+        }
+    }, [fav])
     const StarCounter = () => {
         let stars = []
         for (let i = 0; i < 5; i++) {
@@ -106,7 +113,7 @@ export default function Details({ itemDetials }) {
                         <div className='w-full h-full min-h-[140px] flex items-center flex-col gap-10'>
                             <div className='w-full h-full flex justify-start'>
                                 <div className='flex justify-start items-start flex-col md:flex-row w-full'>
-                                    <h3 className='text-2xl lg:text-3xl font-medium truncate max-w-[calc(100%-40px)]'>{itemDetials.name}</h3>
+                                    <h3 className='text-2xl lg:text-3xl font-medium break-words hyphens-auto'>{itemDetials.name}</h3>
                                 </div>
                             </div>
                             <div className='flex items-center gap-1 w-full h-full'>
@@ -129,6 +136,20 @@ export default function Details({ itemDetials }) {
                             </button>
                         </div>
                     </div>
+
+                    <div className='w-full'>
+
+                        <ul className='list-disc'>
+                            {
+                                itemDetials.configurations.map((item, index) => {
+                                    return <ListItem key={index} label={item.name} text={item.value} />
+                                })
+                            }
+                        </ul>
+
+                    </div>
+
+
                     <div className="min-w-full h-full flex items-center justify-between gap-x-4 gap-y-1">
                         {itemDetials.quantity > 0 &&
                             <div className='flex gap-5 w-full h-min'>
@@ -156,19 +177,19 @@ export default function Details({ itemDetials }) {
                     {data && data.status === 'success' && <p className='w-full text-green-500'>Success</p>}
                     <div className='relative cetner flex-col w-full h-full'>
                         <div className='w-full h-full center'>
-                            <button className='w-full text-lg focus:outline-none' onClick={() => setSelectedTab('vendor')}>
+                            <button className='w-full text-lg focus:outline-none'>
                                 Vendor
                             </button>
                         </div>
                         <hr className={`w-[20%] left-1/2 -translate-x-1/2 h-1 bg-Black rounded-full absolute z-30 transition-all duration-500 ease-in-out`} />
-                        <div className="w-full min-h-[200px] overflow-hidden">
-                            <div className={`w-[200%] h-full flex transition-all duration-500 ease-in-out`}>
-                                <div className="w-full h-full  center pt-8 gap-4">
-                                    <div className='w-min h-full center flex-col gap-1 min-w-min'>
-                                        <img src={itemDetials.vendor_image_url} alt="vendorImg" className='object-cover rounded-full' />
-                                        <span className='text-Black text-sm text-nowrap'>{itemDetials.vendor_first_name}</span>
+                        <div className="w-full overflow-hidden">
+                            <div className={`w-full h-full flex transition-all duration-500 ease-in-out`}>
+                                <div className="w-full h-full center pt-8 gap-4">
+                                    <div className='h-full center flex-col gap-1'>
+                                        <img src={itemDetials.vendor_image_url} alt="vendorImg" className='rounded-full object-cover size-20' />
+                                        <span className='text-Black text-nowrap'>{itemDetials.vendor_first_name}</span>
                                     </div>
-                                    <div className='w-full h-full center flex-col gap-3 border-Black border-l-4 pl-4'>
+                                    <div className='w-full h-full flex flex-col gap-3 border-Black border-l-4 pl-4'>
                                         <p className='text-[13px] sm2:text-sm break-words hyphens-auto'>{itemDetials.vendor_description}</p>
                                         <div className='flex items-center gap-1 w-full h-min'>
                                             <FaStar className='size-5' />

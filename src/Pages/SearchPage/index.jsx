@@ -5,12 +5,11 @@ import { searchByText } from "../../Store/urls"
 import { useParams } from "react-router-dom"
 
 export default function SearchPage() {
-  const { name } = useParams()
-  const [productsUrl, setProductsUrl] = useState(searchByText(name))
+  const queryParams = new URLSearchParams(location.search);
+  const [productsUrl, setProductsUrl] = useState(searchByText(queryParams.get('q')))
   const { data: Prod, loading: ProdLoading } = useFetch({
     url: productsUrl,
     method: 'GET',
-    reRender: name
   })
   const [products, setProducts] = useState([])
   const [loadingProducts, setLoadingProducts] = useState(true)
@@ -20,11 +19,14 @@ export default function SearchPage() {
       setLoadingProducts(false)
     }
   }, [Prod])
+
   useEffect(() => {
-    setProducts([])
-    setProductsUrl(searchByText(name))
+    console.log({ products })
+  }, [products])
+  useEffect(() => {
+    setProductsUrl(searchByText(queryParams.get('q')))
     setLoadingProducts(true)
-  }, [name])
+  }, [queryParams.get('q')])
 
   useEffect(() => {
     window.scrollTo(0, 0)
@@ -33,10 +35,10 @@ export default function SearchPage() {
     <div style={{
       background: 'rgba(212, 205, 205, 1)'
     }} className="relative w-full min-h-screen text-Black flex flex-col gap-40">
-      <Shop searchWord={name}
+      <Shop searchWord={queryParams.get('q')}
         setProductsUrl={setProductsUrl} ProductsUrl={productsUrl}
         loadingProducts={loadingProducts} setLoadingProducts={setLoadingProducts}
-        Products={products} />
+        Products={products} setProducts={setProducts}/>
     </div>
   )
 }

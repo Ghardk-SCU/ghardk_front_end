@@ -11,6 +11,7 @@ export default async function Fetch({ url, setData, setLoading, setErrorMessage,
     })
     const string = await response.text();
     const data = string === "" ? {} : JSON.parse(string);
+    console.log(data);
     if (setData) setData(data)
     if (!response.ok) {
       throw new Error(data.message)

@@ -25,7 +25,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Root />} >
           <Route index element={<Home />} />
-          <Route path="/Search/:name" element={<SearchPage />} />
+          <Route path="/Search" element={<SearchPage />} />
           <Route path="Login" element={<Login />} />
           <Route path="SignUp" element={<SignUp />} />
           <Route path="TopRated" element={<TopRated />} />

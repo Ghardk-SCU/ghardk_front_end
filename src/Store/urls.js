@@ -27,7 +27,7 @@ const addFav = () => (`${APIURL}api/v1/favourites`);
 const delFav = (id) => (`${APIURL}api/v1/favourites/${id}`);
 const delFavByProId = (id) => (`${APIURL}api/v1/products/${id}/favourites`);
 const searchByText = (search) => (`${APIURL}api/v1/products/recommendation-text/${search}?`);
-const searchByImage = () => (`${APIURL}api/v1/products/recommendation-image`);
+const searchByImage = () => (`${APIURL}api/v1/products/search-image`);
 const topRatedSellers = () => (`${APIURL}api/v1/users/top-rated-sellers?`)
 const getAllSales = () => (`${APIURL}api/v1/sales`);
 const getUserData = (id) => (`${APIURL}api/v1/users/${id}`);

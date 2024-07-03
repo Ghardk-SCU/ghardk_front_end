@@ -11,6 +11,7 @@ import BackdropHolder from "../Components/Ui-Components/BackdropHolder";
 
 export default function Root() {
   const [errorMessage, setErrorMessage] = useState('')
+  const [Open, setOpen] = useState(0)
   const Location = useLocation()
   const {
     setIsLogedIn, setUserName, setUserImg, setRole,
@@ -53,11 +54,17 @@ export default function Root() {
     }
   }, [BackDropActive])
 
+  useEffect(() => {
+    setOpen(prev => prev + 1)
+    if (location.pathname === '/Explore') return
+    window.scrollTo(0, 0)
+  }, [Location])
+
   const BackDropStyle =
     BackDropActive ? 'opacity-30 imgSettings' : ''
   return (
     <main className="bg-Black">
-      <NavBar />
+      <NavBar Open={Open} />
       <div onClick={() => { setBackDropActive(false) }}>
         <div className={BackDropStyle}>
           <Outlet />

@@ -63,7 +63,8 @@ export default function Prod({ id, img, Amount, Title, Description, Type, Rate, 
             WebkitBackdropFilter: 'blur( 20px )',
             boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
           }} className='w-full h-0 group-hover:h-full duration-300 absolute bottom-0 left-0 pointer-events-none bg-black' />
-          <h2 className="text-[3.5vh] Fredoka absolute bottom-5 group-hover:relative    group-hover:bottom-0
+          <h2 className="text-[3.5vh] Fredoka absolute bottom-5 group-hover:relative    group-hover:bottom-0 duration-300
+          
             before:content-[''] before:absolute before:bg-white/50 before:w-0 before:h-[6px] before:rounded-full before:-bottom-2 before:-left-4 group-hover:before:w-1/2 before:delay-75 before:duration-300
           ">{Title}</h2>
           <div className='relative top-[100%] group-hover:top-0 duration-300 space-y-3'>

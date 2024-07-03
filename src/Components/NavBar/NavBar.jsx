@@ -21,7 +21,7 @@ import { FaCamera } from "react-icons/fa";
 
 
 
-export default function NavBar() {
+export default function NavBar({ Open }) {
   const { isLogedIn } = useContext(AuthenticationContext)
 
   const [isOpen, setIsOpen] = useState(false)
@@ -39,6 +39,9 @@ export default function NavBar() {
     visible: (custom) => ({ opacity: 1, y: 0, transition: { delay: custom } })
   }
 
+  useEffect(() => {
+    setIsOpen(false)
+  }, [Open])
   const handleAccountClicked = () => {
     setIsOpen(true)
     setShowSearch(false)
@@ -97,11 +100,10 @@ export default function NavBar() {
           </div>
           <div className='relative'>
             {isOpen && <motion.button onClick={handleSearchClicked} custom={0.3} variants={ListAnim} initial='hidden' animate="visible" title='Explore' className='mb-8 cursor-pointer'>
-              <IoSearch size={30} className='text-black' />
+              <Link to='/Search'>
+                <IoSearch size={30} className='text-black' />
+              </Link>
             </motion.button>}
-            <AnimatePresence>
-              {showSearch && <SearchMenu />}
-            </AnimatePresence>
           </div>
         </motion.div>
       </div>
