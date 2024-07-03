@@ -5,6 +5,7 @@ import { addItemToCart } from '../../../Store/urls';
 import Fetch from '../../../Components/CustomHooks/Fetch';
 import { addFav, delFav, delFavByProId } from '../../../Store/urls';
 import { AuthenticationContext } from '../../../Store/Context/Authentication';
+import { Link } from 'react-router-dom';
 import ListItem from './ListItem';
 export default function Details({ itemDetials }) {
     const [currQuantity, setCurrQuantity] = useState(1);
@@ -185,9 +186,11 @@ export default function Details({ itemDetials }) {
                         <div className="w-full overflow-hidden">
                             <div className={`w-full h-full flex transition-all duration-500 ease-in-out`}>
                                 <div className="w-full h-full center pt-8 gap-4">
-                                    <div className='h-full center flex-col gap-1'>
-                                        <img src={itemDetials.vendor_image_url} alt="vendorImg" className='rounded-full object-cover size-20' />
-                                        <span className='text-Black text-nowrap'>{itemDetials.vendor_first_name}</span>
+                                    <div className='h-full center flex-col'>
+                                        <Link className='w-full h-full center flex-col gap-1' to={`/Vendors/${itemDetials.vendor_id}`}>
+                                            <img src={itemDetials.vendor_image_url} alt="vendorImg" className='rounded-full object-cover size-20' />
+                                            <span className='text-Black text-nowrap'>{itemDetials.vendor_first_name}</span>
+                                        </Link>
                                     </div>
                                     <div className='w-full h-full flex flex-col gap-3 border-Black border-l-4 pl-4'>
                                         <p className='text-[13px] sm2:text-sm break-words hyphens-auto'>{itemDetials.vendor_description}</p>

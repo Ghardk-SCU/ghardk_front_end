@@ -98,7 +98,7 @@ export default function Index() {
                     <img className="col-span-4  w-[180px]   h-[180px] rounded-2xl  object-cover   border-2 shadow-xl shadow-Beige3 border-Beige2" src={vendorData.image_url} alt="vendor's picture" />
                     <div className="text-xl flex flex-col w-fit   mt-8 justify-center items-center font-serif">
                         {
-                            !loading && vendorData?.first_name && vendorData.first_name + " " + vendorData.last_name}
+                            !loading && vendorData && vendorData.user_name}
                         <div className="flex  justify-center items-center w-fit gap-2 mr-4">
                             {
                                 !loading && vendorData && <p className="font-thin text-lg">

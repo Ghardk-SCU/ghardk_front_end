@@ -1,11 +1,12 @@
 import { useState } from "react";
 import { FaStar } from "react-icons/fa";
+import { Link } from "react-router-dom";
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
 
 export default function Cardlayout({ details, top }) {
   const [isFavorite, setIsFavorite] = useState(details.isFavorite)
-  const { rating, rating_count: totalRates, image_url: img, description: discreption, user_name: name } = details;
+  const { rating, rating_count: totalRates, image_url: img, description: discreption, user_name: name, id } = details;
   return (
     <div
       style={{
@@ -19,8 +20,10 @@ export default function Cardlayout({ details, top }) {
       }} className='col-span-2 sm2:col-span-1 center text-white NunitoSans text-2xl font-bold md:pr-4'>#{top < 10 && '0'}{top}
       </div>
       <div className='col-span-8 sm2:col-span-9 md:col-span-2 items-center justify-center  text-white flex gap-x-4 md:pr-4'>
-        <img style={{ boxShadow: '0px 0px 22.4px 0px rgba(253, 191, 80, 0.15)' }} src={img} className="hidden xl:block rounded-full size-14" alt="" />
-        <p className="pl-5">{name}</p>
+        <Link className="w-full h-full flex items-center max-xl:justify-center gap-1" to={`/Vendors/${id}`}>
+          <img style={{ boxShadow: '0px 0px 22.4px 0px rgba(253, 191, 80, 0.15)' }} src={img} className="hidden xl:block rounded-full size-14" alt="" />
+          <p className="pl-5">{name}</p>
+        </Link>
       </div>
       <div title={discreption} className='hidden md:flex col-span-8 w-full items-center text-white md:pr-4'>
         <p className="truncate px-5">

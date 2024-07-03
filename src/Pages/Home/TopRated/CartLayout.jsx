@@ -3,7 +3,7 @@ import { motion } from "framer-motion"
 import InView from "../../../utils/InView"
 import { reavelAnimDowntoTop } from '../../../Store/AnimationValues'
 import Spinner from '../../../Components/Ui-Components/Spinner'
-
+import { Link } from "react-router-dom";
 import { FaStar } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
 import { FaRegHeart } from "react-icons/fa";
@@ -36,7 +36,9 @@ export default function CartLayout({ loading, classes, delay, details, idx }) {
                 </div>
               </div>
               <div className="center px-4">
-                <img style={{ boxShadow: '0px 0px 22.4px 0px #FDBF5026', visibility: `${details.image_url ? 'visible' : 'hidden'}` }} src={details.image_url} className="rounded-full w-2/3 sm:w-auto xl:w-[40%] aspect-square object-cover shadow-2xl" />
+                <Link className="w-2/3 sm:w-auto xl:w-[40%] " to={`/Vendors/${details.id}`}>
+                  <img style={{ boxShadow: '0px 0px 22.4px 0px #FDBF5026', visibility: `${details.image_url ? 'visible' : 'hidden'}` }} src={details.image_url} className="rounded-full w-full aspect-square object-cover shadow-2xl" />
+                </Link>
               </div>
               <p title={details.description} className="truncate xl:text-[1vw] leading-[1.4] px-4 text-sm font-normal">
                 {details.description}
