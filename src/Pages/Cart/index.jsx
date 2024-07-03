@@ -80,7 +80,6 @@ const CartReview = ({ dataArray, setDataArray, setType, Type, Loading, setLoadin
 const CartLocation = ({ dataArray, setDataArray, setType, Type, Loading, setLoading, errorMessage, setErrorMessage, setDataChanged }) => {
 
   const [countLocation, setCountLocation] = useState([0, 0, 0, 0, 0])
-  console.log({ countLocation })
   return (
     <section className='center flex-col w-screen min-h-screen bg-Black'>
       <div className='h-[50%] flex flex-col mainPadding'>

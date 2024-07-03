@@ -27,11 +27,12 @@ const addFav = () => (`${APIURL}api/v1/favourites`);
 const delFav = (id) => (`${APIURL}api/v1/favourites/${id}`);
 const delFavByProId = (id) => (`${APIURL}api/v1/products/${id}/favourites`);
 const searchByText = (search) => (`${APIURL}api/v1/products/recommendation-text/${search}?`);
-const searchByImage = () => (`${APIURL}api/v1/products/search-image`);
+const searchByImage = () => (`${APIURL}api/v1/products/search-image?limit=2`);
 const topRatedSellers = () => (`${APIURL}api/v1/users/top-rated-sellers?`)
 const getAllSales = () => (`${APIURL}api/v1/sales`);
 const getUserData = (id) => (`${APIURL}api/v1/users/${id}`);
 const getVendorProducts = (id, catID) => (`${APIURL}api/v1/products/vendors/${id}${catID ? `?category_id=${catID}` : ''}`);
+const getReviews = (id) => (`${APIURL}api/v1/products/${id}/reviews`);
 
 export {
   SignupUrl,
@@ -65,5 +66,6 @@ export {
   topRatedSellers,
   getAllSales,
   getUserData,
-  getVendorProducts
+  getVendorProducts,
+  getReviews
 }

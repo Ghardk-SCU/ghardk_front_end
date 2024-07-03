@@ -17,7 +17,6 @@ export default function Details({ itemDetials }) {
     const [fav, setFav] = useState(null);
     const [errorMessage, setErrorMessage] = useState('');
     const [loading, setLoading] = useState(false);
-    console.log({ itemDetials })
 
     async function handleFavorite() {
         if (loading) return;

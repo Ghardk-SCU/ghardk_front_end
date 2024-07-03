@@ -19,10 +19,6 @@ export default function SearchPage() {
       setLoadingProducts(false)
     }
   }, [Prod])
-
-  useEffect(() => {
-    console.log({ products })
-  }, [products])
   useEffect(() => {
     setProductsUrl(searchByText(queryParams.get('q')))
     setLoadingProducts(true)

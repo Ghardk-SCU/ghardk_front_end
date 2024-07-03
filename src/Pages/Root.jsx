@@ -59,7 +59,6 @@ export default function Root() {
     if (location.pathname === '/Explore') return
     window.scrollTo(0, 0)
   }, [Location])
-  console.log(location.pathname.toLowerCase().split('/')[1])
 
   const BackDropStyle =
     BackDropActive ? 'opacity-30 imgSettings' : ''

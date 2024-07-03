@@ -27,7 +27,6 @@ export default function SimiliarProducts({ name, itemId }) {
   const DragEnd = () => {
     handleMove()
   }
-  console.log({ data })
   const handleMove = (type = "drag") => {
     if (loading || !data || (data && data.status !== 'success')) return
 

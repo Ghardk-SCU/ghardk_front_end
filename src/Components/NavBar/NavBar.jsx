@@ -197,8 +197,6 @@ const SearchMenu = () => {
       setImgSearch(reader.result)
     }
     reader.readAsDataURL(file)
-    console.log('Search for img looks like this ', { img: e.target.files[0] })
-    // searchByImage()
   }
   return (
     <motion.div

@@ -1,10 +1,10 @@
 import { useEffect, useState, useContext } from 'react'
 import { useParams } from 'react-router-dom'
 import useFetch from '../../Components/CustomHooks/useFetch'
+import Fetch from '../../Components/CustomHooks/Fetch'
 import { useNavigate } from 'react-router-dom'
-import { getSingleItem } from '../../Store/urls'
+import { getSingleItem, getReviews } from '../../Store/urls'
 import Details from './Details/Details'
-import Giraffe from '../../assets/giraffe.png'
 import ExtraDetails from './Details/ExtraDetails'
 import Spinner from '../../Components/Ui-Components/Spinner'
 import { AuthenticationContext } from '../../Store/Context/Authentication'
@@ -18,6 +18,10 @@ export default function ItemDetails() {
         url: getSingleItem(id),
         method: 'GET',
         Token
+    })
+    const { data: reviews, loading: reviewsLoading } = useFetch({
+        url: getReviews(id),
+        method: 'GET',
     })
     const Navigate = useNavigate()
 
@@ -33,7 +37,7 @@ export default function ItemDetails() {
             <div className='w-full bg-Beige center flex-col gap-4'>
                 {!loading && <>
                     <Details itemDetials={data.data.productItem} />
-                    <ReviewCards />
+                    <ReviewCards reviews={reviews} reviewsLoading={reviewsLoading} />
                     <ExtraDetails itemDetials={data.data.productItem} />
                     <SimilarProducts itemId={id} name={data.data.productItem.name} />
                 </>}
