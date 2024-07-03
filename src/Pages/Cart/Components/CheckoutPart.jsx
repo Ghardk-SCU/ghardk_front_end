@@ -9,7 +9,7 @@ import { updateFromCart } from '../../../Store/urls'
 import { AuthenticationContext } from '../../../Store/Context/Authentication'
 
 
-export default function CheckoutPart({ setLoading, setErrorMessage, errorMessage, Total, dataArray, setType, Type, Loading, setDataChanged }) {
+export default function CheckoutPart({ setLoading, setErrorMessage, errorMessage, Total, dataArray, setType, Type, Loading, setDataChanged, countLocation }) {
 
 	const [prices, setPrices] = useState({
 		subtotal: 0,
@@ -74,7 +74,10 @@ export default function CheckoutPart({ setLoading, setErrorMessage, errorMessage
 					<button onClick={() => {
 						if (!Loading) {
 							if (Type === 'cart') setType('location')
-							else setType('paymob')
+							else {
+								if (countLocation.filter(num => num === 1).length === 5) setType('paymob')
+								else setErrorMessage('Please fill all the fields to proceed to payment.')
+							}
 						}
 					}} className={`
                         bg-White Fredoka text-Black text-[22px] w-[100%] py-[15px] rounded-full font-medium ${!Loading && 'hover:bg-[#f9f1ac] hover:w-[103%] transition-all ease-in-out duration-300'}`}

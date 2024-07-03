@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { MdKeyboardArrowRight } from "react-icons/md";
 import { reavelAnimDowntoTop } from '../../../Store/AnimationValues'
@@ -6,10 +7,27 @@ import { Link, useNavigate } from 'react-router-dom'
 export default function CategorieLayout({ id, Title, img, delay, controls }) {
   const reavelAnim = reavelAnimDowntoTop(delay)
   const Navighte = useNavigate()
+  const [mouseDownPos, setMouseDownPos] = useState(null);
+
+  const handleMouseDown = (e) => {
+    setMouseDownPos({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleMouseUp = (e) => {
+    if (mouseDownPos) {
+      const diffX = Math.abs(e.clientX - mouseDownPos.x);
+      const diffY = Math.abs(e.clientY - mouseDownPos.y);
+      const threshold = 1;
+      if (diffX < threshold && diffY < threshold) {
+        Navighte(`/Explore?category_id=${id}`);
+      }
+    }
+  };
   return (
     <motion.div
       // variants={reavelAnim} initial='hidden' animate={controls}
-      onClick={() => Navighte(`/Explore?category_id=${id}`)}
+      onMouseDown={handleMouseDown}
+      onMouseUp={handleMouseUp}
       className='group min-h-[570px] min-w-[calc(100%+50px)] sm:min-h-[470px] sm:min-w-[320px] flex flex-col space-y-2 cursor-pointer'>
       <div className='flex-grow overflow-hidden'>
         <motion.img draggable={false} className='w-full h-full opacity-50 group-hover:scale-110 group-hover:opacity-80 duration-1000 object-cover' src={img} alt="" />

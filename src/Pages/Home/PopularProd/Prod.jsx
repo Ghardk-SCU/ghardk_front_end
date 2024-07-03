@@ -34,9 +34,22 @@ export default function Prod({ id, img, Amount, Title, Description, Type, Rate, 
       </div>
     )
   }
-  const navigateTo = () => {
-    if (canNavigate) Navigate(`/itemDetails/${id}`)
-  }
+  const [mouseDownPos, setMouseDownPos] = useState(null);
+
+  const handleMouseDown = (e) => {
+    setMouseDownPos({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleMouseUp = (e) => {
+    if (mouseDownPos) {
+      const diffX = Math.abs(e.clientX - mouseDownPos.x);
+      const diffY = Math.abs(e.clientY - mouseDownPos.y);
+      const threshold = 1;
+      if (diffX < threshold && diffY < threshold) {
+        Navigate(`/Explore?category_id=${id}`);
+      }
+    }
+  };
   return (
     <motion.div
       // variants={reavelAnim} initial='hidden' animate={controls}
@@ -45,7 +58,8 @@ export default function Prod({ id, img, Amount, Title, Description, Type, Rate, 
     rounded-2xl overflow-hidden font-medium'>
       <Backgrounds img={img} />
       <div
-        onClick={navigateTo}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
         className='flex flex-col justify-between w-full h-full'>
         <div className='m-4 flex justify-between'>
           <div className='px-2 flex items-center w-fit bg-white bg-opacity-20 backdrop-filter backdrop-blur-2 rounded-lg text-[2.5vh]'>
