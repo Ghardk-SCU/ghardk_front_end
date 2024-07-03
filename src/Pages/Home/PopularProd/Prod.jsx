@@ -46,7 +46,7 @@ export default function Prod({ id, img, Amount, Title, Description, Type, Rate, 
       const diffY = Math.abs(e.clientY - mouseDownPos.y);
       const threshold = 1;
       if (diffX < threshold && diffY < threshold) {
-        Navigate(`/Explore?category_id=${id}`);
+        Navigate(`/itemDetails/${id}`);
       }
     }
   };

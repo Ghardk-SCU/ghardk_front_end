@@ -19,12 +19,14 @@ export default function BackdropHolder() {
     setBackDropActive(false);
   }
   const Holder =
-    BackDropActive &&
+    BackDropActive ?
       BackDropType === 'settings' ?
       <Settings CloseBackDrop={CloseBackDrop} /> :
       BackDropType === 'orders' ?
         <Orders CloseBackDrop={CloseBackDrop} /> :
         null
+      : 
+    null
   return (
     <AnimatePresence>
       {Holder}

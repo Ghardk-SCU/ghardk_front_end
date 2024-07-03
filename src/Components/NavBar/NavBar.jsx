@@ -41,6 +41,8 @@ export default function NavBar({ Open }) {
 
   useEffect(() => {
     setIsOpen(false)
+    setShowAccount(false)
+    setShowSearch(false)
   }, [Open])
   const handleAccountClicked = () => {
     setIsOpen(true)
