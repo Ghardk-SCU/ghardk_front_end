@@ -17,9 +17,9 @@ export default function CartItemsPart({ setDataChanged, setErrorMessage, itemDet
     const [changeQ, setChangeQ] = useState(null)
     const { Token } = useContext(AuthenticationContext)
 
-    const handleDelete = () => {
+    const handleDelete = async () => {
         if (Loading) return;
-        Fetch({
+        await Fetch({
             url: deleteFromCart(itemDetials.id),
             method: 'DELETE',
             Token,
@@ -28,6 +28,7 @@ export default function CartItemsPart({ setDataChanged, setErrorMessage, itemDet
             setErrorMessage,
             body: {}
         })
+        setDataChanged((prev) => prev + 1)
 
     }
     const handleChangeQuantatiy = (value) => {
@@ -44,13 +45,6 @@ export default function CartItemsPart({ setDataChanged, setErrorMessage, itemDet
             body: { quantity: itemDetials.quantity + value }
         })
     }
-
-    useEffect(() => {
-        if (!deleteItm) return
-        if (deleteItm.status === 'success') {
-            setDataChanged((prev) => prev + 1)
-        }
-    }, [deleteItm])
     useEffect(() => {
         if (!changeQ) return
         if (changeQ.status === 'success') {

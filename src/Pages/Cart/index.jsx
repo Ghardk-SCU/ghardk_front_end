@@ -20,14 +20,18 @@ export default function Cart() {
   const [dataChanged, setDataChanged] = useState(0)
 
   useEffect(() => {
-    Fetch({
-      url: getCart(),
-      method: 'GET',
-      Token,
-      setData: setDataArray,
-      setLoading: setLoadingFirstFetch,
-      setErrorMessage,
-    })
+    const Fun = async () => {
+      await Fetch({
+        url: getCart(),
+        method: 'GET',
+        Token,
+        setData: setDataArray,
+        setLoading: setLoadingFirstFetch,
+        setErrorMessage,
+      })
+    }
+    Fun()
+    console.log(1)
   }, [dataChanged])
 
   useEffect(() => {
