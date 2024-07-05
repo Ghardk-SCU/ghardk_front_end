@@ -13,12 +13,12 @@ export default function Shop({ setProductsUrl, ProductsUrl, loadingCategories, l
       </div>
       <div className='gap-4 flex flex-grow justify-center flex-wrap'>
         {
-          !loadingProducts && Products && Products.data?.productItems.length > 0 && Products.data.productItems.map((el) => (
+          !loadingProducts && Products && Products?.data?.productItems?.length > 0 && Products?.data?.productItems.map((el) => (
             <DetailsCard key={el.id} id={el.id} img={el.images[0]?.image_url} name={el.name} description={el.description} price={el.price} rating={el.rating ? (el.rating / el.rating_count).toFixed(2) : 0} rating_count={el.rating_count} />
           ))
         }
         {
-          !loadingProducts && Products && !Products.data?.productItems.length && <div className='w-full center'>
+          !loadingProducts && Products && !Products.data?.productItems?.length && <div className='w-full center'>
             <p className='text-2xl'>No Products Found</p>
           </div>
         }

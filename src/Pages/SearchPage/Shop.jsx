@@ -19,7 +19,7 @@ export default function Shop({ setProductsUrl, ProductsUrl, loadingCategories, l
       </div>
       <div className='gap-4 w-full flex flex-grow justify-center flex-wrap'>
         {
-          !loadingProducts && Products && Products.data.length > 0 && Products.data.map((el) => (
+          !loadingProducts && Products && Products?.data?.length > 0 && Products?.data.map((el) => (
             <DetailsCard key={el.id} id={el.id} img={el.images[0]?.image_url} name={el.name} description={el.description} price={el.price} rating={el.rating ? (el.rating / el.rating_count).toFixed(2) : 0} rating_count={el.rating_count} />
           ))
         }
