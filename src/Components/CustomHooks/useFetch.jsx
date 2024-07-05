@@ -1,5 +1,4 @@
 import { useState, useEffect } from 'react'
-
 export default function useFetch({ url, setErrorMessage, method, body, Token, reRender = 1 }) {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);

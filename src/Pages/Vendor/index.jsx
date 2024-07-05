@@ -6,7 +6,7 @@ import useFetch from "../../Components/CustomHooks/useFetch";
 import Fetch from "../../Components/CustomHooks/Fetch";
 import { useParams, useNavigate } from "react-router-dom";
 import Spinner from "../../Components/Ui-Components/Spinner";
-
+// const getVendorProducts = (id, catID) => (`${APIURL}api/v1/products/vendors/${id}${catID ? `?category_id=${catID}` : ''}`);
 export default function Index() {
     const Navigate = useNavigate()
     const { id } = useParams();
@@ -14,31 +14,34 @@ export default function Index() {
         url: getUserData(`${id}?role=vendor`),
         method: 'GET',
     })
-    let url = getVendorProducts(id);
     const [productsData, setProductsData] = useState(null);
+    const [categoryId, setCategoryId] = useState(0);
     const { data: products } = useFetch({
-        url: url,
+        url: `${getVendorProducts(id)}${categoryId ? `category_id=${categoryId}` : ''}`,
         method: 'GET',
     })
     const [productsLoading, setProductsLoading] = useState(false);
 
 
-
-    const [categoryId, setCategoryId] = useState(0);
     const [vendorData, setVendorData] = useState({});
     useEffect(() => {
         if (data && categoryId) {
-            url = getVendorProducts(id, categoryId);
-            setProductsLoading(true);
-            fetch(url).then(res => res.json()).then(data => {
-                setProductsData(data.data.products);
-                setProductsLoading(false);
-            }).catch(err => {
-                console.error(err.message);
-            }
-            );
+            // setProductsLoading(true);
+            // fetch(getVendorProducts(id, categoryId)).then(res => res.json()).then(data => {
+            //     setProductsData(data.data.products);
+            //     setProductsLoading(false);
+            // }).catch(err => {
+            //     console.error(err.message);
+            // }
+            // );
+            Fetch({
+                url: getVendorProducts(id, categoryId),
+                method: 'GET',
+                setData: setProductsData,
+                setLoading: setProductsLoading
+            })
         }
-    }, [categoryId]);
+    }, [data, categoryId]);
     useEffect(() => {
         setProductsLoading(prev => !prev);
     }, [data])
@@ -46,12 +49,6 @@ export default function Index() {
     const handleCategoryChange = (id) => {
         setCategoryId(id);
     }
-
-    useEffect(() => {
-        if (data && data.status === 'success' && !productsLoading && products) {
-            setProductsData(products.data.products);
-        }
-    }, [products]);
 
     useEffect(() => {
         if (data && data.status === 'success') {
@@ -98,7 +95,7 @@ export default function Index() {
                     <img className="col-span-4  w-[180px]   h-[180px] rounded-2xl  object-cover   border-2 shadow-xl shadow-Beige3 border-Beige2" src={vendorData.image_url} alt="vendor's picture" />
                     <div className="text-xl flex flex-col w-fit   mt-8 justify-center items-center font-serif">
                         {
-                            !loading && vendorData?.first_name && vendorData.first_name + " " + vendorData.last_name}
+                            !loading && vendorData && vendorData.user_name}
                         <div className="flex  justify-center items-center w-fit gap-2 mr-4">
                             {
                                 !loading && vendorData && <p className="font-thin text-lg">
@@ -133,6 +130,7 @@ export default function Index() {
                     Vendors Products
                 </div>
                 <div className="flex w-full items-center   lg:row-span-1 mt-12 lg:mt-4  shadow-Beige3  justify-center flex-wrap gap-4 px-8 justify-self-center">
+                    <button onClick={() => handleCategoryChange(0)} className="w-fit px-2 h-8 hover:bg-Beige2 duration-500 center border-black border-2 rounded-md "> All </button>
                     {
                         !loading && vendorData?.categories && vendorData.categories.map((cat, index) => {
                             return (
@@ -143,7 +141,7 @@ export default function Index() {
                 </div>
                 <div className=" h-fit flex flex-wrap lg:justify-center lg:px-4 py-4 gap-4 px-8 md2:px-24 w-full lg:row-span-8" >
                     {
-                        !productsLoading && productsData && productsData.map((product, index) => {
+                        !productsLoading && products && products.data.products && products.data.products.map((product, index) => {
                             return (
                                 <DetailsCard key={index} id={product.id} img={product.images[0]?.image_url} name={product.name} description={product.description} price={product.price} rating={product.rating} rating_count={product.rating_count} />
                             )

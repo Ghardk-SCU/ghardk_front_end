@@ -35,9 +35,22 @@ export default function Prod({ id, img, Amount, Title, Description, Type, Rate, 
       </div>
     )
   }
-  const navigateTo = () => {
-    if (canNavigate) Navigate(`/itemDetails/${id}`)
-  }
+  const [mouseDownPos, setMouseDownPos] = useState(null);
+
+  const handleMouseDown = (e) => {
+    setMouseDownPos({ x: e.clientX, y: e.clientY });
+  };
+
+  const handleMouseUp = (e) => {
+    if (mouseDownPos) {
+      const diffX = Math.abs(e.clientX - mouseDownPos.x);
+      const diffY = Math.abs(e.clientY - mouseDownPos.y);
+      const threshold = 1;
+      if (diffX < threshold && diffY < threshold) {
+        Navigate(`/itemDetails/${id}`);
+      }
+    }
+  };
   return (
     <motion.div
       // variants={reavelAnim} initial='hidden' animate={controls}
@@ -46,7 +59,8 @@ export default function Prod({ id, img, Amount, Title, Description, Type, Rate, 
     rounded-2xl overflow-hidden font-medium'>
       <Backgrounds img={img} />
       <div
-        onClick={navigateTo}
+        onMouseDown={handleMouseDown}
+        onMouseUp={handleMouseUp}
         className='flex flex-col justify-between w-full h-full'>
         <div className='m-4 flex justify-between'>
           <div className='px-2 flex items-center w-fit bg-white backdrop-filter backdrop-blur-2 rounded-lg text-[2.5vh]'>
@@ -63,7 +77,8 @@ export default function Prod({ id, img, Amount, Title, Description, Type, Rate, 
             WebkitBackdropFilter: 'blur( 20px )',
             boxShadow: '0 8px 32px 0 rgba( 31, 38, 135, 0.37 )',
           }} className='w-full h-0 group-hover:h-full duration-300 absolute bottom-0 left-0 pointer-events-none bg-black' />
-          <h2 className="text-[3.5vh] Fredoka absolute bottom-5 group-hover:relative    group-hover:bottom-0
+          <h2 className="text-[3.5vh] Fredoka absolute bottom-5 group-hover:relative    group-hover:bottom-0 duration-300
+          
             before:content-[''] before:absolute before:bg-white/50 before:w-0 before:h-[6px] before:rounded-full before:-bottom-2 before:-left-4 group-hover:before:w-1/2 before:delay-75 before:duration-300
           ">{Title}</h2>
           <div className='relative top-[100%] group-hover:top-0 duration-300 space-y-3'>

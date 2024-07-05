@@ -55,7 +55,7 @@ export default function Form() {
 		})
 	}
 
-	function handleSubmit(e) {
+	async function handleSubmit(e) {
 		e.preventDefault();
 		const body = {
 			first_name: formData.firstName,
@@ -69,7 +69,6 @@ export default function Form() {
 		setErrorMessage('')
 		Fetch({ url: SignupUrl(), setLoading, setData, setErrorMessage, method: 'POST', body })
 	}
-
 	useEffect(() => {
 		if (!data) return
 		if (data.status === 'success') {

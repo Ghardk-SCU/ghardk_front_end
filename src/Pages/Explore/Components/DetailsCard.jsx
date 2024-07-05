@@ -41,7 +41,7 @@ export default function DetialsCard({ id, name, description, price, rating, rati
                 <div className="w-full h-full basis-1/2">
                     <div className="itemData w-full h-full center flex-col p-3 px-4">
                         <div className='w-full h-full flex flex-col'>
-                            <h3 className='Fredoka text-lg text-Black font-medium w-[calc(100%-20px)]'>{name}</h3>
+                            <h3 className='truncate Fredoka text-lg text-Black font-medium w-[calc(100%-20px)]'>{name}</h3>
                             <p className='truncate Fredoka text-sm text-Black/60 font-normal w-[100%]'>
                                 {description}
                             </p>

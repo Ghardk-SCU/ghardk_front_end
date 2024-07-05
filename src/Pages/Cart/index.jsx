@@ -20,14 +20,18 @@ export default function Cart() {
   const [dataChanged, setDataChanged] = useState(0)
 
   useEffect(() => {
-    Fetch({
-      url: getCart(),
-      method: 'GET',
-      Token,
-      setData: setDataArray,
-      setLoading: setLoadingFirstFetch,
-      setErrorMessage,
-    })
+    const Fun = async () => {
+      await Fetch({
+        url: getCart(),
+        method: 'GET',
+        Token,
+        setData: setDataArray,
+        setLoading: setLoadingFirstFetch,
+        setErrorMessage,
+      })
+    }
+    Fun()
+    console.log(1)
   }, [dataChanged])
 
   useEffect(() => {
@@ -78,6 +82,8 @@ const CartReview = ({ dataArray, setDataArray, setType, Type, Loading, setLoadin
   )
 }
 const CartLocation = ({ dataArray, setDataArray, setType, Type, Loading, setLoading, errorMessage, setErrorMessage, setDataChanged }) => {
+
+  const [countLocation, setCountLocation] = useState([0, 0, 0, 0, 0])
   return (
     <section className='center flex-col w-screen min-h-screen bg-Black'>
       <div className='h-[50%] flex flex-col mainPadding'>
@@ -85,10 +91,10 @@ const CartLocation = ({ dataArray, setDataArray, setType, Type, Loading, setLoad
       </div>
       <div className='w-full h-full flex justify-start flex-col lg2:flex-row py-16 gp-16'>
         <div className='w-full h-full center flex-col gap-12 pb-16'>
-          <CartLocationPart setErrorMessage={setErrorMessage} errorMessage={errorMessage} />
+          <CartLocationPart setCountLocation={setCountLocation} setErrorMessage={setErrorMessage} errorMessage={errorMessage} />
         </div>
         <div className='w-full h-full center basis-2/3 pb-16'>
-          <CheckoutPart Total={dataArray.data.checkout_price} setDataChanged={setDataChanged} setLoading={setLoading} setErrorMessage={setErrorMessage} errorMessage={errorMessage} setType={setType} dataArray={dataArray.data.cartProducts} Type={Type} Loading={Loading} />
+          <CheckoutPart countLocation={countLocation} Total={dataArray.data.checkout_price} setDataChanged={setDataChanged} setLoading={setLoading} setErrorMessage={setErrorMessage} errorMessage={errorMessage} setType={setType} dataArray={dataArray.data.cartProducts} Type={Type} Loading={Loading} />
         </div>
       </div>
     </section>

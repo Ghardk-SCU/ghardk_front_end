@@ -5,7 +5,7 @@ import Fetch from "../../../Components/CustomHooks/Fetch";
 import { getCountries, getMyDefaultAddress, addNewAddress, updateAddress } from "../../../Store/urls";
 import { AuthenticationContext } from "../../../Store/Context/Authentication";
 
-export default function CartLocationPart() {
+export default function CartLocationPart({ setCountLocation }) {
   const [myCountry, setMyCountry] = useState('')
   const [myCity, setMyCity] = useState('')
   const [myAddress, setMyAddress] = useState('')
@@ -15,7 +15,7 @@ export default function CartLocationPart() {
   const [Type, setType] = useState({ type: 'addNewAddress' })
   const { Token } = useContext(AuthenticationContext)
   const [data, setData] = useState(null)
-
+  // [myCountry, myCity, myAddress, myStreatName, myPostalCode]
   const [Loading, setLoading] = useState(true);
   const { data: AllCountries, loading: firstLoading } = useFetch({
     url: getCountries(),
@@ -28,6 +28,7 @@ export default function CartLocationPart() {
   })
   const Submit = (e) => {
     e.preventDefault();
+    setErrorMessage('')
     if (!myCountry || !myCity || !myAddress || !myStreatName || !myPostalCode) {
       return setErrorMessage('Please fill all the fields')
     }
@@ -87,6 +88,31 @@ export default function CartLocationPart() {
       })
     }
   }, [myDefaultAddress])
+
+  useEffect(() => {
+    if (myCountry) setCountLocation((prev) => { prev[0] = 1; return prev });
+    else setCountLocation((prev) => { prev[0] = 0; return prev });
+  }, [myCountry]);
+
+  useEffect(() => {
+    if (myCity) setCountLocation((prev) => { prev[1] = 1; return prev });
+    else setCountLocation((prev) => { prev[1] = 0; return prev });
+  }, [myCity]);
+
+  useEffect(() => {
+    if (myAddress) setCountLocation((prev) => { prev[2] = 1; return prev });
+    else setCountLocation((prev) => { prev[2] = 0; return prev });
+  }, [myAddress]);
+
+  useEffect(() => {
+    if (myStreatName) setCountLocation((prev) => { prev[3] = 1; return prev });
+    else setCountLocation((prev) => { prev[3] = 0; return prev });
+  }, [myStreatName]);
+
+  useEffect(() => {
+    if (myPostalCode) setCountLocation((prev) => { prev[4] = 1; return prev });
+    else setCountLocation((prev) => { prev[4] = 0; return prev });
+  }, [myPostalCode]);
   return (
     <div className="Fredoka relative w-[85%] min-h-[140px] max-h-[80%] bg-[rgb(36,36,36)] rounded-3xl p-6 text-White gap-2 md:gap-4">
       <h1 className="text-2xl my-5">Billing Details</h1>

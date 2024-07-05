@@ -3,6 +3,7 @@ export default async function Fetch({ url, setData, setLoading, setErrorMessage,
   if (Token) headers.Authorization = `Bearer ${Token}`;
   const modifiedBody = Type === 'json' ? JSON.stringify(body) : body;
   try {
+    if (setLoading) setLoading(true)
     const response = await fetch(url, {
       method,
       headers,
