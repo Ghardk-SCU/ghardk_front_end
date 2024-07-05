@@ -33,7 +33,7 @@ const getAllSales = () => (`${APIURL}api/v1/sales`);
 const getUserData = (id) => (`${APIURL}api/v1/users/${id}`);
 const getVendorProducts = (id) => (`${APIURL}api/v1/products/vendors/${id}?`);
 const getReviews = (id) => (`${APIURL}api/v1/products/${id}/reviews`);
-const justForYou = () => (`${APIURL}api/v1/products/for-you?limit=5`);
+const justForYou = () => (`${APIURL}api/v1/products/for-you`);
 
 export {
   SignupUrl,

@@ -15,6 +15,7 @@ import ItemDetails from './Pages/ItemDetails/index'
 import SearchPage from './Pages/SearchPage/index'
 import Vendor from './Pages/Vendor/index';
 import Favorite from './Pages/Favorite/index'
+import JustForYou from './Pages/JustForYou/index'
 
 function App() {
   const { BackDropActive } = useContext(BackDropContext)
@@ -35,6 +36,7 @@ function App() {
           <Route path="vendors/:id" element={<Vendor />} />
           <Route path="Favorites" element={<Favorite />} />
           <Route path="Favorite" element={<Favorite />} />
+          <Route path="JustForYou" element={<JustForYou />} />
           <Route path="*" element={<Page404 />} />
         </Route>
       </Routes>

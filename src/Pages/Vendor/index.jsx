@@ -21,7 +21,6 @@ export default function Index() {
         method: 'GET',
     })
     const [productsLoading, setProductsLoading] = useState(false);
-    console.log({ products })
 
 
     const [vendorData, setVendorData] = useState({});
@@ -42,7 +41,6 @@ export default function Index() {
                 setLoading: setProductsLoading
             })
         }
-        // console.log([data]);
     }, [data, categoryId]);
     useEffect(() => {
         setProductsLoading(prev => !prev);
