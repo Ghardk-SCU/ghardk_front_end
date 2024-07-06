@@ -1,5 +1,5 @@
 import placeholder from '../assets/placeholder.jpg'
-import { FaStar, FaRegHeart, FaHeart, FaStarHalfAlt } from 'react-icons/fa'
+import { FaStar, FaRegHeart, FaRegStar, FaHeart, FaStarHalfAlt } from 'react-icons/fa'
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 
@@ -17,7 +17,7 @@ export default function DetialsCard({ id, name, description, price, rating, rati
                 // if there is a half star
                 stars.push(<FaStarHalfAlt key={i} />)
             } else {
-                stars.push(<FaStar key={i} style={{ color: 'rgba(255,255,255,0.5)' }} />)
+                stars.push(<FaRegStar key={i} style={{ color: 'gray' }} />)
             }
         }
         return (

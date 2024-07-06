@@ -34,7 +34,7 @@ const getUserData = (id) => (`${APIURL}api/v1/users/${id}`);
 const getVendorProducts = (id) => (`${APIURL}api/v1/products/vendors/${id}?`);
 const getReviews = (id) => (`${APIURL}api/v1/products/${id}/reviews`);
 const justForYou = () => (`${APIURL}api/v1/products/for-you`);
-
+const createReview = (id) => (`${APIURL}api/v1/reviews/approve-review/${id}`);
 export {
   SignupUrl,
   LoginUrl,
@@ -69,5 +69,6 @@ export {
   getUserData,
   getVendorProducts,
   getReviews,
-  justForYou
+  justForYou,
+  createReview
 }

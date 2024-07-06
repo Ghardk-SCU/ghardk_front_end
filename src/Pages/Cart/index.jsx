@@ -31,7 +31,6 @@ export default function Cart() {
       })
     }
     Fun()
-    console.log(1)
   }, [dataChanged])
 
   useEffect(() => {

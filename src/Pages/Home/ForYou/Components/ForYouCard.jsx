@@ -83,7 +83,6 @@ export default function ForYouCard({ item }) {
 		}
 	}, [fav])
 
-	console.log({ cart })
 	return (
 		<>
 			<section className='lg:scale-[1.1] relative w-full md:w-[70%] h-[270px] sm:h-[370px] lg:h-[40vh] lg:w-3/4 bg-Beige2 center rounded-2xl flex-col overflow-hidden border-[10px] border-Beige2 shadow-xl'>

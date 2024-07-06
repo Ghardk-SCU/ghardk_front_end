@@ -17,7 +17,7 @@ export default function DetialsCard({ id, name, description, price, rating, rati
                 // if there is a half star
                 stars.push(<FaStarHalfAlt key={i} />)
             } else {
-                stars.push(<FaStar key={i} style={{ color: 'rgba(255,255,255,0.5)' }} />)
+                stars.push(<FaRegHeart key={i} style={{ color: 'gray' }} />)
             }
         }
         return (

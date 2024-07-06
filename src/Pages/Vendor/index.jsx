@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { FaStar, FaRegHeart, FaHeart, FaStarHalfAlt } from 'react-icons/fa';
+import { FaStar, FaRegHeart, FaRegStar, FaHeart, FaStarHalfAlt } from 'react-icons/fa';
 import DetailsCard from '../Explore/Components/DetailsCard';
 import { getUserData, getVendorProducts } from '../../Store/urls';
 import useFetch from "../../Components/CustomHooks/useFetch";
@@ -69,7 +69,7 @@ export default function Index() {
                 // if there is a half star
                 stars.push(<FaStarHalfAlt key={i} />)
             } else {
-                stars.push(<FaStar key={i} style={{ color: 'rgba(255,255,255,0.5)' }} />)
+                stars.push(<FaRegStar key={i} style={{ color: 'gray' }} />)
             }
         }
         return (

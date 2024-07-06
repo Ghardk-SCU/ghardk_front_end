@@ -37,7 +37,7 @@ export default function ItemDetails() {
             <div className='w-full bg-Beige center flex-col gap-4'>
                 {!loading && <>
                     <Details itemDetials={data.data.productItem} />
-                    <ReviewCards reviews={reviews} reviewsLoading={reviewsLoading} />
+                    <ReviewCards itemDetials={data.data.productItem} reviews={reviews} reviewsLoading={reviewsLoading} />
                     <ExtraDetails itemDetials={data.data.productItem} />
                     <SimilarProducts itemId={id} name={data.data.productItem.name} />
                 </>}
