@@ -159,10 +159,6 @@ const AccountMenu = ({ setShowAccount }) => {
               <FaRegHeart className='font-bold' size={20} />
               <p>Favorites</p>
             </Link>
-            <Link to='Favorites' className='flex items-center gap-x-3'>
-              <IoIosNotifications className='font-bold' size={20} />
-              <p>Notifications</p>
-            </Link>
             <button onClick={() => { setIsLogedIn(false); setShowAccount(false); window.location.reload() }} className='flex items-center gap-x-3'>
               <IoIosLogOut className='font-bold' size={20} />
               <p>Log out</p>

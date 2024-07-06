@@ -1,5 +1,5 @@
 let APIURL = import.meta.env.VITE_API_URL;
-// APIURL = 'http://localhost:2000/';
+APIURL = 'http://localhost:2000/';
 const SignupUrl = () => (`${APIURL}api/v1/users/signup`);
 const LoginUrl = () => (`${APIURL}api/v1/users/login`);
 const MyDataUrl = () => (`${APIURL}api/v1/users/getMe`);
