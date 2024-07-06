@@ -25,7 +25,7 @@ export default function Card({ reviewDetails }) {
         <>
             <div className="max-w-[300px] sm:min-w-[400px] min-h-[230px] max-h-[230px] h-min p-4 cetner flex-col bg-DarkBeige rounded-xl shadow-[inset_0_0px_4px_rgba(0,0,0,0.3)]">
                 <section className="w-full h-full center">
-                    <div className="w-full h-full">
+                    <div>
                         <StarCounter />
                     </div>
                     <span className="ml-auto text-sm text-Black/80">

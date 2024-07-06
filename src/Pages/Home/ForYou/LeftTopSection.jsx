@@ -16,10 +16,6 @@ export default function LeftTopSection({ BigSection, children }) {
     Token
   })
   const { width } = WindowSize()
-  // useMotionValueEvent(BigSection, 'change', (latest) => {
-  //   console.log(latest)
-  // })
-  console.log({ data });
   const y = useTransform(BigSection, [0, 1], ['50%', '-100%'])
   return (
     <motion.div style={{ y: width >= 1280 ? y : 0 }} className="w-full h-full flex flex-col justify-center items-center px-5 text-[5vw] py-[15vh] space-y-[10vh] lg:space-y-[25vh] z-[-1]">

@@ -5,6 +5,7 @@ import { addItemToCart } from '../../../Store/urls';
 import Fetch from '../../../Components/CustomHooks/Fetch';
 import { addFav, delFav, delFavByProId } from '../../../Store/urls';
 import { AuthenticationContext } from '../../../Store/Context/Authentication';
+
 import { Link } from 'react-router-dom';
 import ListItem from './ListItem';
 export default function Details({ itemDetials }) {
@@ -53,7 +54,7 @@ export default function Details({ itemDetials }) {
         let stars = []
         for (let i = 0; i < 5; i++) {
             if (itemDetials.rating >= i + 1) {
-                stars.push(<FaRegStar key={i} />)
+                stars.push(<FaStar key={i} />)
             } else if (itemDetials.rating > i && itemDetials.rating < i + 1) {
                 // if there is a half star
                 stars.push(<FaStarHalfAlt key={i} />)

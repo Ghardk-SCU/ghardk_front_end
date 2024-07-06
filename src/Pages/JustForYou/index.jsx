@@ -37,7 +37,6 @@ export default function JustForYou() {
       Navigate('/login')
     }
   }, [isLogedIn])
-  console.log({ Prod });
 
   return (
     <div style={{

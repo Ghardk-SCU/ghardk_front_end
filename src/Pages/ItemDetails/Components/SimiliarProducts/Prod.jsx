@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import { FaStar } from "react-icons/fa";
 import { FaStarHalfAlt } from "react-icons/fa";
 import { FaHeart } from "react-icons/fa";
-import { FaRegHeart } from "react-icons/fa6";
+import { FaRegHeart, FaRegStar } from "react-icons/fa6";
 import { reavelAnimDowntoTop } from '../../../../Store/AnimationValues'
 import { CiStar } from "react-icons/ci";
 
@@ -22,7 +22,7 @@ export default function Prod({ id, img, Amount, Title, Description, Type, Rate, 
         // if there is a half star
         stars.push(<FaStarHalfAlt key={i} />)
       } else {
-        stars.push(<FaStar key={i} style={{ color: 'rgba(255,255,255,0.5)' }} />)
+        stars.push(<FaRegStar key={i} style={{ color: 'gray' }} />)
       }
     }
     return (
